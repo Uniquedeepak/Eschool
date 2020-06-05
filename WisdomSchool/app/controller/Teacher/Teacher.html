@@ -1,0 +1,294 @@
+﻿<div id="page-wrapper" ng-controller="TeacherCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Teacher
+                    </li>
+                    <div style="float: right;">
+                        <a href=""> <span class="glyphicon glyphicon-plus" ng-click="open(1,AddTeacher)"> Add</span></a>
+                    </div>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Employee Id</th>
+                                <th>Employee Name </th>
+                                <th>Employee Father </th>
+                                <th>Employee Mother </th>
+                                <th>Gender</th>
+                                <th>Phone </th>
+                                <th>Salary Amount </th>
+                                <th>Qualification </th>
+                                <th>Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in TeacherDetails | filter:q | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="TeacherDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.Employee_Id}}</td>
+                                <td>{{item.Employee_Name}}</td>
+                                <td>{{item.Employee_Father}}</td>
+                                <td>{{item.Employee_Mother}}</td>
+                                <td>{{item.Gender}}</td>
+                                <td>{{item.Phone}}</td>
+                                <td>{{item.Salary_Amount}}</td>
+                                <td>{{item.Qualification}}</td>
+                                <td>
+                                    <a href=""> <span class="glyphicon glyphicon-edit" ng-click="open(2,item)"></span> </a>
+                                    <a href=""> <span class="glyphicon glyphicon-remove" ng-click="open(3,item)"></span> </a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditTeacherModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row panel panel-success" style="margin-top:2%;">
+                        <div class="panel-heading lead">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> View Teacher Details</div>
+
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <center>
+                                                <span class="text-left">
+                                                    <img src="img/Teacher/{{selectedTeacher.Image}}" class="img-responsive img-thumbnail">
+                                                </span>
+                                            </center>
+
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                <input type="file" file-model="selectedTeacher.Image" style="width: 95px;">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a data-toggle="tab" data-target="#Summary" class="text-success"><i class="fa fa-indent"></i> Summary</a></li>
+                                                <li><a data-toggle="tab" data-target="#Contact" class="text-success"><i class="fa fa-bookmark-o"></i> Contact Info</a></li>
+                                                <li><a data-toggle="tab" data-target="#Address" class="text-success"><i class="fa fa-home"></i> Address</a></li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div id="Summary" class="tab-pane fade in active">
+
+                                                    <div class="table-responsive panel">
+                                                        <table class="table">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i> Full Name</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Employee_Name" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-list-ol"></i> Employee Number</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Employee_Id" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-book"></i> Qualification </td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Qualification" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-group"></i> Gender </td>
+                                                                    <td>
+                                                                        <select class="form-control" ng-model="selectedTeacher.Gender" ng-disabled="disableCtrl">
+                                                                            <option>Male</option>
+                                                                            <option>Female</option>
+                                                                        </select>
+                                                                        <!--<input class="form-control" ng-model="selectedTeacher.Gender" ng-disabled="disableCtrl">-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-calendar"></i> Birthday</td>
+                                                                    <td>
+                                                                        <input type="text" class="form-control" ng-model="selectedTeacher.DOB" my-date-picker />
+                                                                        <!--<input class="form-control" ng-model="selectedTeacher.DOB" ng-disabled="disableCtrl">-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-calendar"></i> TotalSalary</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.TotalSalary" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-university"></i> Experience</td>
+                                                                    <td>
+                                                                        <input class="form-control" ng-model="selectedTeacher.Experience" ng-disabled="disableCtrl">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div id="Address" class="tab-pane fade">
+                                                    <div class="table-responsive panel">
+                                                        <table class="table">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                    <td>
+                                                                        <address>
+                                                                            <input class="form-control" ng-model="selectedTeacher.Address " ng-disabled="disableCtrl">
+                                                                        </address>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-home"></i> E Mail</td>
+                                                                    <td>
+                                                                        <address>
+                                                                            <input class="form-control" ng-model="selectedTeacher.Email " ng-disabled="disableCtrl">
+                                                                        </address>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div id="Contact" class="tab-pane fade">
+                                                    <div class="table-responsive panel">
+                                                        <table class="table">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-envelope-o"></i> Email ID</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Email" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mobile Number</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Phone " ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-flag"></i> Nationality</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Nationality" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i> Father's Name </td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Employee_Father" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mother's Name</td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Employee_Mother" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i> Category </td>
+                                                                    <td>
+                                                                        <select class="form-control" ng-model="selectedTeacher.Category" ng-disabled="disableCtrl">
+                                                                            <option>General</option>
+                                                                            <option>SC</option>
+                                                                            <option>ST</option>
+                                                                            <option>OBC</option>
+
+                                                                        </select>
+                                                                        <!--<input class="form-control" ng-model="selectedTeacher.Category" ng-disabled="disableCtrl">-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Status </td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Status" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i> Bloodgroup</td>
+                                                                    <td>
+                                                                        <select class="form-control" ng-model="selectedTeacher.Bloodgroup" ng-disabled="disableCtrl">
+                                                                            <option>B+</option>
+                                                                            <option>A+</option>
+                                                                            <option>A-</option>
+                                                                            <option>B-</option>
+                                                                            <option>O+</option>
+                                                                            <option>O-</option>
+                                                                        </select>
+                                                                        <!--<input class="form-control" ng-model="selectedTeacher.Bloodgroup" ng-disabled="disableCtrl">-->
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Session </td>
+                                                                    <td><input class="form-control" ng-model="selectedTeacher.Session" ng-disabled="disableCtrl"></td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="showAdd" ng-click="addTeacher(selectedTeacher)">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-show="showEdit" ng-click="updateTeacher(selectedTeacher)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="showDelete" ng-click="deletesTeacher(selectedTeacher)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

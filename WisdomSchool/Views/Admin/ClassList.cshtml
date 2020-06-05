@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SchoolApi.Class>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    <div class="col-md-12">
+       
+        <div>
+            <div style="float:left" class="col-md-4"><h2>Manage Class</h2></div>
+            <div style="padding: 30px 0px 0px 100px;float:right;" class="col-md-4">@Html.ActionLink("Add Class", "AddClass", "Admin", new { area = "" })</div>
+            
+            
+            <table class="table">
+                <tr>
+                    <th>
+                        S.No.
+                    </th>
+                    <th>
+                        Class
+                    </th>
+                    
+                    <th>
+                        Inc. Class
+                    </th>
+                    
+                    <th></th>
+                </tr>
+                @{ int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @(sno++)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Class1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Inc_Class)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditClass", new { id = item.CID })
+                                @Html.ActionLink("Delete", "DeleteClass", new { id = item.CID })
+                                @*@Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+
+        </div>
+    </div>
+
+</div>

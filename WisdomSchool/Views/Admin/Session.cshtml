@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SchoolApi.Session>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    <div class="col-md-12">
+       
+        <div>
+            <div style="float:left" class="col-md-4"><h2>Manage Session</h2></div>
+            @*<div style="padding: 30px 0px 0px 100px;float:right;" class="col-md-4">@Html.ActionLink("Add Session", "AddSession", "Admin", new { area = "" })</div>*@
+            
+           @using (@Html.BeginForm("EditSession", "Admin", FormMethod.Post))
+           {
+            <table class="table">
+                <tr>
+                    <th>
+                        S.No.
+                    </th>
+                    <th>
+                        Session
+                    </th>
+
+                    <th>
+                        IsActive
+                    </th>
+
+                    @*<th></th>*@
+                </tr>
+                @{ int sno = 1;
+                 foreach (var item in Model)
+                 {
+                    <tr>
+                        <td>
+                            @(sno++)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Session1)
+                        </td>
+                        <td>
+                            @{
+                                bool Active =item.IsActive == true? true:false;
+                            }
+                            @Html.CheckBoxFor(m => Active)
+                            @*@Html.DisplayFor(modelItem => item.IsActive)*@
+                        </td>
+
+                    </tr>
+                 }
+                @Html.ActionLink("Update", "EditSession")
+                }
+            </table>
+               
+            <div class="form-group col-md-4">
+                <div class="col-md-offset-7 col-md-8">
+                    <input type="submit" class="btn btn-success" value="Submit" />
+                </div>
+            </div>
+           }  
+            
+            
+
+        </div>
+    </div>
+
+</div>

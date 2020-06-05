@@ -1,0 +1,220 @@
+﻿<div ng-controller="DashboardCtrl">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Dashboard <small>Overview</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> Dashboard
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-users fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{TotalStudents}}</div>
+                                    <div>Student's</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#/student">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{TotalClass}}</div>
+                                    <div>Class's</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#/class">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa fa-inr fa-5x fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{TodayTotalFee}}</div>
+                                    <div>Today Fee Collection</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#/dailyReport">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-inr fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{MonthTotalFee}}</div>
+                                    <div>Total Fee Collection</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#/dailyReport">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>
+                            School Chart
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-target="#employee" data-toggle="tab">Classwise Balance</a>
+                                </li>
+                                <li>
+                                    <a data-target="#student" data-toggle="tab">Student</a>
+                                </li>
+                                <li>
+                                    <a data-target="#totalbirthday" data-toggle="tab">Total Birthday</a>
+                                </li>
+                                <li>
+                                    <a data-target="#defaulter" data-toggle="tab">Transport </a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content" style="height: 325px;width: 300px;margin-left: 85px;">
+                                <div class="tab-pane fade in active" id="employee">
+                                    <h4>Classwise Balance Details</h4>
+                                    <canvas id="pie" class="chart chart-pie"
+                                            chart-data="MonthlyFeedata" chart-labels="MonthlyFeelabels" chart-options="options"></canvas>
+                                </div>
+                                <div class="tab-pane fade" id="student">
+                                    <h4>Total Student Details</h4>
+                                    <canvas id="pie" class="chart chart-pie"
+                                            chart-data="Studentdata" chart-labels="Studentlabels" chart-options="options"></canvas>
+                                </div>
+                                <div class="tab-pane fade" id="totalbirthday">
+                                    <h4>Student Monthly Birthday</h4>
+                                    <canvas id="pie" class="chart chart-pie"
+                                            chart-data="Birthdaydata" chart-labels="Birthdaylabels" chart-options="options"></canvas>
+                                </div>
+                                <div class="tab-pane fade" id="defaulter">
+                                    <h4>Transport Fee Details</h4>
+                                    <canvas id="pie" class="chart chart-pie"
+                                            chart-data="Transportdata" chart-labels="Transportlabels" chart-options="options"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-home"></i>
+                            School Details
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    School Name
+                                    <span class="pull-right text-muted small">
+                                        <em>Tender Souls Public School</em>
+                                    </span>
+                                </div>
+                                <div class="list-group-item">
+                                    Address
+                                    <span class="pull-right text-muted small">
+                                        <em>Ring Road, Avas Vikas, Rudrapur (U.S.Nagar), Uttarakhand</em>
+                                    </span>
+                                </div>
+                                <div class="list-group-item">
+                                    Phone
+                                    <span class="pull-right text-muted small">
+                                        <em> 05944-245778</em>
+                                    </span>
+                                </div>
+                                <div class="list-group-item">
+                                    Session
+                                    <span class="pull-right text-muted small">
+                                        <em>2017-2018</em>
+                                    </span>
+                                </div>
+                                <div class="list-group-item">
+                                    <button class="btn btn-link" ng-click="BackUp()"> BackUp</button>
+                                </div>
+                            </div>
+
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+</div>

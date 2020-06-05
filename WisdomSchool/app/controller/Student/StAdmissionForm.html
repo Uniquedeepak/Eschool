@@ -1,0 +1,320 @@
+﻿<div id="page-wrapper" ng-controller="StAdmissionFormCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Admission Form
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div class="panel panel-default">
+
+
+                    <div class="panel-body">
+                        <div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Medium</label>
+                                        <select class="form-control" ng-model="AddStudent.Medium">
+                                            <option>English</option>
+                                            <option>Hindi</option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Admission No</label>
+                                        <input class="form-control" ng-model="AddStudent.AdmissionNo" disabled>
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Adhar Card No</label>
+                                        <input class="form-control" ng-model="AddStudent.Adhar_No">
+
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>EmailId</label>
+                                        <input class="form-control" ng-model="AddStudent.EmailId">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                        <label>Student Name</label>
+                                        <input class="form-control" ng-model="AddStudent.StFirstName">
+
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Mother Name</label>
+                                        <input class="form-control" ng-model="AddStudent.MotherName">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Father Name</label>
+                                        <input class="form-control" ng-model="AddStudent.FatherName">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Date</label>
+                                        <input type="text" class="form-control" ng-model="AddStudent.date" my-date-picker />
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Date of Birth</label>
+                                        <input type="text" class="form-control" ng-model="AddStudent.DOB" my-date-picker />
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Class</label>
+                                        <select class="form-control" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Section</label>
+
+                                        <select class="form-control" ng-model="AddStudent.Section">
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                            <option>D</option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Previous Due</label>
+                                        <input class="form-control" ng-model="AddStudent.PreviousDue">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Concession</label>
+                                        <input class="form-control" ng-model="AddStudent.Concession">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Commn Address </label>
+                                        <textarea class="form-control" ng-model="AddStudent.ComAddress" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Permanent Address </label>
+                                        <textarea class="form-control" ng-model="AddStudent.ParAddress" rows="3"></textarea>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Emergency No </label>
+                                        <input class="form-control" ng-model="AddStudent.EmergencyNo">
+
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Mobile No</label>
+                                        <input class="form-control" ng-model="AddStudent.Contact">
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> UserName</label>
+                                        <input class="form-control" ng-model="AddStudent.UserName">
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Password</label>
+                                        <input class="form-control" ng-model="AddStudent.Password">
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Session</label>
+                                        <input class="form-control" ng-model="AddStudent.ESession" ng-init="AddStudent.ESession ='2018-2019'" ng-disabled="true">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6" style="margin-top:20px;">
+                                        <input type="checkbox" name="group" ng-model="AddStudent.RTE" id="RTE" /> RTE
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                        <label> Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select class="form-control" ng-model="AddStudent.Gender">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                    <br />
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Previous School Name</label>
+                                        <input class="form-control" ng-model="AddStudent.PreviousSchool">
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>BloodGroup</label>
+                                        <select class="form-control" ng-model="AddStudent.BloodGroup">
+                                            <option>B+</option>
+                                            <option>A+</option>
+                                            <option>A-</option>
+                                            <option>B-</option>
+                                            <option>O+</option>
+                                            <option>O-</option>
+                                        </select>
+                                        <div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Category</label>
+                                        <select class="form-control" ng-model="AddStudent.Category">
+                                            <option>General</option>
+                                            <option>SC</option>
+                                            <option>ST</option>
+                                            <option>OBC</option>
+
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Religion</label>
+                                        <select class="form-control" ng-model="AddStudent.Religion">
+                                            <option>Hindu</option>
+                                            <option>Muslim</option>
+                                            <option>Sikh</option>
+                                            <option>Christian</option>
+
+                                        </select>
+
+                                    </div>
+
+
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Nationality</label>
+                                        <input class="form-control" ng-model="AddStudent.Nationality" ng-init="AddStudent.Nationality='Indian'" ng-disabled="true">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Ocupation</label>
+                                        <input class="form-control" ng-model="AddStudent.Ocupation">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Mother Tougue</label>
+                                        <input class="form-control" ng-model="AddStudent.MotherTougue">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Disadvantage</label>
+                                        <select class="form-control" ng-model="AddStudent.Disadvantage">
+                                            <option>No</option>
+                                            <option>Yes</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Type of Disability</label>
+                                        <input class="form-control" ng-model="AddStudent.TypeOfdisability">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Transport</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <!--<input class="form-control" ng-model="AddStudent.Route">-->
+                                        <select class="form-control" ng-model="AddStudent.Route" ng-options="item as item.Route for item in getTransportCharge"></select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label> Transport Charge</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input class="form-control" ng-model="AddStudent.Transport_Charge" ng-disabled="true">
+                                    <div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                    <label>House Name</label>
+                                    <input class="form-control" ng-model="AddStudent.House_Name">
+                                    <div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label> Upload</label>
+                                    <input type="file" file-model="AddStudent.Image">
+                                    <div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12" align="center">
+
+                            <button type="submit" class="btn btn-primary" ng-click="addStudent(AddStudent)">Submit</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<div id="wait" class="modalPopup" ng-show="isLoading">
+    <div class="modalBackground">
+        <center>
+            <img alt="" class="imgcls" src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif" />
+        </center>
+    </div>
+</div>
+</div>
+<!-- /#page-wrapper -->

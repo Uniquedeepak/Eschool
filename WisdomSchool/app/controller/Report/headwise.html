@@ -1,0 +1,148 @@
+﻿<div id="page-wrapper" ng-controller="ReportCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Head-Wise {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Head-Wise Report
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Name">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Class">
+                        <!--<select class="form-control" data-ng-model="search.Class" ng-options="item.Class1 for item in Classes"></select>-->
+
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="text" class="form-control" ng-model="fromDate" my-date-picker />
+                        <!--<input type="text" class="form-control" data-ng-model="from_date" placeholder="mm/dd/yyyy" />-->
+
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="text" class="form-control" ng-model="toDate" my-date-picker />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group text-right" style="margin-top: 25px;">
+                        <button class="btn btn-link" ng-click="exportToExcel('#tblHeadwiseReport')">
+                            <span class="glyphicon glyphicon-share"></span> Export to Excel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" id="DivReport">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+
+                    <table id="tblHeadwiseReport" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <!--<th ng-hide="true"><small>Id</small></th>-->
+                                <th><small>Adm.No</small></th>
+                                <th><small>Name</small></th>
+                                <th><small>Class</small></th>
+                                <th><small>Date</small></th>
+                                <th><small>Months</small></th>
+
+                                <th ng-repeat="th in HeadKey"><small>{{th}}</small></th>
+
+                                <!--<th><small>Concession</small></th>
+                                <th><small>Fine</small></th>-->
+                                <th><small>G.Total</small></th>
+                                <th><small>PaidAmt</small></th>
+                                <th><small>Balance</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in resultValue=(studentFeeDetailsWithHeadAmt | dateRange : fromDate : toDate | filter:search)" ng-bind-html="studentFeeDetailsWithHeadAmt">
+                                <td><small>{{item.AdmissionNo}}</small></td>
+                                <td><small>{{item.Name}}</small></td>
+                                <td><small>{{item.Class}}</small></td>
+                                <td><small>{{item.Date | date}}</small></td>
+                                <td><small>{{item.Months}}</small></td>
+
+                                <td ng-repeat="th in HeadKey">
+                                    {{ item[th]}}
+                                </td>
+
+                                <!--<td><small>{{item.Concession}}</small></td>
+                                <td><small>{{item.Fine}}</small></td>-->
+                                <td><small>{{item.GrandTotal}}</small></td>
+                                <td><small>{{item.PayedAmount}}</small></td>
+                                <td><small>{{item.Balance}}</small></td>
+                            </tr>
+                            <tr>
+                                <td><h4>Total: </h4></td>
+                                <td colspan="4"></td>
+
+                                <td ng-repeat="th in HeadKey"><h4>{{resultValue | sumOfValue:th}}</h4></td>
+                                <!--<td><h4>{{resultValue | sumOfValue:'Concession'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'Fine'}}</h4></td>-->
+                                <td><h4>{{resultValue | sumOfValue:'GrandTotal'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'PayedAmount'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'Balance'}}</h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <!--<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>-->
+                        <h3 data-ng-show="(studentFeeDetailsWithHeadAmt | filter:search).length == 0">No Results</h3>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<style type="text/css">
+    td {
+        overflow: hidden;
+        max-width: 130px;
+        word-wrap: break-word;
+    }
+</style>

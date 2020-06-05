@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SchoolApi.School>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    <div class="col-md-12">
+       
+        <div>
+            <div style="float:left" class="col-md-4"><h2>Manage School</h2></div>
+            @*<div style="padding: 30px 0px 0px 100px;float:right;" class="col-md-4">@Html.ActionLink("Add School", "AddSchool", "Admin", new { area = "" })</div>*@
+            
+            <table class="table">
+                <tr>
+                    <th>
+                        S.No.
+                    </th>
+                    <th>
+                        School
+                    </th>
+                    
+                    <th>
+                        Address
+                    </th>
+
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Logo
+                    </th>
+                    
+                    <th></th>
+                </tr>
+                @{ int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @(sno++)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SchoolName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.schooladdress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.logo)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditSchool", new { id = item.ID })
+                                @*@Html.ActionLink("Delete", "DeleteSchool", new { id = item.CID })*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+
+        </div>
+    </div>
+
+</div>

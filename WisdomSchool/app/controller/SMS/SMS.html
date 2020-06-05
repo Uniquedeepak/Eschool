@@ -1,0 +1,138 @@
+﻿<div id="page-wrapper" ng-controller="SMSReportCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> SMS Panel
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StFirstName">
+                    </div>
+                </div>
+                <!--<div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Father Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.FatherName">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Class">
+                        <select class="form-control" data-ng-model="search.Class" ng-options="item.Class1 for item in Classes"></select>
+
+                    </div>
+                </div>-->
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Route</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Route">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label style="width: 100%;">Class</label>
+                        <span ng-repeat="item in Classes">
+                            <label class="checkbox-inline" for="{{item.CID}}">
+                                <input type="checkbox" ng-model="filterItems[item.Class1]" />
+                                {{item.Class1}}
+                            </label>
+                        </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="row" id="DivTextSMS">
+            <div class="col-lg-12">
+                <div class="col-lg-7">
+                    <div class="form-group">
+                        <textarea ng-model="smsTextArea" placeholder="Enter SMS Text Here" style="margin: 1px; width: 600px; height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-2" style="padding-top: 65px;">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" ng-click="sendSMS(SMSStudents)" data-dismiss="modal">Send SMS</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" id="DivReport">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="tblDailyReport" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <!--<th ng-hide="true"><small>Id</small></th>-->
+                                <th><small>Adm.No</small></th>
+                                <th><small>Name</small></th>
+                                <th><small>DOB</small></th>
+                                <th><small>Class</small></th>
+                                <th><small>Route</small></th>
+                                <th><small>Contact</small></th>
+                                <th><small>All<input type="checkbox" ng-model="chkSelectAll" ng-change="selectAll()" style="margin-left: 8px;" /></small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in resultValue=(SMSStudents | filter:search | filter:testFilter )" ng-bind-html="SMSStudents">
+                                <!-- class="active" class="success" class="warning"  class="danger"
+                                <!--<td ng-hide="true"><small>{{item.Id}}</small></td>-->
+                                <td>{{item.AdmissionNo}}</td>
+                                <td>{{item.StFirstName}}</td>
+                                <td>{{item.DOB | date}}</td>
+                                <td>{{item.Class}}</td>
+                                <td>{{item.Route}}</td>
+                                <td>{{item.Contact}}</td>
+                                <td><input type="checkbox" ng-model="item.IsSendSMS" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <!--<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>-->
+                        <h3 data-ng-show="(SMSStudents | filter:search).length == 0">No Results</h3>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<!-- /#page-wrapper -->

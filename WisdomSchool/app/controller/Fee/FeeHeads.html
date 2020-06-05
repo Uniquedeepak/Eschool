@@ -1,0 +1,190 @@
+﻿<div id="page-wrapper" ng-controller="FeeHeadsCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> FeeHeads
+                    </li>
+                    <div style="float: right;">
+                        <a href=""> <span class="glyphicon glyphicon-plus" ng-click="open(1,null)"> Add</span></a>
+                    </div>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>FID	</th>
+                                <th>Class	</th>
+                                <th>Heading	</th>
+                                <th>January	</th>
+                                <th>February	</th>
+                                <th>March	</th>
+                                <th>April	</th>
+                                <th>May	</th>
+                                <th>June	</th>
+                                <th>July	</th>
+                                <th>August	</th>
+                                <th>September	</th>
+                                <th>October	</th>
+                                <th>November	</th>
+                                <th>December	</th>
+                                <th>IsMonth</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in FeeHeadsDetails | filter:q | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="FeeHeadsDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.FID}}</td>
+                                <td>{{item.Class}}</td>
+                                <td>{{item.Heading}}</td>
+                                <td>{{item.January}}</td>
+                                <td>{{item.February}}</td>
+                                <td>{{item.March}}</td>
+                                <td>{{item.April}}</td>
+                                <td>{{item.May}}</td>
+                                <td>{{item.June}}</td>
+                                <td>{{item.July}}</td>
+                                <td>{{item.August}}</td>
+                                <td>{{item.September}}</td>
+                                <td>{{item.October}}</td>
+                                <td>{{item.November}}</td>
+                                <td>{{item.December}}</td>
+                                <td>{{item.IsMonth}}</td>
+                                <td>
+                                    <a href=""><span class="glyphicon glyphicon-edit" ng-click="open(2,item)"></span></a>
+                                    <a href=""> <span class="glyphicon glyphicon-remove" ng-click="open(3,item)"></span></a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditFeeHeadsModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">FeeHeads - {{selectedFeeHeads.Heading}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form role="form">
+                            <div ng-show="crud !== 1" class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>ID</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.FID" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>Class</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>Heading</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.Heading" ng-disabled="disableCtrl"></div>
+                            </div>
+                            
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>January</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.January" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>February</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.February" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>March</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.March" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>April</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.April" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>May</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.May" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>June</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.June" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>July</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.July" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>August</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.August" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>September</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.September" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>October</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.October" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>November</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.November" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>December</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeeHeads.December" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="col-lg-3"><label>IsMonth</label></div>
+                                <div class="col-lg-6">
+                                    <input type="checkbox" name="group" ng-checked="selectedFeeHeads.IsMonth == 'True'" ng-model="selectedFeeHeads.IsMonth" id="IsMonth" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="crud===1" ng-click="addFeeHeads(selectedFeeHeads)">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===2" ng-click="updateFeeHeads(selectedFeeHeads)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===3" ng-click="deletesFeeHeads(selectedFeeHeads)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

@@ -1,0 +1,237 @@
+﻿<div id="page-wrapper" ng-controller="CertificateCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}} Leaving
+                    <small> {{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Certificate
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Adm No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StFirstName">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Class">
+                        <!--<select class="form-control" >
+                            <option data-ng-repeat="item in Classes" ng-model="search.Class" value="{{t.CID}}">{{item.Class1}}</option>
+                        </select>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Adm No</th>
+                                <th>Student Name</th>
+                                <th>Class</th>
+                                <th>Phone No</th>
+                                <th>Apply</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in studentDetails | filter:search | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="studentDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.AdmissionId}}</td>
+                                <td>{{item.AdmissionNo}}</td>
+                                <td>{{item.StFirstName}}</td>
+                                <td>{{item.Class}}</td>
+                                <td>{{item.Contact}}</td>
+                                <td>
+                                    <a href=""><span class="glyphicon glyphicon-edit" ng-click="openLeaving(item)"></span></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                        <h3 data-ng-show="(studentDetails | filter:search).length == 0">No Results</h3>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <div class="modal fade" id="LeavingModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="LeavingDiv" name="LeavingDiv">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="invoice-title text-center">
+                                    <h2>
+                                        {{schoolDetails.SchoolName}}
+                                    </h2></span><span id="txtaddress" style="font-size:12px;">
+                                        {{schoolDetails.schooladdress}} - Phone: {{schoolDetails.Phone}}
+                                    </span>
+                                </div>
+                                <div class="invoice-title">
+                                    <h3>Admission No: {{selectedStudent.AdmissionNo}}</h3>
+                                    <center><h3>LEAVING CERTIFICATE</h3></center>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-responsive">
+
+                                                <tbody>
+                                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                                    <tr>
+                                                        <td><strong>1.  Name of Pupil :</strong> {{selectedStudent.StFirstName}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>2.  a) Father’s / Guardians Name :</strong> {{selectedStudent.FatherName}}</td>
+                                                        <td></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <strong>  b) Mother’s Name :</strong> {{selectedStudent.MotherName}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>3. Nationality :</strong> {{selectedStudent.Nationality}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>4.  Date of Admission in School with Class :</strong> {{selectedStudent.Date | date}} / {{selectedStudent.Class}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>5. Date of Birth according to Admission Register (in figures) :</strong> {{selectedStudent.DOB | date}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>6. Class in which studying at the time of leaving :</strong> {{selectedStudent.Class}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>7. School/Board Annual Examination last taken with the result :</strong> CBSE</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>8. General Conduct :</strong> NA</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>9. Date of application of certificate :</strong> {{date | date}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>10.    Date of issue of certificate :</strong> {{date | date}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <strong>11.    Reason for leaving the School :</strong> NA</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>12. Any other remarks :</strong> NA</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+
+                                                <td class="thick-line"><strong>Signature</strong></td>
+                                                <td class="thick-line"></td>
+                                                <td class="thick-line"><strong></strong></td>
+                                                <td class="thick-line"><strong>Stamp</strong></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-click="printDiv('LeavingDiv')">Print</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

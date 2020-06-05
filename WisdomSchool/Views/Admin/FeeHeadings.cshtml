@@ -1,0 +1,140 @@
+﻿@model IEnumerable<SchoolApi.NewFeeHeading>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <h3>@ViewBag.Message</h3>
+        </div>
+        <div>
+            <div style="float:left" class="col-md-4"><h2>Manage Class</h2></div>
+            <div style="padding: 30px 0px 0px 250px;float:right;" class="col-md-4">@Html.ActionLink("Add Fee Heading", "AddFeeHeading", "Admin", new { area = "" })</div>
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Heading
+                    </th>
+                    <th>
+                        Class
+                    </th>
+                    <th>
+                        January
+                    </th>
+                    <th>
+                        February
+                    </th>
+                    <th>
+                        March
+                    </th>
+                    <th>
+                        April
+                    </th>
+                    <th>
+                        May
+                    </th>
+                    <th>
+                        June
+                    </th>
+                    <th>
+                        July
+                    </th>
+                    <th>
+                        August
+                    </th>
+                    <th>
+                        September
+                    </th>
+                    <th>
+                        October
+                    </th>
+                    <th>
+                        November
+                    </th>
+                    <th>
+                        December
+                    </th>
+                                        <th></th>
+                </tr>
+                @{ int sno = 1;
+                 if (Model != null)
+                 {
+                     foreach (var item in Model)
+                     {
+                        <tr>
+                            <td>
+                                @(sno++)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Heading)
+                            </td>
+                            <td class="fa-bold">
+                                @Html.DisplayFor(modelItem => item.Class)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.January)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.February)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.March)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.April)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.May)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.June)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.July)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.August)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.September)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.October)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.November)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.December)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditFeeHeading", new { id = item.FID })
+                                @Html.ActionLink("Delete", "FeeHeadingDelete", new { id = item.FID })
+                            </td>
+                        </tr>
+                     }
+                 }
+                 else
+                 {
+                     <tr>
+                         <td>Record Not Found</td>
+                     </tr>
+                 }
+                     
+
+                }
+            </table>
+
+
+        </div>
+    </div>
+
+</div>

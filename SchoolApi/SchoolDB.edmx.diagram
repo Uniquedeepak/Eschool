@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca6eb220d7d849d8aea423ac57e3a608" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="wisdomDBModel.AdmissionFee" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Advanced" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Attendance" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Class" Width="1.5" PointX="5.375" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.EmployeeEntry" Width="1.5" PointX="5.375" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.EmployeeSalaryDetail" Width="1.875" PointX="7" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.FeesHeading" Width="1.5" PointX="7" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.FeesPlan" Width="1.5" PointX="7" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Heading" Width="1.5" PointX="10.625" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.House" Width="1.5" PointX="11" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.InventoryCategory" Width="1.5" PointX="2.125" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.InventoryEntry" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.InventoryIssue" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.InventoryIssueDetail" Width="1.75" PointX="3.75" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.InventoryItem" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Licience_Key" Width="1.5" PointX="10.25" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.NewFeeHeading" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.PassoutDetail" Width="1.5" PointX="2.125" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.ReportCard" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.ReportCardMark" Width="1.5" PointX="8.625" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.School" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Setting" Width="1.5" PointX="5.375" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.StAttendance" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.StudentAdmissionDetail" Width="2.25" PointX="8.625" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.StudentAttendence" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.StudentFeeDetail" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.StudentRegisteredDetail" Width="1.5" PointX="9" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.StudentTransportCharge" Width="1.5" PointX="5.375" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.SubjectDetail" Width="1.5" PointX="7" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.TblLoginAdmin" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.TC" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.TCData" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.TeacherAss" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.TransportCharge" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wisdomDBModel.TblLoginUser" Width="1.5" PointX="8.625" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Session" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Month" Width="1.5" PointX="0.5" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.Fine" Width="1.5" PointX="2.125" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="wisdomDBModel.tbl_homework" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="wisdomDBModel.AdmissionForm" Width="1.5" PointX="3.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

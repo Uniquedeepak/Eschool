@@ -1,0 +1,68 @@
+﻿<div id="page-wrapper" ng-controller="SMSPanelCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> SMS Panel
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Send To</label>
+                        <div></div>
+                        <input type="radio" name="rduser" ng-model="isStudent" ng-value="true">Student
+                        <input type="radio" name="rduser" ng-model="isStudent" ng-value="false">Teacher
+                    </div>
+                </div>
+                <div class="col-lg-3" ng-if="isStudent">
+                    <div class="form-group">
+                        <label style="width: 100%;">Class</label>
+                        <select id="red" class="form-control" ng-model="item.CID" ng-change="onClassChange(item.CID)" ng-init="item.CID=0">
+                            <option value="0" selected="selected" class="ng-binding">Select Class</option>
+                            <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng-repeat="step in Classes">{{ step.Class1 }}</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="DivTextSMS">
+            <div class="col-lg-12">
+                <div class="col-lg-7">
+                    <div class="form-group">
+                        <textarea ng-model="smsTextArea" placeholder="Enter SMS Text Here" style="margin: 1px; width: 600px; height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-2" style="padding-top: 65px;">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" ng-click="sendSMSByUser()" data-dismiss="modal">Send SMS</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<!-- /#page-wrapper -->

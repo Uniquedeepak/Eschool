@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    @using (Html.BeginForm("PromoteStudent", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        <div><h4>Promote Student by Class</h4></div>
+        <hr />
+        <h1>Coming Soon...</h1>
+        
+    }
+
+</div>

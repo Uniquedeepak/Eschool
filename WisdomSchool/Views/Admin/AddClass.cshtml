@@ -1,0 +1,40 @@
+﻿@model SchoolApi.Class
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    @using (Html.BeginForm("AddClass", "Admin", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        <div><h4>Add Class</h4></div>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger None" })
+        <div class="form-group hide">
+            <div class="col-md-8">
+                @Html.HiddenFor(m => m.CID, new { @class = "col-md-6 form-control" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.Class1, new { @class = "col-md-3 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Class1, new { @class = "col-md-6 form-control" })
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.Inc_Class, new { @class = "col-md-3 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Inc_Class, new { @class = "col-md-6 form-control" })
+            </div>
+        </div>
+               <div class="form-group col-md-4">
+            <div class="col-md-offset-7 col-md-8">
+                <input type="submit" class="btn btn-success" value="Submit" />
+            </div>
+        </div>
+    }
+
+</div>

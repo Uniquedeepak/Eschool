@@ -1,0 +1,124 @@
+﻿<div id="page-wrapper" ng-controller="InventoryIssueCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Inventory Issue
+                    </li>
+                    <div style="float: right;">
+                        <a href=""> <span class="glyphicon glyphicon-plus" ng-click="open(1,null)"> Issue </span></a>
+                    </div>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Issue To</th>
+                                <th>Issue Date</th>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in InventoryIssueDetails | filter:q | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="InventoryIssueDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.IIID}}</td>
+                                <td>{{item.Name}}</td>
+                                <td>{{item.Date|date}}</td>
+                                <td>{{item.Category}}</td>
+                                <td>{{item.Item}}</td>
+                                <td>{{item.Quantity}}</td>
+                                <td>
+                                    <a href=""><span class="glyphicon glyphicon-edit" ng-click="open(2,item)"></span></a>
+                                    <a href=""> <span class="glyphicon glyphicon-remove" ng-click="open(3,item)"></span></a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditInventoryIssueModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Inventory Issue {{selectedInventoryIssue.Name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form role="form">
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Issue To</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedInventoryIssue.Name" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Issue Date</label></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" ng-model="selectedInventoryIssue.Date" ng-disabled="disableCtrl" my-date-picker /></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Category</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-click="getItemByCategory()" ng-model="SelectedCategory" ng-options="item.Category for item in InventoryCategoryDetails | orderBy: 'ICID'  track by item.ICID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Item</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="SelectedItem" ng-options="item.Item for item in InventoryItemDetails | orderBy: 'IIID' track by item.IIID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Quantity</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedInventoryIssue.Quantity" ng-disabled="disableCtrl"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="crud===1" ng-click="addInventoryIssue(selectedInventoryIssue)">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===2" ng-click="updateInventoryIssue(selectedInventoryIssue)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===3" ng-click="deletesInventoryIssue(selectedInventoryIssue)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

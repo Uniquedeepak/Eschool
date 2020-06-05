@@ -1,0 +1,141 @@
+﻿<div id="page-wrapper" ng-controller="PendingFeeReportCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Pending Fee Report
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Name">
+                    </div>
+                </div>
+                <!--<div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" ng-init="Nursery" data-ng-model="search.Class">
+                        <select class="form-control" data-ng-model="search.Class" ng-options="item.Class1 for item in Classes"></select>
+
+                    </div>
+                </div>-->
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label style="width: 100%;">Class</label>
+                        <select id="red" class="form-control" ng-change="GetStudentByClass(item.CID);" ng-model="item.CID" ng-init="item.CID=0">
+                            <option value="0" selected="selected" class="ng-binding">Select Class</option>
+                            <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng ng-repeat="step in Classes">{{ step.Class1 }}</option>
+                        </select>
+                        
+                    </div>
+                </div>
+                <!--<div class="col-lg-2">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="text" class="form-control" ng-model="fromDate" my-date-picker />
+                        <input type="text" class="form-control" data-ng-model="from_date" placeholder="mm/dd/yyyy" />
+
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="text" class="form-control" ng-model="toDate" my-date-picker />
+                    </div>
+                </div>-->
+
+                <div class="col-lg-2">
+                    <div class="form-group text-right" style="margin-top: 25px;">
+                        <button class="btn btn-link" ng-click="exportToExcel('#tblDailyReport')">
+                            <span class="glyphicon glyphicon-share"></span> Export to Excel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" id="DivReport">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="tblDailyReport" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <!--<th ng-hide="true"><small>Id</small></th>-->
+                                <th><small>Adm.No</small></th>
+                                <th><small>Name</small></th>
+                                <th><small>Class</small></th>
+                                <th><small>Date</small></th>
+                                <th><small>Last Paid Months</small></th>
+                                <th><small>Balance</small></th>
+                                <th><small>G.Total</small></th>
+                                <th><small>PaidAmt</small></th>
+                                <th><small>Status</small></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in resultValue=(studentFeeInvoiceDetail | filter:search)" ng-bind-html="studentFeeInvoiceDetail">
+                                <!-- class="active" class="success" class="warning"  class="danger"
+                                <!--<td ng-hide="true"><small>{{item.Id}}</small></td>-->
+                                <td><small>{{item.AdmissionNo}}</small></td>
+                                <td><small>{{item.Name}}</small></td>
+                                <td><small>{{item.Class}}</small></td>
+                                <td><small>{{item.Date === ""? "NA":item.Date | date}}</small></td>
+                                <td><small>{{item.Months === ""?'NA':item.Months }}</small></td>
+                                <td><small>{{item.Balance}}</small></td>
+                                <td><small>{{item.GrandTotal}}</small></td>
+                                <td><small>{{item.PayedAmount}}</small></td>
+                                <td class="{{ item.Status === 'Done'?'success':'danger' }}"><small>{{item.Status}}</small></td>
+                            </tr>
+                            <tr>
+                                <td><h4>Total: </h4></td>
+                                <td colspan="4"></td>
+                                <td><h4>{{resultValue | sumOfValue:'Balance'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'GrandTotal'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'PayedAmount'}}</h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <!--<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>-->
+                        <h3 data-ng-show="(studentFeeInvoiceDetail | filter:search).length == 0">No Results</h3>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

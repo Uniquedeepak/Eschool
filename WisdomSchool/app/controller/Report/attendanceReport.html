@@ -1,0 +1,129 @@
+﻿<div id="page-wrapper" ng-controller="AttendanceReportCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Attendance Report
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="row row col-lg-12">
+                <!--<div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StAdmNo">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StName">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StClass">
+                        <select class="form-control" data-ng-model="search.Class" ng-options="item.Class1 for item in Classes"></select>
+
+                    </div>
+                </div>-->
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label style="width: 100%;">Class</label>
+                        <span ng-repeat="item in Classes">
+                            <label class="checkbox-inline" for="{{item.CID}}">
+                                <input type="checkbox" ng-model="filterItems[item.Class1]" />
+                                {{item.Class1}}
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="text" class="form-control" ng-model="stDate" my-date-picker />
+                        <!--<input type="text" class="form-control" data-ng-model="from_date" placeholder="mm/dd/yyyy" />-->
+
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="text" class="form-control" ng-model="toDate" my-date-picker />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group text-right" style="margin-top: 25px;">
+                        <button class="btn btn-link" ng-click="exportToExcel('#tblDailyReport')">
+                            <span class="glyphicon glyphicon-share"></span> Export to Excel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" id="DivReport">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="tblDailyReport" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <!--<th ng-hide="true"><small>Id</small></th>-->
+                                <th><small>Adm.No</small></th>
+                                <th><small>Name</small></th>
+                                <th><small>Class</small></th>
+                                <th><small>Date</small></th>
+                                <th><small>Contact</small></th>
+                                <th><small>Attendance</small></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in resultValue=(AttendanceDetail | filter:testFilter | selectedDate : stDate : toDate  )" ng-bind-html="AttendanceDetail">
+                                <!-- class="active" class="success" class="warning"  class="danger"
+        <!--<td ng-hide="true"><small>{{item.Id}}</small></td>-->
+                                <td><small>{{item.StAdmNo}}</small></td>
+                                <td><small>{{item.StName}}</small></td>
+                                <td><small>{{item.StClass}}</small></td>
+                                <td><small>{{moment(item.Date).format('MM/DD/YYYY')}}</small></td>
+                                <td><small>{{item.StNumber}}</small></td>
+                                <td class="{{item.Attendance === 'Present' ? 'success': item.Attendance === 'Absent' ? 'danger':'warning' }}"><small>{{item.Attendance}}</small></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <!--<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>-->
+                        <h3 data-ng-show="(AttendanceDetail | filter:testFilter).length == 0">No Results</h3>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<!-- /#page-wrapper -->

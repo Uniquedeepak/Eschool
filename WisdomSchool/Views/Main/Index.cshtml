@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<h1 style="padding-bottom: 50px;">Welcome</h1>
+
+<button type="submit" class="button" onclick="location.href='@Url.Action("Index", "Admin")'">Admin</button>
+<button type="submit" class="button" onclick="location.href='@Url.Action("Index", "Home")'">Employee</button>

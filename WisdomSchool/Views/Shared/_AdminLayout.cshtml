@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.RenderFormat(@"<link href=""{0}""
+                             rel=""stylesheet""
+                             media=""all"" />",
+                              "~/bootstrap/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            
+            <div class="navbar-collapse collapse">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li class="active"> @Html.ActionLink("Home", "Index", "Admin", new { area = "" })</li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Manage
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("School", "School", "Admin", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Session", "Session", "Admin", new { area = "" })</li>
+                                    <li>@Html.ActionLink("User", "ListUsers", "Admin", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Class", "ClassList", "Admin", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Promote Student", "PromoteStudent", "Admin", new { area = "" })</li>
+                                </ul>
+                              
+                            </li>
+                           
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Fee's
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Fee Heading", "FeeHeadings", "Admin", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Fee Details", "StudentFeeDetailList", "Admin", new { area = "" })</li>
+                                    
+                                </ul>
+                            </li>
+                            <li><h3 style="margin-top: 13px;">
+                                @Html.ActionLink("Go To Employee", "Index", "Home", null, null)
+                            </h3></li>
+                        </ul>
+                        <div>@Html.Partial("_LoginPartial")</div>
+                       
+                    </div>
+                </nav>
+               
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content" style="padding-top: 40px;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sunrise IT Solutions</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+  
+    @RenderSection("scripts", required: false)
+</body>
+</html>

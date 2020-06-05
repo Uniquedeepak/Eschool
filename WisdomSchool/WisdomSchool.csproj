@@ -1,0 +1,701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B5301C5-91FA-48B9-8F4F-22AFE56D1A07}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvcApplication1</RootNamespace>
+    <AssemblyName>MvcApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\FeeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SMSController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="CustomFilters\AuthLogAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710291851252_InitialCreate.cs" />
+    <Compile Include="Migrations\201710291851252_InitialCreate.Designer.cs">
+      <DependentUpon>201710291851252_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071826202_ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201711071826202_ApplicationDbContext.Designer.cs">
+      <DependentUpon>201711071826202_ApplicationDbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserEdit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\components\angular-animate\angular-animate.js" />
+    <Content Include="app\components\angular-animate\angular-animate.min.js" />
+    <Content Include="app\components\angular-mocks\angular-mocks.js" />
+    <Content Include="app\components\angular-resource\angular-resource.js" />
+    <Content Include="app\components\angular-resource\angular-resource.min.js" />
+    <Content Include="app\components\angular-route\angular-route.js" />
+    <Content Include="app\components\angular-route\angular-route.min.js" />
+    <Content Include="app\components\angular\angular-csp.css" />
+    <Content Include="app\components\angular\angular-sanitize.min.js" />
+    <Content Include="app\components\angular\angular.js" />
+    <Content Include="app\components\angular\angular.min.js" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="app\components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="app\components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="app\components\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\components\bootstrap\Gruntfile.js" />
+    <Content Include="app\components\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="app\components\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="app\components\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="app\components\bootstrap\grunt\shrinkwrap.js" />
+    <Content Include="app\components\bootstrap\js\affix.js" />
+    <Content Include="app\components\bootstrap\js\alert.js" />
+    <Content Include="app\components\bootstrap\js\button.js" />
+    <Content Include="app\components\bootstrap\js\carousel.js" />
+    <Content Include="app\components\bootstrap\js\collapse.js" />
+    <Content Include="app\components\bootstrap\js\dropdown.js" />
+    <Content Include="app\components\bootstrap\js\modal.js" />
+    <Content Include="app\components\bootstrap\js\popover.js" />
+    <Content Include="app\components\bootstrap\js\scrollspy.js" />
+    <Content Include="app\components\bootstrap\js\tab.js" />
+    <Content Include="app\components\bootstrap\js\tooltip.js" />
+    <Content Include="app\components\bootstrap\js\transition.js" />
+    <Content Include="app\components\bootstrap\test-infra\requirements.txt" />
+    <Content Include="app\controller\Certificate\LeavingCertificate.html" />
+    <Content Include="app\controller\Certificate\Certificate.ctrl.js" />
+    <Content Include="app\controller\Certificate\BirthCertificate.html" />
+    <Content Include="app\controller\Certificate\TransferCertificate.html" />
+    <Content Include="app\controller\Fee\Fine.html" />
+    <Content Include="app\controller\Fee\Fine.ctrl.js" />
+    <Content Include="app\controller\Fee\FeeHeads.ctrl.js" />
+    <Content Include="app\controller\Fee\FeeHeads.html" />
+    <Content Include="app\controller\Fee\Fine.srvc.js" />
+    <Content Include="app\controller\Fee\FeeHeads.srvc.js" />
+    <Content Include="app\controller\Inventory\InventoryIssue.html" />
+    <Content Include="app\controller\Inventory\InventoryIssue.ctrl.js" />
+    <Content Include="app\controller\Inventory\InventoryItem.html" />
+    <Content Include="app\controller\Inventory\InventoryItem.ctrl.js" />
+    <Content Include="app\controller\Inventory\InventoryIssue.srvc.js" />
+    <Content Include="app\controller\Inventory\InventoryItem.srvc.js" />
+    <Content Include="app\controller\Report\pendingFeeReportMonthWise.html" />
+    <Content Include="app\controller\Report\pendingFeeReportMonthWise.ctrl.js" />
+    <Content Include="app\controller\Homework\Homework.ctrl.js" />
+    <Content Include="app\controller\Homework\Homework.html" />
+    <Content Include="app\controller\Homework\Homework.srvc.js" />
+    <Content Include="app\controller\Inventory\InventoryCategory.ctrl.js" />
+    <Content Include="app\controller\Inventory\InventoryCategory.html" />
+    <Content Include="app\controller\Inventory\InventoryCategory.srvc.js" />
+    <Content Include="app\controller\Session\Session.ctrl.js" />
+    <Content Include="app\controller\Session\Session.html" />
+    <Content Include="app\controller\Session\Session.srvc.js" />
+    <Content Include="app\controller\School\School.ctrl.js" />
+    <Content Include="app\controller\School\School.html" />
+    <Content Include="app\controller\School\School.srvc.js" />
+    <Content Include="app\controller\Dashboard\Dashboard.ctrl.js" />
+    <Content Include="app\controller\Dashboard\Dashboard.html" />
+    <Content Include="app\controller\Dashboard\Dashboard.srvc.js" />
+    <Content Include="app\controller\Report\monthlyAttendanceReport.html" />
+    <Content Include="app\controller\Report\monthlyAttendanceReport.ctrl.js" />
+    <Content Include="app\controller\Report\MultiChildReport.html" />
+    <Content Include="app\controller\Report\MultiChildReport.ctrl.js" />
+    <Content Include="app\controller\Report\TransportReport.html" />
+    <Content Include="app\controller\Report\TransportReport.ctrl.js" />
+    <Content Include="app\controller\Report\ConcessionReport.html" />
+    <Content Include="app\controller\Report\ConcessionReport.ctrl.js" />
+    <Content Include="app\controller\Report\dailyReport - Copy.html" />
+    <Content Include="app\controller\Report\rteReport.html" />
+    <Content Include="app\controller\Report\rteReport.ctrl.js" />
+    <Content Include="app\controller\Report\attendanceReport.html" />
+    <Content Include="app\controller\Report\attendanceReport.ctrl.js" />
+    <Content Include="app\controller\Report\pendingFeeReport.html" />
+    <Content Include="app\controller\Report\headwise.html" />
+    <Content Include="app\controller\Report\PendingFeeReport.ctrl.js" />
+    <Content Include="app\controller\Attendance\Attendance.ctrl.js" />
+    <Content Include="app\controller\Attendance\Attendance.html" />
+    <Content Include="app\controller\Attendance\Attendance.srvc.js" />
+    <Content Include="app\controller\SMS\SMSPanel.html" />
+    <Content Include="app\controller\SMS\SMSPanel.ctrl.js" />
+    <Content Include="app\controller\SMS\SMSPanel.srvc.js" />
+    <Content Include="app\controller\Student\StViewDetails.html" />
+    <Content Include="app\controller\Teacher\Teacher.ctrl.js" />
+    <Content Include="app\controller\Teacher\Teacher.html" />
+    <Content Include="app\controller\Teacher\Teacher.srvc.js" />
+    <Content Include="app\controller\SMS\SMS.ctrl.js" />
+    <Content Include="app\controller\SMS\SMS.html" />
+    <Content Include="app\controller\SMS\SMS.srvc.js" />
+    <Content Include="app\controller\Transport\Transport.ctrl.js" />
+    <Content Include="app\controller\Transport\Transport.html" />
+    <Content Include="app\controller\Transport\Transport.srvc.js" />
+    <Content Include="app\controller\Class\Class.html" />
+    <Content Include="app\controller\Class\Class.ctrl.js" />
+    <Content Include="app\controller\Class\Class.srvc.js" />
+    <Content Include="app\controller\Common\Common.srvc.js" />
+    <Content Include="app\controller\Report\dailyReport.html" />
+    <Content Include="app\controller\Report\Report.ctrl.js" />
+    <Content Include="app\controller\Report\headwiseReport.html" />
+    <Content Include="app\controller\Report\Report.srvc.js" />
+    <Content Include="app\controller\Fee\CollectFee.html" />
+    <Content Include="app\controller\Fee\CollectFee.ctrl.js" />
+    <Content Include="app\controller\Fee\CollectFee.srvc.js" />
+    <Content Include="app\controller\Student\StAdmissionForm.html" />
+    <Content Include="app\controller\Student\StAdmissionForm.Ctrl.js" />
+    <Content Include="app\controller\Student\StudentDetailservice.js" />
+    <Content Include="app\controller\Student\StudentDetailsctrl.js" />
+    <Content Include="app\controller\Student\StudentDetails.html" />
+    <Content Include="app\css\app.css" />
+    <Content Include="app\css\toaster.css" />
+    <Content Include="app\directive\DatePicker.js" />
+    <Content Include="app\directive\fileUploader.js" />
+    <Content Include="app\directive\loading.js" />
+    <Content Include="app\Filter\DateFilter.js" />
+    <Content Include="app\img\glyphicons-halflings-white.png" />
+    <Content Include="app\img\glyphicons-halflings.png" />
+    <Content Include="app\index.html" />
+    <Content Include="app\js\app.js" />
+    <Content Include="app\js\controllers.js" />
+    <Content Include="app\js\filters.js" />
+    <Content Include="app\js\services.js" />
+    <Content Include="app\partials\about.html" />
+    <Content Include="app\partials\FeeReceipt.html" />
+    <Content Include="app\partials\home.html" />
+    <Content Include="app\Utility\dirPagination.js" />
+    <Content Include="app\Utility\dirPagination.tpl.html" />
+    <Content Include="app\Utility\toaster.js" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="css\bootstrap-rtl.css" />
+    <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\datepicker3.min.css" />
+    <Content Include="css\gistfile1.css" />
+    <Content Include="css\plugins\morris.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\sb-admin-rtl.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\supersized.css" />
+    <Content Include="font-awesome\css\font-awesome.css" />
+    <Content Include="font-awesome\css\font-awesome.min.css" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="app\components\angular-animate\.bower.json" />
+    <Content Include="app\components\angular-animate\angular-animate.min.js.map" />
+    <Content Include="app\components\angular-animate\bower.json" />
+    <Content Include="app\components\angular-animate\README.md" />
+    <Content Include="app\components\angular-mocks\.bower.json" />
+    <Content Include="app\components\angular-mocks\bower.json" />
+    <Content Include="app\components\angular-mocks\README.md" />
+    <Content Include="app\components\angular-resource\.bower.json" />
+    <Content Include="app\components\angular-resource\angular-resource.min.js.map" />
+    <Content Include="app\components\angular-resource\bower.json" />
+    <Content Include="app\components\angular-resource\README.md" />
+    <Content Include="app\components\angular-route\.bower.json" />
+    <Content Include="app\components\angular-route\angular-route.min.js.map" />
+    <Content Include="app\components\angular-route\bower.json" />
+    <Content Include="app\components\angular-route\README.md" />
+    <Content Include="app\components\angular\.bower.json" />
+    <Content Include="app\components\angular\angular.min.js.gzip" />
+    <Content Include="app\components\angular\angular.min.js.map" />
+    <Content Include="app\components\angular\bower.json" />
+    <Content Include="app\components\angular\README.md" />
+    <Content Include="app\components\bootstrap\.bower.json" />
+    <Content Include="app\components\bootstrap\bower.json" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="app\components\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="app\components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\components\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\components\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\components\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\components\bootstrap\less\alerts.less" />
+    <Content Include="app\components\bootstrap\less\badges.less" />
+    <Content Include="app\components\bootstrap\less\bootstrap.less" />
+    <Content Include="app\components\bootstrap\less\breadcrumbs.less" />
+    <Content Include="app\components\bootstrap\less\button-groups.less" />
+    <Content Include="app\components\bootstrap\less\buttons.less" />
+    <Content Include="app\components\bootstrap\less\carousel.less" />
+    <Content Include="app\components\bootstrap\less\close.less" />
+    <Content Include="app\components\bootstrap\less\code.less" />
+    <Content Include="app\components\bootstrap\less\component-animations.less" />
+    <Content Include="app\components\bootstrap\less\dropdowns.less" />
+    <Content Include="app\components\bootstrap\less\forms.less" />
+    <Content Include="app\components\bootstrap\less\glyphicons.less" />
+    <Content Include="app\components\bootstrap\less\grid.less" />
+    <Content Include="app\components\bootstrap\less\input-groups.less" />
+    <Content Include="app\components\bootstrap\less\jumbotron.less" />
+    <Content Include="app\components\bootstrap\less\labels.less" />
+    <Content Include="app\components\bootstrap\less\list-group.less" />
+    <Content Include="app\components\bootstrap\less\media.less" />
+    <Content Include="app\components\bootstrap\less\mixins.less" />
+    <Content Include="app\components\bootstrap\less\modals.less" />
+    <Content Include="app\components\bootstrap\less\navbar.less" />
+    <Content Include="app\components\bootstrap\less\navs.less" />
+    <Content Include="app\components\bootstrap\less\normalize.less" />
+    <Content Include="app\components\bootstrap\less\pager.less" />
+    <Content Include="app\components\bootstrap\less\pagination.less" />
+    <Content Include="app\components\bootstrap\less\panels.less" />
+    <Content Include="app\components\bootstrap\less\popovers.less" />
+    <Content Include="app\components\bootstrap\less\print.less" />
+    <Content Include="app\components\bootstrap\less\progress-bars.less" />
+    <Content Include="app\components\bootstrap\less\responsive-utilities.less" />
+    <Content Include="app\components\bootstrap\less\scaffolding.less" />
+    <Content Include="app\components\bootstrap\less\tables.less" />
+    <Content Include="app\components\bootstrap\less\theme.less" />
+    <Content Include="app\components\bootstrap\less\thumbnails.less" />
+    <Content Include="app\components\bootstrap\less\tooltip.less" />
+    <Content Include="app\components\bootstrap\less\type.less" />
+    <Content Include="app\components\bootstrap\less\utilities.less" />
+    <Content Include="app\components\bootstrap\less\variables.less" />
+    <Content Include="app\components\bootstrap\less\wells.less" />
+    <Content Include="app\components\bootstrap\LICENSE" />
+    <Content Include="app\components\bootstrap\package.json" />
+    <Content Include="app\components\bootstrap\README.md" />
+    <Content Include="app\components\bootstrap\test-infra\npm-shrinkwrap.canonical.json" />
+    <Content Include="app\components\bootstrap\test-infra\README.md" />
+    <Content Include="app\components\bootstrap\test-infra\s3_cache.py" />
+    <Content Include="app\components\bootstrap\test-infra\sauce_browsers.yml" />
+    <Content Include="app\components\bootstrap\test-infra\uncached-npm-install.sh" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="font-awesome\less\bordered-pulled.less" />
+    <Content Include="font-awesome\less\core.less" />
+    <Content Include="font-awesome\less\fixed-width.less" />
+    <Content Include="font-awesome\less\font-awesome.less" />
+    <Content Include="font-awesome\less\icons.less" />
+    <Content Include="font-awesome\less\larger.less" />
+    <Content Include="font-awesome\less\list.less" />
+    <Content Include="font-awesome\less\mixins.less" />
+    <Content Include="font-awesome\less\path.less" />
+    <Content Include="font-awesome\less\rotated-flipped.less" />
+    <Content Include="font-awesome\less\spinning.less" />
+    <Content Include="font-awesome\less\stacked.less" />
+    <Content Include="font-awesome\less\variables.less" />
+    <Content Include="font-awesome\scss\font-awesome.scss" />
+    <Content Include="font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="font-awesome\scss\_core.scss" />
+    <Content Include="font-awesome\scss\_fixed-width.scss" />
+    <Content Include="font-awesome\scss\_icons.scss" />
+    <Content Include="font-awesome\scss\_larger.scss" />
+    <Content Include="font-awesome\scss\_list.scss" />
+    <Content Include="font-awesome\scss\_mixins.scss" />
+    <Content Include="font-awesome\scss\_path.scss" />
+    <Content Include="font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="font-awesome\scss\_spinning.scss" />
+    <Content Include="font-awesome\scss\_stacked.scss" />
+    <Content Include="font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\School.pubxml" />
+    <None Include="css\Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="img\AccessDenied.jpg" />
+    <Content Include="img\backgrounds\1.jpg" />
+    <Content Include="img\backgrounds\1_old.jpg" />
+    <Content Include="img\backgrounds\2.jpg" />
+    <Content Include="img\backgrounds\2_old.jpg" />
+    <Content Include="img\backgrounds\3.jpg" />
+    <Content Include="img\backgrounds\school1.jpg" />
+    <Content Include="img\backgrounds\school2.jpg" />
+    <Content Include="img\facebook.png" />
+    <Content Include="img\loader.gif" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\progress.gif" />
+    <Content Include="img\Teacher\NoImage.png" />
+    <Content Include="img\Student\NoImage.png" />
+    <Content Include="img\twitter.png" />
+    <Content Include="js\jquery-1.8.2.min.js" />
+    <Content Include="js\scripts.js" />
+    <Content Include="js\supersized-init.js" />
+    <Content Include="js\supersized.3.2.7.min.js" />
+    <Content Include="css\Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="css\Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="css\Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="css\Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="css\Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="css\Scripts\bootstrap.js" />
+    <Content Include="css\Scripts\bootstrap.min.js" />
+    <Content Include="css\Scripts\Chart\angular-chart.js" />
+    <Content Include="css\Scripts\Chart\Chart.js" />
+    <Content Include="css\Scripts\Chart\Chart.min.js" />
+    <Content Include="css\Scripts\jquery-1.8.2.js" />
+    <Content Include="css\Scripts\jquery-1.8.2.min.js" />
+    <None Include="css\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="css\Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="css\Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="css\Scripts\jquery.js" />
+    <Content Include="css\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="css\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="css\Scripts\jquery.validate.js" />
+    <Content Include="css\Scripts\jquery.validate.min.js" />
+    <Content Include="css\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="css\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="css\Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="css\Scripts\knockout-2.2.0.js" />
+    <Content Include="css\Scripts\modernizr-2.6.2.js" />
+    <Content Include="css\Scripts\moment.min.js" />
+    <Content Include="css\Scripts\plugins\flot\excanvas.min.js" />
+    <Content Include="css\Scripts\plugins\flot\flot-data.js" />
+    <Content Include="css\Scripts\plugins\flot\jquery.flot.js" />
+    <Content Include="css\Scripts\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="css\Scripts\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="css\Scripts\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="css\Scripts\_references.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart\angular-chart.js" />
+    <Content Include="Scripts\Chart\Chart.js" />
+    <Content Include="Scripts\Chart\Chart.min.js" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\plugins\flot\excanvas.min.js" />
+    <Content Include="Scripts\plugins\flot\flot-data.js" />
+    <Content Include="Scripts\plugins\flot\jquery.flot.js" />
+    <Content Include="Scripts\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\plugins\flot\jquery.flot.tooltip.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_NoLayout.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
+    <Content Include="Views\Admin\ListUsers.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\FeeHeadings.cshtml" />
+    <Content Include="Views\Admin\EditFeeHeading.cshtml" />
+    <Content Include="Views\Admin\FeeHeadingDelete.cshtml" />
+    <Content Include="Views\Admin\ClassList.cshtml" />
+    <Content Include="Views\Admin\EditClass.cshtml" />
+    <Content Include="Views\Admin\DeleteClass.cshtml" />
+    <Content Include="Views\Admin\AddClass.cshtml" />
+    <Content Include="Views\Admin\AddFeeHeading.cshtml" />
+    <Content Include="Views\Admin\StudentFeeDetailList.cshtml" />
+    <Content Include="Views\Admin\EditFeeDetail.cshtml" />
+    <Content Include="Views\Admin\PromoteStudent.cshtml" />
+    <Content Include="Views\Admin\School.cshtml" />
+    <Content Include="Views\Admin\EditSchool.cshtml" />
+    <Content Include="Views\Admin\Session.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BackUp\" />
+    <Folder Include="Views\Fee\" />
+    <Folder Include="Views\Inventory\" />
+    <Folder Include="Views\SMS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710291851252_InitialCreate.resx">
+      <DependentUpon>201710291851252_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071826202_ApplicationDbContext.resx">
+      <DependentUpon>201711071826202_ApplicationDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolApi\SchoolApi.csproj">
+      <Project>{d6aad19e-1ebe-4530-9ff9-85c1e48ae533}</Project>
+      <Name>SchoolApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55583</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55555/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

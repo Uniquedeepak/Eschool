@@ -1,0 +1,343 @@
+﻿<div id="page-wrapper" ng-controller="StudentDetailsCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Student
+                    </li>
+                </ol>
+                <div style="margin-top: -55px;float:right;">
+                    <button class="btn btn-link" ng-click="exportToExcel('#tblStudentDetails')">
+                        <span class="glyphicon glyphicon-share"></span> Export to Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="row row col-lg-12">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Adm No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StFirstName">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Class">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Father Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.FatherName">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Contact">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label>Route</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.Route">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="tblStudentDetails" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Adm No</th>
+                                <th>Student Name</th>
+                                <th>DOB</th>
+                                <th>Class</th>
+                                <th>Father Name</th>
+                                <th>Route</th>
+                                <th>Phone No</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in studentDetails | filter:search | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="studentDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.AdmissionId}}</td>
+                                <td>{{item.AdmissionNo}}</td>
+                                <td>{{item.StFirstName}}</td>
+                                <td>{{item.DOB | myDate}}</td>
+                                <td>{{item.Class}}</td>
+                                <td>{{item.FatherName}}</td>
+                                <td>{{item.Route}}</td>
+                                <td>{{item.Contact}}</td>
+                                <td><img src="img/student/{{item.Image}}" alt="Not Found" height="50" width="80"></td>
+                                <td>
+                                    <a href=""><span class="glyphicon glyphicon-user" ng-click="View(true,item)"></span></a>
+                                    <a href=""><span class="glyphicon glyphicon-edit" ng-click="open(false,item)"></span></a>
+                                    <a href=""><span class="glyphicon glyphicon-remove" ng-click="open(true,item)"></span></a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                        <h3 data-ng-show="(studentDetails | filter:search).length == 0">No Results</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditStudentDetailModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{selectedStudent.StFirstName}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form role="form">
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Admission No</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.AdmissionNo" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Student Name</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.StFirstName" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Date Of Birth</label></div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="selectedStudent.DOB" ng-disabled="disableCtrl" my-date-picker />
+                                </div>
+
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Class</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Gender</label></div>
+                                <div class="col-lg-6">
+                                    <select ng-model="selectedStudent.Gender" class="form-control" ng-disabled="disableCtrl">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Father Name</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.FatherName" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Mother Name</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.MotherName" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Contact</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.Contact" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Image</label></div>
+                                <div class="col-lg-6"><input type="file" file-model="selectedStudent.Image" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Address</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.ComAddress" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Email Id</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.EmailId" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>RTE</label></div>
+                                <div class="col-lg-6"><input type="checkbox" name="group" ng-checked="selectedStudent.RTE == 'True'" ng-model="selectedStudent.RTE" id="RTE" /></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>EmergencyNo</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.EmergencyNo" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Previous Due</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.PreviousDue" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Concession</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.Concession" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Transport Charge</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="selectedStudent.RouteObj" ng-options="item as item.Route +' - Rs.'+ item.Charge for item in getTransportCharge"></select>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="!disableCtrl" ng-click="updateStudent(selectedStudent)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="disableCtrl" ng-click="deletestudent(selectedStudent)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="StudentViewModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Name {{selectedStudent.StFirstName}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left">
+                                            <img src="img/student/{{selectedStudent.Image}}" class="img-responsive img-thumbnail">
+                                        </span>
+                                    </center>
+                                    <!--<div class="table-responsive panel">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            <input type="file" file-model="selectedTeacher.Image" style="width: 95px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>-->
+                                </div>
+                                <div id="StudentPrint" class="col-md-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <div class="invoice-title text-center">
+                                                    <h2>
+                                                        {{schoolDetails.SchoolName}}
+                                                    </h2><span id="txtaddress" style="font-size:12px;">
+                                                        {{schoolDetails.schooladdress}} - Phone: {{schoolDetails.Phone}}
+                                                    </span>
+                                                </div>
+                                                <div class="invoice-title">
+                                                    <center><h3>Student Detail</h3></center>
+                                                </div>
+                                                <br />
+                                                <table class="table table-responsive">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>AdmissionNo </strong> {{selectedStudent.AdmissionNo}}</td>
+                                                            <td><strong>Name </strong> {{selectedStudent.StFirstName}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Father’s Name </strong> {{selectedStudent.FatherName}}</td>
+                                                            <td> <strong>Mother’s Name </strong> {{selectedStudent.MotherName}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Date of Birth </strong> {{selectedStudent.DOB | date}}</td>
+                                                            <td><strong>Class </strong> {{selectedStudent.Class}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Nationality </strong> {{selectedStudent.Nationality}}</td>
+                                                            <td><strong>Date of Admission</strong> {{selectedStudent.Date | date}} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Email </strong> {{selectedStudent.EmailId}} </td>
+                                                            <td><strong>Address </strong> {{selectedStudent.ComAddress}} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Contact </strong> {{selectedStudent.Contact}}</td>
+                                                            <td><strong>Date of Birth </strong> {{selectedStudent.DOB | date}}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Bloodgroup </strong> {{selectedStudent.Bloodgroup }}</td>
+                                                            <td><strong>Category </strong> {{selectedStudent.Category}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Gender </strong> {{selectedStudent.Gender}}</td>
+                                                            <td><strong>Status </strong> {{selectedStudent.Status}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Route </strong> {{selectedStudent.Route}}</td>
+                                                            <td><strong>Transport</strong> {{selectedStudent.Transport_Charge}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>ESession </strong> {{selectedStudent.ESession}}</td>
+                                                            <td><strong>RTE </strong> {{selectedStudent.RTE}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Adhar_No </strong> {{selectedStudent.Adhar_No}}</td>
+                                                            <td><strong>EmergencyNo </strong> {{selectedStudent.EmergencyNo}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PreviousDue </strong> {{selectedStudent.PreviousDue}}</td>
+                                                            <td><strong>Concession </strong> {{selectedStudent.Concession}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Religious </strong> {{selectedStudent.Religious}}</td>
+                                                            <td><strong>MotherTougue </strong> {{selectedStudent.MotherTougue}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-click="printDiv('StudentPrint')">Print</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

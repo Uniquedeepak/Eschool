@@ -1,0 +1,35 @@
+﻿@model MvcApplication1.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login Page";
+}
+
+
+<div class="page-container">
+    <h1><img src="~/img/logo.png" /></h1>
+    @using (Html.BeginForm("Validate", "Login"))
+    {
+
+        @*<input type="text" name="username" class="username" placeholder="Username">
+        <input type="password" name="password" class="password" placeholder="Password">*@
+        @Html.TextBoxFor(model => model.UserName, new { placeholder = "User Name", @class = "Username" })
+        @Html.PasswordFor(model => model.Password, new { placeholder = "password", @class = "password" })
+        
+        <button type="submit" onclick="location.href='@Url.Action("Validate", "Login")'">Sign me in</button>
+        <div class="error"><span>+</span></div>
+
+    }  
+   
+    <div class="connect">
+        <p>Or connect with:</p>
+        <p>
+            <a class="facebook" href=""></a>
+            <a class="twitter" href=""></a>
+        </p>
+    </div>
+</div>
+<!-- Javascript -->
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/supersized.3.2.7.min.js"></script>
+<script src="js/supersized-init.js"></script>
+<script src="js/scripts.js"></script>

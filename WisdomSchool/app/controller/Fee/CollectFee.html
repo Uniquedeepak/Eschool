@@ -1,0 +1,455 @@
+﻿<div id="page-wrapper" ng-controller="CollectFeeCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> CollectFee
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="row row col-lg-8">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.AdmissionNo">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input class="form-control" placeholder="Search" data-ng-model="search.StFirstName">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label style="width: 100%;">Class</label>
+                        <select id="red" class="form-control" ng-change="GetStudentByClass(item.CID);" ng-model="item.CID" ng-init="item.CID=0">
+                            <option value="0" selected="selected" class="ng-binding">Select Class</option>
+                            <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng-repeat="step in Classes">{{ step.Class1 }}</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Admission No</th>
+                                <th>Student Name</th>
+                                <th>Class</th>
+                                <th>Father Name</th>
+                                <th>Phone No</th>
+                                <th>Submit Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in studentDetails | filter:search | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="studentDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.AdmissionNo}}</td>
+                                <td>{{item.StFirstName}}</td>
+                                <td>{{item.Class}}</td>
+                                <td>{{item.FatherName}}</td>
+                                <td>{{item.Contact}}</td>
+                                <td>
+                                    <a href="" title="Submit Fee"> <span class="glyphicon glyphicon-ok" ng-click="getStudentFeeDetail(true,item)"> Pay</span></a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                        <h3 data-ng-show="(studentDetails | filter:search).length == 0">No Results</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="wait" class="modalPopup" ng-show="isLoading">
+            <div class="modalBackground">
+                <center>
+                    <img alt="" class="imgcls" src="../img/loader.gif" />
+                </center>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditStudentDetailModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{selectedStudent.StFirstName}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Invoce Details </h3>
+                                    </div>
+                                    <table id="panelInvoice" class="table table-bordered table-hover specialCollapse">
+                                        <thead>
+                                            <tr>
+                                                <th><small>Date</small></th>
+                                                <th><small>Grand Total</small></th>
+                                                <th><small>Paid Amount</small></th>
+                                                <th><small>Balance</small></th>
+                                                <th><small>Month</small></th>
+                                                <th><small>Action</small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in studentFeeInvoiceDetail">
+                                                <td><small>{{item.Date | date}}</small></td>
+                                                <td><small>{{item.GrandTotal}}</small></td>
+                                                <td><small>{{item.PayedAmount}}</small></td>
+                                                <td><small>{{item.Balance}}</small></td>
+                                                <td><small>{{item.Months}}</small></td>
+                                                <td>
+                                                    <small>
+                                                        <button type="submit" class="btn btn-primary" ng-click="deleteFeeStudent(item)" ng-hide="true">Delete</button>
+                                                        <button type="submit" class="btn btn-primary" ng-click="viewFeeStudent(item)">View</button>
+                                                    </small>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading" data-toggle="collapse" href="#panelStudent">
+                                        <h3 class="panel-title">Student Detail </h3>
+                                    </div>
+                                    <div class="panel-body panel-collapse collapse" id="panelStudent">
+                                        <form role="form">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Admission No</label>
+                                                        <input class="form-control" ng-model="selectedStudent.AdmissionNo" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Student Name</label>
+                                                        <input class="form-control" ng-model="selectedStudent.StFirstName" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Class</label>
+                                                        <input class="form-control" ng-model="selectedStudent.Class" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading" data-toggle="collapse" href="#panelPayment">
+                                        <h3 class="panel-title">Payment Detail </h3>
+                                    </div>
+                                    <div class="panel-body panel-collapse collapse" id="panelPayment">
+                                        <form role="form">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Total Amount</label>
+                                                        <input class="form-control" ng-model="selectedStudent.TotalAmount" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Transport Fee</label>
+                                                        <input class="form-control" ng-model="selectedStudent.Transport_Charge" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Previous Year Due</label>
+                                                        <input class="form-control" ng-model="selectedStudent.PreviousDue" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Date</label>
+                                                        <input type="text" class="form-control" ng-model="date" my-date-picker />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Old Balanced</label>
+                                                        <input class="form-control" ng-model="selectedStudent.BalancedShow" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Fine</label>
+                                                        <input class="form-control" ng-model="selectedStudent.Fine" ng-disabled="false">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Concession</label>
+                                                        <input class="form-control" ng-model="selectedStudent.Concession" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Admission Fee</label>
+                                                        <input class="form-control" ng-model="AdmissionFee" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="selectedStudent.RTE" ng-checked="selectedStudent.RTE == 'True'" disabled> RTE
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="ckboxAdmFee" ng-click="getAdmissionFee()" value=""> Adm. Fee
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Grand Total</label>
+                                                        <input class="form-control" ng-model="selectedStudent.GrandTotal" ng-disabled="disableCtrl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Payment Method</label>
+                                                        <select id="PaymentMethod" ng-model="PaymentMode" class="form-control">
+                                                            <option>Cash</option>
+                                                            <option>Cheque</option>
+                                                            <option>Card</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label>Paid Amount</label>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
+                                                        <input class="form-control" ng-model="selectedStudent.PaidAmount" ng-disabled="false">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Remark</label>
+                                                        <textarea class="form-control" ng-model="remark" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label style="width: 100%;">Months</label>
+                                                        <span ng-repeat="month in mothFeeHeads | orderBy: 'id'">
+                                                            <label class="checkbox-inline" for="{{month.id}}">
+                                                                <input type="checkbox" ng-click="setTotalAmount(month)" name="group" ng-value="month.Value" id="{{month.id}}"
+                                                                       ng-model="month.Checked" ng-disabled="month.IsDisabled==true" />
+                                                                {{month.text}}
+                                                                
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="!disableCtrl" ng-click="updateStudent(selectedStudent)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="disableCtrl" ng-disabled="disableSubmit" ng-click="submitFees()">Submit</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModelFeeReceipt" style="overflow-y:auto" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Student Fee Receipt</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="DivFeeReceipt" class="container">
+                        <div class="row">
+                            <div class="well col-xs-6 col-xs-offset-1 col-sm-offset-1 ">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-xs-6">
+                                        <address>
+                                            Admission No: <strong>{{FeeSubmitData.AdmissionNo}}</strong>
+                                            <br>
+                                            Student Name: <strong>{{FeeSubmitData.Name}}</strong>
+                                            <br>
+                                            Class: <strong>{{FeeSubmitData.Class}}</strong>
+                                            <br>
+                                            Months: <strong>{{FeeSubmitData.Months}}</strong>
+                                            <br>
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-xs-6 text-right">
+                                        <p>
+                                            <em>Date: <strong> {{FeeSubmitData.Date | date}}</strong></em>
+                                        </p>
+                                        <p>
+                                            <em>Receipt #: <strong> {{FeeSubmitData.ReciptNo}}</strong></em>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <h2> {{schoolDetails.SchoolName}}</h2>
+                                        <p>{{schoolDetails.schooladdress}}</p>
+                                        <p>Office: {{schoolDetails.Phone}}</p>
+                                    </div>
+                                    </span>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Fee Heading</th>
+                                                <th class="text-center">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in selectedMonthAmount" ng-show="item.Head.indexOf('Monthly') === 0 || item.IsMonth === 1" ng-if="selectedStudent.RTE != 'True'">
+                                                <td style="padding: 0px;" class="col-xs-9">
+                                                    <em>{{item.Month}} - {{item.Head}}</em>
+                                                </td>
+                                                <td style="padding: 0px;" class="col-xs-3 text-center">Rs. {{item.Amount}}</td>
+                                            </tr>
+                                            <tr ng-if="FeeSubmitData.Concession != 0">
+                                                <td class="col-xs-9 receiptFee"><em>Concession</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. -{{FeeSubmitData.Concession}}</td>
+                                            </tr>
+                                            <tr ng-if="selectedStudent.BalancedShow != 0">
+                                                <td class="col-xs-9 receiptFee"><em>Old Balance</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{selectedStudent.BalancedShow}}</td>
+                                            </tr>
+                                            <tr ng-if="FeeSubmitData.PreviousDue !=0">
+                                                <td class="col-xs-9 receiptFee"><em>Previous Due</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{FeeSubmitData.PreviousDue}}</td>
+                                            </tr>
+                                            <tr ng-if="FeeSubmitData.TransportFee !=0">
+                                                <td class="col-xs-9 receiptFee"><em>Transport Fee</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{FeeSubmitData.TransportFee}}</td>
+                                            </tr>
+                                            <tr ng-if="FeeSubmitData.Fine !=0">
+                                                <td class="col-xs-9 receiptFee"><em>Fine</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{FeeSubmitData.Fine}}</td>
+                                            </tr>
+                                            <tr ng-if="FeeSubmitData.AdmissionFee !=0">
+                                                <td class="col-xs-9 receiptFee"><em>Admission Fee</em></td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{FeeSubmitData.AdmissionFee}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right">
+                                                    <p>
+                                                        <strong>Grand Total: </strong>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Amount Due: </strong>
+                                                    </p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p>
+                                                        <strong>Rs. {{FeeSubmitData.GrandTotal}}</strong>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Rs. {{FeeSubmitData.GrandTotal - FeeSubmitData.PayedAmount}}</strong>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                                <td class="text-center text-danger"><h4><strong>Rs. {{FeeSubmitData.PayedAmount}}</strong></h4></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-click="printDiv('DivFeeReceipt')">Print</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<style>
+    .receiptFee {
+        padding: 0px !important;
+    }
+</style>

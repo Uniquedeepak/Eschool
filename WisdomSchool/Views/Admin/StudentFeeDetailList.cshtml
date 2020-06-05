@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SchoolApi.StudentFeeDetail>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "School Admin";
+}
+
+<div class="row">
+    <div class="col-md-12">
+       
+        <div>
+            <div style="float:left" class="col-md-4"><h2>Manage Fee Details</h2></div>
+                        
+            <table class="table">
+                <tr>
+                    <th>
+                        S.No.
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Class
+                    </th>
+                    <th>
+                        AdmissionNo
+                    </th>
+                    <th>
+                        ReciptNo
+                    </th>
+                    <th>
+                        Months
+                    </th>
+                    <th>
+                        PayedAmount
+                    </th>
+                    <th>
+                        GrandTotal
+                    </th>
+                    <th></th>
+                </tr>
+                @{ int sno = 1;
+                 if (Model != null)
+                 {
+                     foreach (var item in Model)
+                     {
+                        <tr>
+                            <td>
+                                @(sno++)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Class)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AdmissionNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReciptNo)
+                            </td>
+                            <td>
+                                <div style="word-wrap :break-word;width :151px;">@Html.DisplayFor(modelItem => item.Months)</div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayedAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GrandTotal)
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Edit", "EditFeeDetail", new { id = item.Id })
+                                @Html.ActionLink("Delete", "DeleteFeeDetail", new { id = item.Id })
+                                @*@Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })*@
+                            </td>
+                        </tr>
+                     }
+                 }
+                 else
+                 {
+                     <tr><td>No Record Found</td></tr>
+                 }
+
+                }
+            </table>
+
+        </div>
+    </div>
+
+</div>

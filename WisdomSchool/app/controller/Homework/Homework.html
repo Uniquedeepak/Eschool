@@ -1,0 +1,133 @@
+﻿<div id="page-wrapper" ng-controller="HomeworkCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Homework
+                    </li>
+                    <div style="float: right;">
+                        <a href=""> <span class="glyphicon glyphicon-plus" ng-click="open(1,null)"> Add</span></a>
+                    </div>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Desciption</th>
+                                <th>Class</th>
+                                <th>Month</th>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Content Type</th>
+                                <th>Data</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in HomeworkDetails | filter:q | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="HomeworkDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.id}}</td>
+                                <td>{{item.desciption}}</td>
+                                <td>{{item.class}}</td>
+                                <td>{{item.month}}</td>
+                                <td>{{item.date|date}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.contenttype}}</td>
+                                <td><a class="glyphicon glyphicon-download" href="/Home/DownloadHomework?id={{item.id}}"> Download
+                                    <!--<span class="glyphicon glyphicon-download" ng-click="downloadHomework(item.id)"> Download</span>-->
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href=""><span class="glyphicon glyphicon-edit" ng-click="open(2,item)"></span></a>
+                                    <a href=""> <span class="glyphicon glyphicon-remove" ng-click="open(3,item)"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditHomeworkModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Homework {{selectedHomework.name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="homeworkForm" method="post" enctype="multipart/form-data">
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Desciption</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedHomework.desciption" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Class</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Month</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="selectedHomework.month" ng-options="item.text for item in monthFeeHeads track by item.id"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Date</label></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" ng-model="selectedHomework.date" ng-disabled="disableCtrl" my-date-picker /></div>
+                            </div>
+
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Upload</label></div>
+                                <div class="col-lg-6">
+                                    <input type="file" class="form-control" file-model="selectedHomework.data" ng-disabled="disableCtrl">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="crud===1" ng-click="addHomework(selectedHomework)">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===2" ng-click="updateHomework(selectedHomework)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===3" ng-click="deletesHomework(selectedHomework)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->
