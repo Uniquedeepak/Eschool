@@ -195,6 +195,7 @@
     <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CustomFilters\AuthLogAttribute.cs" />
+    <Compile Include="CustomFilters\CustomJsonResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

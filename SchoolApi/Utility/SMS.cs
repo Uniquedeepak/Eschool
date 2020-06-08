@@ -18,13 +18,15 @@ namespace SchoolApi.Utility
             string Host = System.Configuration.ConfigurationManager.AppSettings["SMSApiHost"].ToString();
             string User = System.Configuration.ConfigurationManager.AppSettings["SMSApiUser"].ToString();
             string Password = System.Configuration.ConfigurationManager.AppSettings["SMSApiPassword"].ToString();
+            string Senderid = System.Configuration.ConfigurationManager.AppSettings["SMSApiSenderid"].ToString();
+            string Channel = System.Configuration.ConfigurationManager.AppSettings["SMSApiChannel"].ToString();
 
             if (!IsSMSEnable)
             {
                 return "SMS Service not enabled.";
             }
-
-            string msg = Host + "/api/mt/SendSMS?user=" + User + "&password=" + Password + "&senderid=TSOULS&channel=trans&DCS=0&flashsms=0&number=" + Number + "&text=" + Text + "&route=17";
+            string msg = $"{Host}api/mt/SendSMS?user={User}&password={Password}&senderid={Senderid}&channel={Channel}&DCS=0&flashsms=0&number={Number}&text={Text}";
+          //  string msg = Host + "/api/mt/SendSMS?user=" + User + "&password=" + Password + "&senderid=TSOULS&channel=trans&DCS=0&flashsms=0&number=" + Number + "&text=" + Text + "&route=17";
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(Host);
 

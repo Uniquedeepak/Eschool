@@ -15,6 +15,7 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using SchoolApi.Utility;
 
 namespace MvcApplication1.Controllers
 {
@@ -48,7 +49,10 @@ namespace MvcApplication1.Controllers
             {
                 StudentController obj = new StudentController();
                 List<AdmissionForm> objStudent = obj.GetStudentDetails();
-                return Json(objStudent, JsonRequestBehavior.AllowGet);
+
+                return new CustomJsonResult { Data = objStudent };
+
+               // return CustomJsonResult(objStudent, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -380,7 +384,7 @@ namespace MvcApplication1.Controllers
                     if (item.Attendance == "Absent" || item.Attendance == "Leave")
                     {
                         string text = "Your ward " + item.StName + " is " + (item.Attendance == "Absent" ? "Absent" : "on Leave") + " today i.e. " + DateTime.Now.ToString("MM/dd/yyyy");
-                        SendSMSApi(text, item.StNumber);    
+                        SMS.SendSMSApi(text, item.StNumber);    
                     }
                 }
 
@@ -660,69 +664,10 @@ namespace MvcApplication1.Controllers
         public ActionResult SendSMS(string Name, string Class, string Number, string Month, string Amount)
         {
             ClassController _class = new ClassController();
-            string Response = GetData(Name,Class,Number,Month,Amount);
+            string message = $"Student Name {Name} of Class {Class} ,Fee Submitted Successfully for the month {Month} of Amount Rs {Amount}.";
+            string Response = SMS.SendSMSApi(message, Number);
             return Content(Response); 
         }
-
-        private string GetData(string Name, string Class,string Number,string Month,string Amount)
-        {
-            string Host = PropertiesConfiguration.SMSApiHost;
-            string User = PropertiesConfiguration.SMSApiUser;
-            string Password = PropertiesConfiguration.SMSApiPassword;
-
-            if (!PropertiesConfiguration.IsSMSEnable)
-            {
-                return "SMS Service not enabled.";
-            }
-
-            string msg = Host +"/api/mt/SendSMS?user="+ User +"&password=" + Password + "&senderid=TSOULS&channel=trans&DCS=0&flashsms=0&number="+ Number +"&text=Student Name " + Name + " Class " + Class + " ,Fee Submitted Successfully for the month " + Month + " of Amount Rs " + Amount + ".&route=17";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(Host);
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = client.GetAsync(msg).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return "true";
-            }
-            else
-            {
-                return "false";
-            }
-        }
-        private string SendSMSApi(string Text,string Number)
-        {
-            string Host = PropertiesConfiguration.SMSApiHost;
-            string User = PropertiesConfiguration.SMSApiUser;
-            string Password = PropertiesConfiguration.SMSApiPassword;
-
-            if (!PropertiesConfiguration.IsSMSEnable)
-            {
-                return "SMS Service not enabled.";    
-            }
-
-            string msg = "http://"+ Host + "/api/mt/SendSMS?user="+ User +"&password="+ Password +"&senderid=TSOULS&channel=trans&DCS=0&flashsms=0&number=" + Number + "&text=" + Text + "&route=17";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(Host);
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = client.GetAsync(msg).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return "SMS Sent";
-            }
-            else
-            {
-                return "SMS Failed";
-            }
-        }
+       
     }
 }

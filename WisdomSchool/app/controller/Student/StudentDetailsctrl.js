@@ -16,8 +16,9 @@
         $scope.heading = "Student";
         $scope.subheading = "Details";
         $scope.currentPage = 1;
-        $scope.pageSize = 50;
-        $scope.SelectedClass = { Class1: 'Nursery', CID: 4 };
+        $scope.pageSize = 20;
+        $scope.SelectedClass
+            = { Class1: 'Nursery', CID: 4 };
         $scope.moment = moment;
         $scope.isLoading = true;
         StudentDetailservice.getStudentDetails(successCallBack, failureCallBack);

@@ -48,7 +48,10 @@
                 }
             }).success(function (data, status, headers, config) {
                 //toaster.pop('success', "GetStudentDetails", "Completed", 1000);
-                successCallBack('getStudentDetails', data);
+                if (typeof data === "object") {
+                    successCallBack('getStudentDetails', data);
+                }
+                
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetStudentDetails", "Completed", 1000);

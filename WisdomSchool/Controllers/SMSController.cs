@@ -1,11 +1,6 @@
 ﻿using SchoolApi.BAL;
 using SchoolApi.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web;
+using SchoolApi.Utility;
 using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
@@ -16,7 +11,7 @@ namespace MvcApplication1.Controllers
         public ActionResult SendTextSMS(string Text, string Number)
         {
             string Response = "";
-            Response = SendSMSApi(Text, Number);
+            Response =  SMS.SendSMSApi(Text, Number);
             return Content(Response);
         }
 
@@ -25,7 +20,7 @@ namespace MvcApplication1.Controllers
         {
             string Response = string.Empty;
             string AdminNumber = PropertiesConfiguration.AdminNumber;
-            Response = SendSMSApi(Text, AdminNumber);
+            Response = SMS.SendSMSApi(Text, AdminNumber);
             return Content(Response);
         }
 
@@ -41,7 +36,7 @@ namespace MvcApplication1.Controllers
                     var studentList = obj.GetStudentDetailByClass(ClassId);
                     foreach (var item in studentList)
                     {
-                        SendSMSApi(Text, item.Contact);
+                        SMS.SendSMSApi(Text, item.Contact);
                     }
                     Response = "Message sent to students";
                 }
@@ -59,35 +54,5 @@ namespace MvcApplication1.Controllers
             return Content(Response);
         }
 
-        private string SendSMSApi(string Text, string Number)
-        {
-            string Host = PropertiesConfiguration.SMSApiHost;
-            string User = PropertiesConfiguration.SMSApiUser;
-            string Password = PropertiesConfiguration.SMSApiPassword;
-
-            if (!PropertiesConfiguration.IsSMSEnable)
-            {
-                return "SMS Service not enabled.";
-            }
-
-            string msg = "http://" + Host + "/api/mt/SendSMS?user=" + User + "&password=" + Password + "&senderid=TSOULS&channel=trans&DCS=0&flashsms=0&number=" + Number + "&text=" + Text + "&route=17";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(Host);
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = client.GetAsync(msg).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return "SMS Sent";
-            }
-            else
-            {
-                return "SMS Failed";
-            }
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace SchoolApi.Scheduler
         {
             unitOfWork = new UnitOfWork();
             aTimer = new System.Timers.Timer();
-            aTimer.Interval = 1000 * 60 * 1 ; //30 Minutes
+            aTimer.Interval = 1000 * 60 * 30 ; //30 Minutes
             aTimer.Elapsed += OnTimerElapsed;
             aTimer.Enabled = true;
         }
@@ -25,7 +25,7 @@ namespace SchoolApi.Scheduler
         {
             DateTime dt = DateTime.Now;
 
-            if (dt.Hour == 10 && dt.Minute <= 15)
+            if (dt.Hour == 10 && dt.Minute <= 30)
             {
                 SendStudentBirthdaySms();
             }
@@ -33,14 +33,20 @@ namespace SchoolApi.Scheduler
 
         private static void SendStudentBirthdaySms()
         {
-            var StudentList = unitOfWork.AdmissionFormRepository.Get(x=>x.Status=="1").
-                Where(u => Convert.ToDateTime(u.DOB)
-                .AddYears(DateTime.Now.Year - Convert.ToDateTime(u.DOB).Year) >= DateTime.Now.Date && 
-                Convert.ToDateTime(u.DOB).AddYears(DateTime.Now.Year - Convert.ToDateTime(u.DOB).Year) == DateTime.Now.Date.AddDays(3));
-
+            var StudentList = (from emp in unitOfWork.AdmissionFormRepository.Get()
+                         where emp.DOB.HasValue == true
+                                    && emp.DOB.Value.Day == DateTime.Now.Day && emp.DOB.Value.Month == DateTime.Now.Month
+                        select new {
+                            StFirstName = emp.StFirstName,
+                            Contact = emp.Contact
+                                 }).ToList();
+            var schoolName = unitOfWork.SchoolRepository.Get().FirstOrDefault().SchoolName;
             foreach (var item in StudentList)
             {
-                SMS.SendSMSApi("Happy birthday " + item.StFirstName + ". Many Many Happy Returns of the day!!" ,item.Contact);
+                if (!string.IsNullOrEmpty(item.Contact))
+                {
+                    SMS.SendSMSApi($"{schoolName} Family wishes you a very Happy Birthday {item.StFirstName }.", item.Contact);
+                }
             }
         }
     }
