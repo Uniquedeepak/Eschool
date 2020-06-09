@@ -47,7 +47,7 @@
 
 
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                                        <label>Adhar Card No</label>
+                                        <label>Aadhaar Card No</label>
                                         <input class="form-control" ng-model="AddStudent.Adhar_No">
 
                                     </div>
@@ -59,23 +59,27 @@
 
                                     </div>
 
-                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                         <label>Student Name</label>
                                         <input class="form-control" ng-model="AddStudent.StFirstName">
 
                                     </div>
-
-
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                                        <label> Mother Name</label>
-                                        <input class="form-control" ng-model="AddStudent.MotherName">
-
+                                        <label>EmailId</label>
+                                        <select class="form-control" ng-model="AddStudent.Gender">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                         <label>Father Name</label>
                                         <input class="form-control" ng-model="AddStudent.FatherName">
 
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Father Aadhaar</label>
+                                        <input class="form-control" ng-model="AddStudent.FAadhaar">
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
@@ -161,21 +165,28 @@
 
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-6 col-sm-6" style="margin-top:20px;">
+                                    <!--<div class="form-group col-lg-6 col-md-6 col-sm-6" style="margin-top:20px;">
+                                        <label> </label>
                                         <input type="checkbox" name="group" ng-model="AddStudent.RTE" id="RTE" /> RTE
-                                    </div>
-
-
-
-                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                        <label> Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <select class="form-control" ng-model="AddStudent.Gender">
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                    </div>-->
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> RTE</label>
+                                        <select class="form-control" ng-model="AddStudent.RTE" ng-init="AddStudent.RTE='false'">
+                                            <option>true</option>
+                                            <option>false</option>
                                         </select>
                                     </div>
-                                    <br />
 
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label> Mother Name</label>
+                                        <input class="form-control" ng-model="AddStudent.MotherName">
+
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                        <label>Mother Aadhaar</label>
+                                        <input class="form-control" ng-model="AddStudent.MAadhaar">
+                                    </div>
 
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                         <label>Previous School Name</label>

@@ -164,6 +164,14 @@
                                 <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.MotherName" ng-disabled="disableCtrl"></div>
                             </div>
                             <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Father Aadhaar</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.FAadhaar" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Mother Aadhaar</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.MAadhaar" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
                                 <div class="col-lg-3"><label>Contact</label></div>
                                 <div class="col-lg-6"><input class="form-control" ng-model="selectedStudent.Contact" ng-disabled="disableCtrl"></div>
                             </div>
@@ -266,13 +274,18 @@
                                                             <td><strong>Name </strong> {{selectedStudent.StFirstName}}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td><strong>Date of Birth </strong> {{selectedStudent.DOB | date}}</td>
+                                                            <td><strong>Class </strong> {{selectedStudent.Class}}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td><strong>Father’s Name </strong> {{selectedStudent.FatherName}}</td>
                                                             <td> <strong>Mother’s Name </strong> {{selectedStudent.MotherName}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td><strong>Date of Birth </strong> {{selectedStudent.DOB | date}}</td>
-                                                            <td><strong>Class </strong> {{selectedStudent.Class}}</td>
+                                                            <td><strong>Father Aadhaar </strong> {{selectedStudent.FAadhaar}}</td>
+                                                            <td> <strong>Mother Aadhaar </strong> {{selectedStudent.MAadhaar}}</td>
                                                         </tr>
+
                                                         <tr>
                                                             <td><strong>Nationality </strong> {{selectedStudent.Nationality}}</td>
                                                             <td><strong>Date of Admission</strong> {{selectedStudent.Date | date}} </td>

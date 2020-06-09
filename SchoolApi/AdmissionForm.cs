@@ -65,5 +65,7 @@ namespace SchoolApi
         public string TypeOfdisability { get; set; }
         public string Medium { get; set; }
         public string House_Name { get; set; }
+        public string MAadhaar { get; set; }
+        public string FAadhaar { get; set; }
     }
 }

@@ -17,5 +17,6 @@ namespace SchoolApi
         public int CID { get; set; }
         public string Class1 { get; set; }
         public string Inc_Class { get; set; }
+        public string Prefix { get; set; }
     }
 }
