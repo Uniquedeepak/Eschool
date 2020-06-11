@@ -4,7 +4,6 @@
     angular.module('AngularApp').service(ServiceId, ['$rootScope', '$http', 'toaster', '$q', CommonSrvc]);
     function CommonSrvc($rootScope, $httpProvider, toaster, $q) {
         var service = {
-            schoolSession:null,
             getTransportCharge: null,
             getCurrentUser: null,
             logOut: null,
@@ -17,7 +16,7 @@
             SendSMSByUser: null,
             getAllClass: null,
             smsToAdmin: null,
-            monthList:null
+            monthList: null
         };
         service.getTransportCharge = function (successCallBack, failureCallBack) {
             // $scope.loading = true;
@@ -354,9 +353,9 @@
             mothFeeHeads.push({ id: 10, text: "October", Checked: false });
             mothFeeHeads.push({ id: 11, text: "November", Checked: false });
             mothFeeHeads.push({ id: 12, text: "December", Checked: false });
-            
+
             return mothFeeHeads;
-        }
+        };
         return service;
     }
 })();

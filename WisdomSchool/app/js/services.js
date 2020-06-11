@@ -14,6 +14,38 @@ app.factory('Excel', function ($window) {
         }
     };
 })
+
+
+app.factory('SchoolData',
+    ['CommonSrvc', 
+        function (CommonSrvc) {
+            var factory = {}; 
+            CommonSrvc.getSchool(successCallBack, failureCallBack);
+            CommonSrvc.CurrentSession(successCallBack, failureCallBack);
+            function successCallBack(call, data) {
+                switch (call) {
+                    case 'CurrentSession':
+                        if (data) {
+                            return factory.session = data;
+                        }
+                    case 'getSchool':
+                        if (data) {
+                            return factory.school = data[0];
+                        }
+                }
+            };
+            function failureCallBack(call, data) {
+                switch (call) {
+                    case 'CurrentSession':
+                        alert("Error Occured during CurrentSession. " + data);
+                        break;
+                    case 'getSchoolDetails':
+                        break;
+                }
+            };
+            return factory;
+        }
+    ]);
 	//.controller('MyCtrl', function (Excel, $timeout) {
 	//    $scope.exportToExcel = function (tableId) { // ex: '#my-table'
 	//        $scope.exportHref = Excel.tableToExcel(tableId, 'sheet name');

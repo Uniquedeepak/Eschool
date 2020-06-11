@@ -4,22 +4,20 @@
 
     angular.module('AngularApp').controller(controllerId,
         ['$scope',
-            '$rootScope',
          'StudentDetailservice',
          'CommonSrvc',
-          
+          'SchoolData',
           StAdmissionFormCtrl
         ]);
 
-    function StAdmissionFormCtrl($scope,$rootScope, StudentDetailservice,CommonSrvc) {
+    function StAdmissionFormCtrl($scope, StudentDetailservice, CommonSrvc, SchoolData) {
         $scope.heading = "Student";
         $scope.subheading = "Admission Form";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.AddStudent = {};
         reset();
-        CommonSrvc.CurrentSession(successCallBack, failureCallBack);
-
+        
         $scope.addStudent = function (AddStudent)
         {
             $scope.isLoading = true;
@@ -64,7 +62,6 @@
             $scope.AddStudent.Contact = "";
             $scope.AddStudent.UserName = "";
             $scope.AddStudent.Password = "";
-            $scope.AddStudent.ESession = $rootScope.schoolSession;
             $scope.AddStudent.RTE = "";
             $scope.AddStudent.PreviousSchool = "";
             $scope.AddStudent.Nationality = "Indian";
@@ -74,6 +71,7 @@
             $scope.AddStudent.TypeOfdisability = "";
             $scope.AddStudent.House_Name = "";
             $scope.AddStudent.Image = "NoImage.png";
+            CommonSrvc.CurrentSession(successCallBack, failureCallBack);
             StudentDetailservice.getAdmissionNo(successCallBack, failureCallBack);
             StudentDetailservice.getAllClass(successCallBack, failureCallBack);
             CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
@@ -116,6 +114,12 @@
                         break;
                     }
                     break;
+                case 'CurrentSession':
+                    if (data) {
+                        $scope.AddStudent.ESession = data;
+                        break;
+                    }
+                    break;
                 case 'uploadFileToUrl':
                     
                     if (data) {
@@ -145,6 +149,9 @@
                 case 'getTransportCharge':
                     
                     alert("Error Occured during GetClass. " + data);
+                    break;
+                case 'CurrentSession':
+                    alert("Error Occured during CurrentSession. " + data);
                     break;
                 case 'uploadFileToUrl':
                     
