@@ -11,7 +11,8 @@
             submitStudentFee: null,
             deleteFeeStudent:null,
             getAdmissionFee: null,
-            getAllClass:null
+            getAllClass: null,
+            getStudentFine: null,
         };
         service.getStudentDetails = function (Id,successCallBack, failureCallBack) {
             // $scope.loading = true;
@@ -209,6 +210,28 @@
                         data = JSON.stringify(data);
                     }
                     failureCallBack('updateStFeeDetail', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                //$scope.loading = false;
+            });
+        };
+        service.getStudentFine = function (AdmissionNo, successCallBack, failureCallBack) {
+            $httpProvider({
+                method: 'Post',
+                url: '../Fee/GetStudentFine',
+                data: {
+                    AdmissionNo: AdmissionNo,
+                }
+            }).success(function (data, status, headers, config) {
+                successCallBack('getStudentFine', data);
+            }).error(function (data, status, headers, config) {
+                toaster.pop('success', "getStudentFine", "Failed", 1000);
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('getStudentFine', data);
                     return;
                 }
                 failureCallBack("An internal processing error occurred.");

@@ -168,6 +168,7 @@
     <Compile Include="Attendance.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="BAL\Fee.cs" />
     <Compile Include="BAL\PropertiesConfiguration.cs" />
     <Compile Include="Class.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
@@ -175,6 +176,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\MonthController.cs" />
     <Compile Include="Controllers\FineController.cs" />
     <Compile Include="Controllers\HomeworkController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />

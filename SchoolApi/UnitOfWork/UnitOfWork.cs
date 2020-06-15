@@ -19,6 +19,9 @@ namespace GenericAPI.UnitOfWork
         private IGenericRepository<InventoryCategory> _InventoryCategoryRepository;
         private IGenericRepository<InventoryItem> _InventoryItemRepository;
         private IGenericRepository<InventoryIssue> _InventoryIssueRepository;
+        private IGenericRepository<Month> _MonthRepository;
+        private IGenericRepository<StudentFeeDetail> _StudentFeeDetailRepository;
+        private IGenericRepository<NewFeeHeading> _FeeHeadingRepository;
 
         public UnitOfWork()
         {
@@ -73,8 +76,17 @@ namespace GenericAPI.UnitOfWork
         {
             get { return _InventoryIssueRepository ?? (_InventoryIssueRepository = new GenericRepository<InventoryIssue>(_context)); }
         }
+        public IGenericRepository<Month> MonthRepository
+        {
+            get { return _MonthRepository ?? (_MonthRepository = new GenericRepository<Month>(_context)); }
+        }
+        public IGenericRepository<StudentFeeDetail> StudentFeeDetailRepository
+        {
+            get { return _StudentFeeDetailRepository ?? (_StudentFeeDetailRepository = new GenericRepository<StudentFeeDetail>(_context)); }
+        }
 
-        
+        public IGenericRepository<NewFeeHeading> FeeHeadingRepository =>  _FeeHeadingRepository ?? (_FeeHeadingRepository = new GenericRepository<NewFeeHeading>(_context));
+
         public void Save()
         {
             _context.SaveChanges();

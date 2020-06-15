@@ -36,87 +36,6 @@ namespace SchoolApi.Controllers
             return StFeeDetails;
         }
 
-        public List<StudentFeeDetail> GetTopFeeDetail_Old(string Session)
-        {
-            var stFeeDetailList = from r in SchoolDB.AdmissionForms
-                                  join sfd in SchoolDB.StudentFeeDetails on r.AdmissionNo equals sfd.AdmissionFee into edept
-                                  from p in edept.DefaultIfEmpty()
-                                  select new
-                                  {
-                                      AdmissionNo = r.AdmissionNo == null ? "" : r.AdmissionNo,
-                                      AdmissionFee = p.AdmissionFee == null ? "" : p.AdmissionFee,
-                                      Balance = p.Balance == null ? "" : p.Balance,
-                                      BalancedShow = p.BalancedShow == null ? "" : p.BalancedShow,
-                                      BankName = p.BankName == null ? "" : p.BankName,
-                                      CardPaymentRecieptNo = p.CardPaymentRecieptNo == null ? "" : p.CardPaymentRecieptNo,
-                                      Category = r.Category == null ? "" : r.Category,
-                                      ChequeDate = p.ChequeDate == null ? "" : p.ChequeDate,
-                                      ChequeNo = p.ChequeNo == null ? "" : p.ChequeNo,
-                                      Class = r.Class == null ? "" : r.Class,
-                                      Concession = p.Concession == null ? "" : p.Concession,
-                                      Date = p.Date == null ? "" : p.Date,
-                                      Father = r.FatherName == null ? "" : r.FatherName,
-                                      Fine = p.Fine == null ? "" : p.Fine,
-                                      GrandTotal = p.GrandTotal == null ? 0 : p.GrandTotal,
-                                      Id = p.Id == null ? 0 : p.Id,
-                                      Months = p.Months == null ? "" : p.Months,
-                                      Name = r.StFirstName == null ? "" : r.StFirstName,
-                                      OldBalanced = p.OldBalanced == null ? "" : p.OldBalanced,
-                                      PayedAmount = p.PayedAmount == null ? 0 : p.PayedAmount,
-                                      PaymentMode = p.PaymentMode == null ? "" : p.PaymentMode,
-                                      Phone = r.Contact == null ? "" : r.Contact,
-                                      PreviousDue = p.PreviousDue == null ? "" : p.PreviousDue,
-                                      ReciptNo = p.ReciptNo == null ? "" : p.ReciptNo,
-                                      Remark = p.Remark == null ? "" : p.Remark,
-                                      Section = r.Section == null ? "" : r.Section,
-                                      Session = r.ESession == null ? "" : r.ESession,
-                                      Status = r.Status == null ? "" : r.Status,
-                                      TotalAmount = p.TotalAmount == null ? "" : p.TotalAmount,
-                                      TransportFee = p.TransportFee == null ? "" : p.TransportFee
-                                  };
-            var stFeeDetails = stFeeDetailList.Distinct().ToList();
-            List<StudentFeeDetail> StFeeDetails = stFeeDetails.Select(a => new StudentFeeDetail()
-            {
-                AdmissionFee = a.AdmissionFee,
-                AdmissionNo = a.AdmissionNo,
-                Balance = (Convert.ToInt32(string.IsNullOrEmpty(a.Balance) ? "0" : a.Balance) + GetBalanceAmount(a.AdmissionNo, a.Class, a.Months)).ToString(),
-                BalancedShow = a.BalancedShow,
-                BankName = a.BankName,
-                CardPaymentRecieptNo = a.CardPaymentRecieptNo,
-                Category = a.Category,
-                ChequeDate = a.ChequeDate,
-                ChequeNo = a.ChequeNo,
-                Class = a.Class,
-                Concession = a.Concession,
-                Date = a.Date,
-                Father = a.Father,
-                Fine = a.Fine,
-                GrandTotal = a.GrandTotal,
-                Id = a.Id,
-                Months = a.Months,
-                Name = a.Name,
-                OldBalanced = a.OldBalanced,
-                PayedAmount = a.PayedAmount,
-                PaymentMode = a.PaymentMode,
-                Phone = a.Phone,
-                PreviousDue = a.PreviousDue,
-                ReciptNo = a.ReciptNo,
-                Remark = a.Remark,
-                Section = a.Section,
-                Session = a.Section,
-                Status = a.Status,
-                TotalAmount = a.TotalAmount,
-                TransportFee = a.TransportFee
-            }).ToList();
-
-            ClassController _class = new ClassController();
-            StFeeDetails.ForEach(cc => cc.Class = _class.GetClassName(cc.Class));
-            var Sortlist = StFeeDetails.OrderBy(a => a.Id).GroupBy(a => a.AdmissionNo).Select(g => g.Last()).ToList();
-            ClassController _classs = new ClassController();
-            Sortlist.ForEach(x => x.Class = _classs.GetClassName(x.Class));
-            return Sortlist;
-        }
-
         public List<StudentFeeDetail> GetTopFeeDetail(string Session, string Class = "1")
         {
             var stFeeDetailList = from r in SchoolDB.AdmissionForms
@@ -300,6 +219,13 @@ namespace SchoolApi.Controllers
             return FeeHeading;
         }
 
+        public decimal GetStudentFine(string AdmissionNo)
+        {
+            Fee obj = new Fee();
+            var fine = obj.GetFine(AdmissionNo);
+            return fine;
+        }
+
         public List<AdmissionFee> GetAdmissionFee()
         {
             var StAdmissionFee = SchoolDB.AdmissionFees.OrderByDescending(x => x.AID).ToList();
@@ -368,6 +294,14 @@ namespace SchoolApi.Controllers
                 return false;
             }
             return true;
+        }
+
+        public List<StudentFeeDetail> GetPendingFee(string Class, string Months)
+        {
+            List<StudentFeeDetail> obj = new List<StudentFeeDetail>();
+            Fee objFee = new Fee();
+            obj = objFee.GetMonthlyPendingFee(Class,Months);
+            return obj;
         }
 
         #region Fee Heading

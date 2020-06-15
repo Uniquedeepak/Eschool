@@ -61,9 +61,9 @@ namespace SchoolApi
         public DbSet<TransportCharge> TransportCharges { get; set; }
         public DbSet<TblLoginUser> TblLoginUsers { get; set; }
         public DbSet<Session> Sessions { get; set; }
-        public DbSet<Month> Months { get; set; }
         public DbSet<Fine> Fines { get; set; }
         public DbSet<tbl_homework> tbl_homework { get; set; }
         public DbSet<AdmissionForm> AdmissionForms { get; set; }
+        public DbSet<Month> Months { get; set; }
     }
 }

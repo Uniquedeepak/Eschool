@@ -184,6 +184,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FineDay" Type="int" />
           <Property Name="Amount" Type="float" />
+          <Property Name="StartMonth" Type="int" />
         </EntityType>
         <EntityType Name="Heading">
           <Key>
@@ -261,14 +262,12 @@
           <Property Name="Last_Date" Type="nvarchar" MaxLength="50" />
           <Property Name="ExpireTimer" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'tendersoulDB.dbo.Months' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Months">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Month" Type="varchar" MaxLength="10" />
+          <Property Name="Month1" Type="varchar" MaxLength="50" />
           <Property Name="Sequence" Type="int" />
         </EntityType>
         <EntityType Name="NewFeeHeading">
@@ -614,6 +613,7 @@ warning 6002: The table/view 'tendersoulDB.dbo.TblLoginUser' does not have a pri
           <EntitySet Name="InventoryIssueDetail" EntityType="Self.InventoryIssueDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Licience_Key" EntityType="Self.Licience_Key" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Months" EntityType="Self.Months" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewFeeHeading" EntityType="Self.NewFeeHeading" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassoutDetail" EntityType="Self.PassoutDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportCard" EntityType="Self.ReportCard" Schema="dbo" store:Type="Tables" />
@@ -633,13 +633,6 @@ warning 6002: The table/view 'tendersoulDB.dbo.TblLoginUser' does not have a pri
           <EntitySet Name="TCData" EntityType="Self.TCData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherAss" EntityType="Self.TeacherAss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransportCharge" EntityType="Self.TransportCharge" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Months" EntityType="Self.Months" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Months].[Id] AS [Id], 
-[Months].[Month] AS [Month], 
-[Months].[Sequence] AS [Sequence]
-FROM [dbo].[Months] AS [Months]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Session" EntityType="Self.Session" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [Session].[Id] AS [Id], 
@@ -1183,10 +1176,10 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySet Name="TransportCharges" EntityType="Self.TransportCharge" />
           <EntitySet Name="TblLoginUsers" EntityType="Self.TblLoginUser" />
           <EntitySet Name="Sessions" EntityType="wisdomDBModel.Session" />
-          <EntitySet Name="Months" EntityType="wisdomDBModel.Month" />
           <EntitySet Name="Fines" EntityType="wisdomDBModel.Fine" />
           <EntitySet Name="tbl_homework" EntityType="wisdomDBModel.tbl_homework" />
           <EntitySet Name="AdmissionForms" EntityType="wisdomDBModel.AdmissionForm" />
+          <EntitySet Name="Months" EntityType="wisdomDBModel.Month" />
         </EntityContainer>
         <EntityType Name="Session">
           <Key>
@@ -1196,14 +1189,6 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Session1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
-        <EntityType Name="Month">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Month1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Sequence" Type="Int32" />
-        </EntityType>
         <EntityType Name="Fine">
           <Key>
             <PropertyRef Name="Id" />
@@ -1212,6 +1197,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FineDay" Type="Int32" />
           <Property Name="Amount" Type="Double" />
+          <Property Name="StartMonth" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_homework">
           <Key>
@@ -1284,6 +1270,14 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="House_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MAadhaar" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="FAadhaar" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sequence" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1822,18 +1816,10 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Months">
-            <EntityTypeMapping TypeName="wisdomDBModel.Month">
-              <MappingFragment StoreEntitySet="Months">
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
-                <ScalarProperty Name="Month1" ColumnName="Month" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Fines">
             <EntityTypeMapping TypeName="wisdomDBModel.Fine">
               <MappingFragment StoreEntitySet="Fine">
+                <ScalarProperty Name="StartMonth" ColumnName="StartMonth" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="FineDay" ColumnName="FineDay" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1912,6 +1898,15 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
                 <ScalarProperty Name="StFirstName" ColumnName="StFirstName" />
                 <ScalarProperty Name="AdmissionNo" ColumnName="AdmissionNo" />
                 <ScalarProperty Name="AdmissionId" ColumnName="AdmissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Months">
+            <EntityTypeMapping TypeName="wisdomDBModel.Month">
+              <MappingFragment StoreEntitySet="Months">
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Month1" ColumnName="Month1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

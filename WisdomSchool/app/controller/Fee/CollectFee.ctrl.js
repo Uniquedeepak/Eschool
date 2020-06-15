@@ -6,7 +6,6 @@
         ['$scope',
          '$rootScope',
          'CollectFeeSrvc',
-          
          'CommonSrvc',
          '$location',
          '$window',
@@ -34,6 +33,7 @@
         $scope.open = function (isDelete, item) {
             $scope.disableCtrl = isDelete;
             $scope.selectedStudent = item;
+           
             $("#EditStudentDetailModel").modal();
         }
         $scope.GetStudentByClass = function (Classid) {
@@ -49,6 +49,7 @@
             $scope.selectedStudent.Fine = "0"; //GetStudentFine(moment(new Date()).format('MM'));
             $scope.selectedStudent.Concession = $scope.selectedStudent.Concession == "" ? "0" : $scope.selectedStudent.Concession;
             $scope.ConcessionCharge = $scope.selectedStudent.Concession;
+            CollectFeeSrvc.getStudentFine(studentDetail.AdmissionNo, successCallBack, failureCallBack);
             CollectFeeSrvc.getStudentFeeDetail(studentDetail,$rootScope.schoolSession, successCallBack, failureCallBack);
             
         }
@@ -103,7 +104,7 @@
         }
         $scope.setTotalAmount = function (selectedMonth) {
             selectedMonth.Checked = selectedMonth.Checked ? false : true;
-
+            
             if (selectedMonth.Checked === false) {
                 for (var i = 0 ; i <= $scope.mothFeeHeads.length - 1; i++) {
                    $scope.mothFeeHeads[i].Checked = false;
@@ -248,6 +249,13 @@
                         break;
                     }
                     break;
+                case 'getStudentFine':
+                    $scope.isLoading = false;
+                    if (data && data.length) {
+                        $scope.selectedStudent.Fine = data;
+                        break;
+                    }
+                    break;
                 case 'getClassFeeHeadDetail':
                     $scope.isLoading = false;
                     if (data && data.length) {
@@ -314,6 +322,9 @@
                         // alert(data);
                         break;
                     }
+                    break;
+                case 'getStudentFine':
+                    $scope.isLoading = false;
                     break;
             }
         };
@@ -490,7 +501,7 @@
                 if ($scope.mothFeeHeads[i].Checked == true) {
                     trasnportAmount += parseInt(TransDefineAmount);
                     ConcessionAmout += parseInt(ConcessionCharges);
-                    $scope.selectedStudent.Fine = GetStudentFine(setMonthValue($scope.mothFeeHeads[i].text));
+                   // $scope.selectedStudent.Fine = GetStudentFine(setMonthValue($scope.mothFeeHeads[i].text));
                 }
             }
 

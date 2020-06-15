@@ -18,5 +18,6 @@ namespace SchoolApi
         public string Name { get; set; }
         public Nullable<int> FineDay { get; set; }
         public Nullable<double> Amount { get; set; }
+        public Nullable<int> StartMonth { get; set; }
     }
 }

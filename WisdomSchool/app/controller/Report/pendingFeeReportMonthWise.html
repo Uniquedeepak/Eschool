@@ -36,42 +36,21 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label style="width: 100%;">Class</label>
-                        <select id="red" class="form-control" ng-change="GetStudentByClass(item.CID);" ng-model="item.CID" ng-init="item.CID=0">
+                        <select id="red" class="form-control" ng-change="selectedClass(item.CID);" ng-model="item.CID" ng-init="item.CID=0">
                             <option value="0" selected="selected" class="ng-binding">Select Class</option>
                             <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng ng-repeat="step in Classes">{{ step.Class1 }}</option>
                         </select>
 
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label style="width: 100%;">Months</label>
-                        <span ng-repeat="month in mothFeeHeads | orderBy: 'id'">
-                            <label class="checkbox-inline" for="{{month.id}}">
-                                <input type="checkbox" ng-click="" name="group" ng-value="month.text" id="{{month.id}}"
-                                       ng-model="month.Checked"/>
-                                {{month.text}}
-
-                            </label>
-                        </span>
-                    </div>
-                </div>
-
-               
-                <!--<div class="col-lg-2">
-                    <div class="form-group">
-                        <label>From Date</label>
-                        <input type="text" class="form-control" ng-model="fromDate" my-date-picker />
-                        <input type="text" class="form-control" data-ng-model="from_date" placeholder="mm/dd/yyyy" />
-
-                    </div>
-                </div>
                 <div class="col-lg-2">
                     <div class="form-group">
-                        <label>To Date</label>
-                        <input type="text" class="form-control" ng-model="toDate" my-date-picker />
+                        <label style="width: 100%;">Month</label>
+                        <select class="form-control" ng-model="selectedMonth" ng-change="getMonthlyPendingFee();"
+                               ng-init="option.Sequence=0" ng-options="option.Month1 for option in mothFeeHeads | orderBy : 'Sequence'">
+                        </select>
                     </div>
-                </div>-->
+                </div>
 
                 <div class="col-lg-2">
                     <div class="form-group text-right" style="margin-top: 25px;">

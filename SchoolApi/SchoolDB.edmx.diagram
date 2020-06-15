@@ -41,10 +41,10 @@
         <EntityTypeShape EntityType="wisdomDBModel.TransportCharge" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="wisdomDBModel.TblLoginUser" Width="1.5" PointX="8.625" PointY="2.75" IsExpanded="false" />
         <EntityTypeShape EntityType="wisdomDBModel.Session" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="false" />
-        <EntityTypeShape EntityType="wisdomDBModel.Month" Width="1.5" PointX="0.5" PointY="2.125" IsExpanded="false" />
         <EntityTypeShape EntityType="wisdomDBModel.Fine" Width="1.5" PointX="2.125" PointY="2.125" IsExpanded="false" />
         <EntityTypeShape EntityType="wisdomDBModel.tbl_homework" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="wisdomDBModel.AdmissionForm" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="wisdomDBModel.Month" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

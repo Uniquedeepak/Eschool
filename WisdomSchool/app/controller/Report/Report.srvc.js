@@ -12,7 +12,8 @@
             getTopFeeDetail: null,
             getPendingFeeDetail: null,
             getAttendanceDetail: null,
-            getMonthlyAttendance: null
+            getMonthlyAttendance: null,
+            getMonthlyPendingFee: null,
         };
 
         service.getAllSubmitedFeeDetail = function (session,successCallBack, failureCallBack) {
@@ -135,6 +136,32 @@
                         data = JSON.stringify(data);
                     }
                     failureCallBack('getPendingFeeDetail', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                // $scope.loading = false;
+            });
+        };
+        service.getMonthlyPendingFee = function (ClassId, Months, successCallBack, failureCallBack) {
+            // $scope.loading = true;
+            $httpProvider({
+                method: 'Post',
+                url: './Fee/GetPendingFee',
+                data: {
+                    Months: Months,
+                    ClassId: ClassId
+                }
+            }).success(function (data, status, headers, config) {
+                // toaster.pop('success', "GetAllSubmitedFeeDetail", "Completed", 1000);
+                successCallBack('getMonthlyPendingFee', data);
+                //   $scope.loading = false;
+            }).error(function (data, status, headers, config) {
+                toaster.pop('error', "Get Top Pending Fee Detail", "Completed", 1000);
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('getMonthlyPendingFee', data);
                     return;
                 }
                 failureCallBack("An internal processing error occurred.");

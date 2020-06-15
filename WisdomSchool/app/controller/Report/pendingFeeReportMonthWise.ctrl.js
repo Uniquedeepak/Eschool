@@ -24,34 +24,31 @@
         $scope.moment = moment;
         $scope.fromDate = new Date();
         $scope.toDate = new Date();
-        setMonths();
+        CommonSrvc.monthList(successCallBack, failureCallBack);
        
         CommonSrvc.CurrentSession(successCallBack, failureCallBack);
         StudentDetailservice.getAllClass(successCallBack, failureCallBack);
         //ReportSrvc.getTopFeeDetail($rootScope.schoolSession, successCallBack, failureCallBack);
        
-        $scope.GetStudentByClass = function (Classid) {
-            $scope.isLoading = true;
-            ReportSrvc.getPendingFeeDetail($rootScope.schoolSession, Classid, successCallBack, failureCallBack);
+        $scope.selectedClass = function (Classid) {
+            $scope.SelectedClass = Classid//;;
+            if ($scope.SelectedClass && $scope.selectedMonth.Sequence) {
+                ReportSrvc.getMonthlyPendingFee($scope.SelectedClass, $scope.selectedMonth.Sequence, successCallBack, failureCallBack);
+            }
+            else {
+                alert("Please select Class and Month");
+            }
         };
-
-        function setMonths()
-        {
-            var mothFeeHeads = [];
-            mothFeeHeads.push({ id: 0, text: "July", Checked: false});
-            mothFeeHeads.push({ id: 1, text: "August", Checked: false});
-            mothFeeHeads.push({ id: 2, text: "September", Checked: false});
-            mothFeeHeads.push({ id: 3, text: "October", Checked: false });
-            mothFeeHeads.push({ id: 4, text: "November", Checked: false});
-            mothFeeHeads.push({ id: 5, text: "December", Checked: false});
-            mothFeeHeads.push({ id: 6, text: "January", Checked: false});
-            mothFeeHeads.push({ id: 7, text: "February", Checked: false});
-            mothFeeHeads.push({ id: 8, text: "March", Checked: false});
-            mothFeeHeads.push({ id: 9, text: "April", Checked: false});
-            mothFeeHeads.push({ id: 10, text: "May", Checked: false});
-            mothFeeHeads.push({ id: 11, text: "June", Checked: false});
-            $scope.mothFeeHeads = mothFeeHeads;
-        }
+        $scope.getMonthlyPendingFee = function () {
+            if ($scope.SelectedClass && $scope.selectedMonth.Sequence) {
+                ReportSrvc.getMonthlyPendingFee($scope.SelectedClass, $scope.selectedMonth.Sequence, successCallBack, failureCallBack);
+            }
+            else {
+                alert("Please select Class and Month");
+            }
+            
+        };
+        
         function successCallBack(call, data) {
             switch (call) {
                 case 'GetClass':
@@ -62,14 +59,20 @@
                     }
                     break;
                     
-                case 'getPendingFeeDetail':
+                case 'getMonthlyPendingFee':
                     //
                     $scope.isLoading = false;
                     if (data && data.length) {
-                        pendingFeeDetail(data);
+                        $scope.studentFeeInvoiceDetail = data;
                         }
                     else {
                         $scope.studentFeeInvoiceDetail = null;
+                    }
+                    break;
+                case 'monthList':
+                    if (data) {
+                        $scope.mothFeeHeads = data;
+                        break;
                     }
                     break;
             }
@@ -77,7 +80,7 @@
 
         function failureCallBack(call, data) {
             switch (call) {
-                case 'getPendingFeeDetail':
+                case 'getMonthlyPendingFee':
                     //
                     $scope.isLoading = false;
                     //alert("Error Occured during get Student Fee Detail. " + data);
@@ -86,6 +89,9 @@
                     //
                     $scope.isLoading = false;
                     //alert("Error during get Class");
+                    break;
+                case 'monthList':
+                    $scope.isLoading = false;
                     break;
                
             }
@@ -117,19 +123,7 @@
 
         };
 
-        function pendingFeeDetail(data)
-        {
-            //
-            var pendingFeeList = [];
-            var id = 0;
-            angular.forEach(data, function (item) {
-                CheckMonthFee(item.Balance);
-                pendingFeeList.push({ id: id + 1, AdmissionNo: item.AdmissionNo, Name: item.Name, Class: item.Class, Date: item.Date, Months: item.Months, Balance: item.Balance, GrandTotal: item.GrandTotal, PayedAmount: item.PayedAmount, Status: $scope.MonthStatus });
-                id = id + 1;
-               
-            });
-            $scope.studentFeeInvoiceDetail = pendingFeeList;
-        }
+      
         function CheckMonthFee(Balance) {
             if (Balance > 0) {
                 $scope.MonthStatus = "Pending";
@@ -139,29 +133,7 @@
             }
             return;
         }
-        function CheckMonthFeeOld(Months,Session) {
-            var currentMonth = moment(new Date()).format('M');
-            if (Months)
-            {
-                
-                var month = Months.split(',')
-                month = month[month.length - 2];
-                month = new Date(Date.parse(month + " 1, 2012")).getMonth() + 1;
-                $scope.MonthStatus = "";
-                if (month >= currentMonth && Session === $rootScope.schoolSession) {
-                    $scope.MonthStatus = "Done";
-                }
-                else {
-                    $scope.MonthStatus = "Pending";
-                }
-            }
-            else
-            {
-                $scope.MonthStatus = "Pending";
-            }
-            
-            return;
-        }
+       
 
     }
 

@@ -87,6 +87,25 @@ namespace MvcApplication1.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetPendingFee(string ClassId, string Months)
+        {
+            try
+            {
+                FeesController obj = new FeesController();
+                List<StudentFeeDetail> objClass = obj.GetPendingFee(ClassId, Months);
+                var Jsonresult = Json(objClass, JsonRequestBehavior.AllowGet);
+                Jsonresult.MaxJsonLength = int.MaxValue;
+                return Jsonresult;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message.ToString());
+                return null;
+            }
+
+        }
+
+        [HttpPost]
         public JsonResult GetStudentFeeDetail(string AdmNo, string Session)
         {
             try
@@ -94,6 +113,23 @@ namespace MvcApplication1.Controllers
                 FeesController obj = new FeesController();
                 List<StudentFeeDetail> objClass = obj.GetStudentFeeDetail(AdmNo, Session);
                 return Json(objClass, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message.ToString());
+                return null;
+            }
+
+        }
+
+        [HttpPost]
+        public JsonResult GetStudentFine(string AdmNo)
+        {
+            try
+            {
+                FeesController obj = new FeesController();
+                var fine = obj.GetStudentFine(AdmNo);
+                return Json(fine, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -237,6 +273,39 @@ namespace MvcApplication1.Controllers
         public JsonResult DeleteFine(int ID)
         {
             FineController obj = new FineController();
+            var response = obj.Delete(ID);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region Months
+        [HttpGet]
+        public JsonResult GetMonths()
+        {
+            MonthController obj = new MonthController();
+            List<Month> objMonth = obj.GetMonths();
+            return Json(objMonth, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult AddMonth(Month Month)
+        {
+            MonthController obj = new MonthController();
+            var response = obj.Post(Month);
+            return Json(((Month)(((System.Net.Http.ObjectContent)(response.Content)).Value)).Id, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateMonths(int ID, Month Month)
+        {
+            MonthController obj = new MonthController();
+            var response = obj.Put(ID, Month);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AuthLog(Roles = "Admin")]
+        public JsonResult DeleteMonths(int ID)
+        {
+            MonthController obj = new MonthController();
             var response = obj.Delete(ID);
             return Json(response, JsonRequestBehavior.AllowGet);
         }

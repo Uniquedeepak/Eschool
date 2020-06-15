@@ -17,10 +17,11 @@
         activate();
         function activate() {
             $scope.isLoading = true;
-            $scope.monthFeeHeads = CommonSrvc.monthList();
+            CommonSrvc.monthList(successCallBack, failureCallBack);
             CommonSrvc.getAllClass(successCallBack, failureCallBack);
             HomeworkService.getHomeworkDetails(successCallBack, failureCallBack);
         }
+       
         $scope.open = function (isDelete, item) {
             
             $scope.disableCtrl = isDelete === 3;
@@ -41,14 +42,14 @@
         $scope.addHomework = function (HomeworkDetail) {
             $scope.isLoading = true;
             HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month.text;
+            HomeworkDetail.month = HomeworkDetail.month.Month1;
             HomeworkService.addHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
         }
         $scope.updateHomework = function (HomeworkDetail)
         {
             $scope.isLoading = true;
             HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month.text;
+            HomeworkDetail.month = HomeworkDetail.month.Month1;
             HomeworkService.updateHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
         }
         $scope.downloadHomework = function (Id) {
@@ -110,6 +111,16 @@
                         break;
                     }
                     break;
+                case 'monthList':
+                    if (data) {
+                        var monthFeeHeads = [];
+                        angular.forEach(data, function (value, key) {
+                            monthFeeHeads.push(value.Month1);
+                        });
+                        $scope.monthFeeHeads = monthFeeHeads;
+                        break;
+                    }
+                    break;
             }
         };
         function failureCallBack(call, data) {
@@ -127,6 +138,9 @@
                     $scope.isLoading = false;
                     break;
                 case 'GetClass':
+                    $scope.isLoading = false;
+                    break;
+                case 'monthList':
                     $scope.isLoading = false;
                     break;
             }

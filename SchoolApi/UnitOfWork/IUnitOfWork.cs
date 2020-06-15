@@ -17,7 +17,10 @@ namespace GenericAPI.UnitOfWork
         IGenericRepository<InventoryCategory> InventoryCategoryRepository { get; }
         IGenericRepository<InventoryItem> InventoryItemRepository { get; }
         IGenericRepository<InventoryIssue> InventoryIssueRepository { get; }
-        
+        IGenericRepository<StudentFeeDetail> StudentFeeDetailRepository { get; }
+        IGenericRepository<Month> MonthRepository { get; }
+        IGenericRepository<NewFeeHeading> FeeHeadingRepository { get; }
+
         void Save();
     }
 }

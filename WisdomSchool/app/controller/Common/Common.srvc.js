@@ -339,22 +339,30 @@
                 // $scope.loading = false;
             });
         };
-        service.monthList = function setMonths() {
-            var mothFeeHeads = [];
-            mothFeeHeads.push({ id: 1, text: "January", Checked: false });
-            mothFeeHeads.push({ id: 2, text: "February", Checked: false });
-            mothFeeHeads.push({ id: 3, text: "March", Checked: false });
-            mothFeeHeads.push({ id: 4, text: "April", Checked: false });
-            mothFeeHeads.push({ id: 5, text: "May", Checked: false });
-            mothFeeHeads.push({ id: 6, text: "June", Checked: false });
-            mothFeeHeads.push({ id: 7, text: "July", Checked: false });
-            mothFeeHeads.push({ id: 8, text: "August", Checked: false });
-            mothFeeHeads.push({ id: 9, text: "September", Checked: false });
-            mothFeeHeads.push({ id: 10, text: "October", Checked: false });
-            mothFeeHeads.push({ id: 11, text: "November", Checked: false });
-            mothFeeHeads.push({ id: 12, text: "December", Checked: false });
+        service.monthList = function setMonths(successCallBack, failureCallBack) {
+            $httpProvider({
+                method: 'Get',
+                url: './Fee/GetMonths',
+                data: {
 
-            return mothFeeHeads;
+                }
+            }).success(function (data, status, headers, config) {
+                //toaster.pop('success', "getTransportCharge", "Completed", 1000);
+
+                successCallBack('monthList', data);
+                //   $scope.loading = false;
+            }).error(function (data, status, headers, config) {
+                toaster.pop('error', "monthList", "Completed", 1000);
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('monthList', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                // $scope.loading = false;
+            });
         };
         return service;
     }
