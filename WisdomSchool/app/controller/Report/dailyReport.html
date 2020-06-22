@@ -233,9 +233,9 @@
                                                 <td class="col-xs-9 receiptFee"><em>Concession</em></td>
                                                 <td class="col-xs-3 receiptFee text-center">Rs. -{{FeeSubmitData.Concession}}</td>
                                             </tr>
-                                            <tr ng-if="selectedStudent.OldBalanced != 0">
+                                            <tr ng-if="FeeSubmitData.OldBalanced != 0">
                                                 <td class="col-xs-9 receiptFee"><em>Old Balance</em></td>
-                                                <td class="col-xs-3 receiptFee text-center">Rs. {{selectedStudent.OldBalanced}}</td>
+                                                <td class="col-xs-3 receiptFee text-center">Rs. {{FeeSubmitData.OldBalanced}}</td>
                                             </tr>
                                             <tr ng-if="FeeSubmitData.PreviousDue !=0">
                                                 <td class="col-xs-9 receiptFee"><em>Previous Due</em></td>
