@@ -65,5 +65,6 @@ namespace SchoolApi
         public DbSet<tbl_homework> tbl_homework { get; set; }
         public DbSet<AdmissionForm> AdmissionForms { get; set; }
         public DbSet<Month> Months { get; set; }
+        public DbSet<Hobby> Hobbies { get; set; }
     }
 }

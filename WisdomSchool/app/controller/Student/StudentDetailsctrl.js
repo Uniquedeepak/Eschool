@@ -4,14 +4,15 @@
 
     angular.module('AngularApp').controller(controllerId,
         ['$scope',
-         'StudentDetailservice',
+            'StudentDetailservice',
+         'HobbyService',
          'Excel',
          '$timeout',
          'CommonSrvc',
           StudentCtlr
         ]);
 
-    function StudentCtlr($scope, StudentDetailservice,Excel,$timeout,CommonSrvc) {
+    function StudentCtlr($scope, StudentDetailservice, HobbyService,Excel,$timeout,CommonSrvc) {
         
         $scope.heading = "Student";
         $scope.subheading = "Details";
@@ -24,6 +25,8 @@
         StudentDetailservice.getStudentDetails(successCallBack, failureCallBack);
         StudentDetailservice.getAllClass(successCallBack, failureCallBack);
         CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
+        CommonSrvc.getStudentHouse(successCallBack, failureCallBack);
+        HobbyService.getHobbyDetails(successCallBack, failureCallBack);
 
         $scope.open = function (isDelete, item) {
             
@@ -32,7 +35,8 @@
             assignClass(item.Class);
             $scope.selectedStudent.RouteObj = { Charge: item.Transport_Charge, Route: item.Route, TId: item.TId, TransportType: item.TransportType }
             assignTransport($scope.selectedStudent.RouteObj);
-            
+            setHouse(item.House_Name);
+            setHobby(item.Hobby);
             //var FromDate = new Date();
             $scope.selectedStudent.DOB = item.DOB;
             $("#EditStudentDetailModel").modal();
@@ -83,7 +87,8 @@
                 CommonSrvc.uploadFileToUrl(studentDetail.Image, successCallBack, failureCallBack);
                 studentDetail.Image = studentDetail.Image.name;
             }
-                    
+            studentDetail.House_Name = $scope.selectedStudent.House.HID;
+            studentDetail.Hobby = $scope.selectedStudent.Hobby.Id;
             studentDetail.Class = $scope.SelectedClass.CID;
             StudentDetailservice.updateStudent(studentDetail,successCallBack, failureCallBack);
         }
@@ -122,6 +127,26 @@
             angular.forEach($scope.Classes, function (value, key) {
                 if (value.Class1 === Class) {
                     $scope.SelectedClass = value;
+                }
+                i = i + 1;
+            });
+        }
+
+        function setHouse(houseId) {
+            var i = 0;
+            angular.forEach($scope.Houses, function (value, key) {
+                if (value.HID === parseInt(houseId)) {
+                    $scope.selectedStudent.House = value;
+                }
+                i = i + 1;
+            });
+        }
+
+        function setHobby(Id) {
+            var i = 0;
+            angular.forEach($scope.HobbyDetails, function (value, key) {
+                if (value.Id === parseInt(Id)) {
+                    $scope.selectedStudent.Hobby = value;
                 }
                 i = i + 1;
             });
@@ -178,10 +203,23 @@
                         break;
                     }
                     break;
+                case 'getStudentHouse':
+                    if (data) {
+                        $scope.Houses = data;
+                        break;
+                    }
+                    break;
                 case 'uploadFileToUrl':
                     
                     if (data) {
                         console.log(data);
+                    }
+                    break;
+                case 'getHobbyDetails':
+                    $scope.isLoading = false;
+                    if (data) {
+                        $scope.HobbyDetails = data;
+                        break;
                     }
                     break;
             }
@@ -219,6 +257,13 @@
                         console.log(data);
                     }
                     break;
+                case 'getStudentHouse':
+                    alert("Error Occured during getStudentHouse. " + data);
+                    break;
+                case 'getHobbyDetails':
+                    $scope.isLoading = false;
+                    break;
+
             }
         };
     }

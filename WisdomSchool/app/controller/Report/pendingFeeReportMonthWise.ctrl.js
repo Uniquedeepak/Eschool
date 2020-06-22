@@ -72,6 +72,7 @@
                 case 'monthList':
                     if (data) {
                         $scope.mothFeeHeads = data;
+                        $scope.selectedMonth = $scope.mothFeeHeads[0];
                         break;
                     }
                     break;

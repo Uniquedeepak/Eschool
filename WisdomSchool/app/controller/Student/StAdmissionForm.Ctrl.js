@@ -33,6 +33,7 @@
             
             $scope.AddStudent.Class = $scope.SelectedClass.CID;
             $scope.AddStudent.Route = $scope.AddStudent.Route.Route;
+            $scope.AddStudent.House_Name = $scope.AddStudent.House.HID;
             StudentDetailservice.addStudent(AddStudent, successCallBack, failureCallBack);
         }
 
@@ -75,6 +76,7 @@
             StudentDetailservice.getAdmissionNo(successCallBack, failureCallBack);
             StudentDetailservice.getAllClass(successCallBack, failureCallBack);
             CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
+            CommonSrvc.getStudentHouse(successCallBack, failureCallBack);
         }
 
         function successCallBack(call, data) {
@@ -111,6 +113,13 @@
                         $scope.getTransportCharge = data;
                         var index = getIndex($scope.getTransportCharge);
                         $scope.AddStudent.Route = $scope.getTransportCharge[index];
+                        break;
+                    }
+                    break;
+                case 'getStudentHouse':
+                    if (data) {
+                        $scope.Houses = data;
+                        $scope.AddStudent.House = $scope.Houses[0];
                         break;
                     }
                     break;
@@ -158,6 +167,9 @@
                     if (data) {
                         console.log(data);
                     }
+                    break;
+                case 'getStudentHouse':
+                    alert("Error Occured during getStudentHouse. " + data);
                     break;
                
             }

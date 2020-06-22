@@ -22,6 +22,8 @@ namespace GenericAPI.UnitOfWork
         private IGenericRepository<Month> _MonthRepository;
         private IGenericRepository<StudentFeeDetail> _StudentFeeDetailRepository;
         private IGenericRepository<NewFeeHeading> _FeeHeadingRepository;
+        private IGenericRepository<House> _HouseRepository;
+        private IGenericRepository<Hobby> _HobbyRepository;
 
         public UnitOfWork()
         {
@@ -86,6 +88,8 @@ namespace GenericAPI.UnitOfWork
         }
 
         public IGenericRepository<NewFeeHeading> FeeHeadingRepository =>  _FeeHeadingRepository ?? (_FeeHeadingRepository = new GenericRepository<NewFeeHeading>(_context));
+        public IGenericRepository<House> HouseRepository => _HouseRepository ?? (_HouseRepository = new GenericRepository<House>(_context));
+        public IGenericRepository<Hobby> HobbyRepository => _HobbyRepository ?? (_HobbyRepository = new GenericRepository<Hobby>(_context));
 
         public void Save()
         {

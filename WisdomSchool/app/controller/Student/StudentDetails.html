@@ -209,6 +209,18 @@
                                     <select class="form-control" ng-model="selectedStudent.RouteObj" ng-options="item as item.Route +' - Rs.'+ item.Charge for item in getTransportCharge"></select>
                                 </div>
                             </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>House</label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="selectedStudent.House" ng-options="item as item.House_Name for item in Houses track by item.HID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Hobby </label></div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="selectedStudent.Hobby" ng-options="item as item.Name for item in HobbyDetails track by item.Id"></select>
+                                </div>
+                            </div>
 
                         </form>
                     </div>

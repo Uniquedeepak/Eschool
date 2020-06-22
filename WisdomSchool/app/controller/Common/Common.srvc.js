@@ -16,7 +16,8 @@
             SendSMSByUser: null,
             getAllClass: null,
             smsToAdmin: null,
-            monthList: null
+            monthList: null,
+            getHouses:null,
         };
         service.getTransportCharge = function (successCallBack, failureCallBack) {
             // $scope.loading = true;
@@ -358,6 +359,31 @@
                         data = JSON.stringify(data);
                     }
                     failureCallBack('monthList', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                // $scope.loading = false;
+            });
+        };
+        service.getStudentHouse = function getHouses(successCallBack, failureCallBack) {
+            $httpProvider({
+                method: 'Get',
+                url: './Home/GetHouse',
+                data: {
+
+                }
+            }).success(function (data, status, headers, config) {
+                //toaster.pop('success', "getTransportCharge", "Completed", 1000);
+
+                successCallBack('getStudentHouse', data);
+                //   $scope.loading = false;
+            }).error(function (data, status, headers, config) {
+                toaster.pop('error', "getStudentHouse", "Completed", 1000);
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('getStudentHouse', data);
                     return;
                 }
                 failureCallBack("An internal processing error occurred.");

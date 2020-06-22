@@ -218,10 +218,10 @@
         };
         service.getStudentFine = function (AdmissionNo, successCallBack, failureCallBack) {
             $httpProvider({
-                method: 'Post',
-                url: '../Fee/GetStudentFine',
+                method: 'Get',
+                url: '../Fee/GetStudentFine?AdmNo=' + AdmissionNo,
                 data: {
-                    AdmissionNo: AdmissionNo,
+                    AdmNo: AdmissionNo,
                 }
             }).success(function (data, status, headers, config) {
                 successCallBack('getStudentFine', data);

@@ -70,6 +70,7 @@
           <Property Name="House_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="MAadhaar" Type="varchar" MaxLength="16" />
           <Property Name="FAadhaar" Type="varchar" MaxLength="16" />
+          <Property Name="Hobby" Type="int" />
         </EntityType>
         <EntityType Name="Advanced">
           <Key>
@@ -192,6 +193,14 @@
           </Key>
           <Property Name="HId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Charge" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="House">
           <Key>
@@ -459,6 +468,7 @@ warning 6002: The table/view 'tendersoulDB.dbo.Session' does not have a primary 
           <Property Name="CardPaymentRecieptNo" Type="nvarchar" MaxLength="100" />
           <Property Name="Session" Type="nvarchar" MaxLength="100" />
           <Property Name="BalancedShow" Type="nvarchar" MaxLength="100" />
+          <Property Name="HobbyFee" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="StudentRegisteredDetail">
           <Key>
@@ -606,6 +616,7 @@ warning 6002: The table/view 'tendersoulDB.dbo.TblLoginUser' does not have a pri
           <EntitySet Name="FeesPlan" EntityType="Self.FeesPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fine" EntityType="Self.Fine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Heading" EntityType="Self.Heading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="House" EntityType="Self.House" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryCategory" EntityType="Self.InventoryCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryEntry" EntityType="Self.InventoryEntry" Schema="dbo" store:Type="Tables" />
@@ -1020,6 +1031,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="CardPaymentRecieptNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Session" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="BalancedShow" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HobbyFee" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentRegisteredDetail">
           <Key>
@@ -1180,6 +1192,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySet Name="tbl_homework" EntityType="wisdomDBModel.tbl_homework" />
           <EntitySet Name="AdmissionForms" EntityType="wisdomDBModel.AdmissionForm" />
           <EntitySet Name="Months" EntityType="wisdomDBModel.Month" />
+          <EntitySet Name="Hobbies" EntityType="wisdomDBModel.Hobby" />
         </EntityContainer>
         <EntityType Name="Session">
           <Key>
@@ -1270,6 +1283,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="House_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MAadhaar" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="FAadhaar" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Hobby" Type="Int32" />
         </EntityType>
         <EntityType Name="Month">
           <Key>
@@ -1278,6 +1292,14 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Month1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Sequence" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Charge" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1647,6 +1669,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySetMapping Name="StudentFeeDetails">
             <EntityTypeMapping TypeName="wisdomDBModel.StudentFeeDetail">
               <MappingFragment StoreEntitySet="StudentFeeDetail">
+                <ScalarProperty Name="HobbyFee" ColumnName="HobbyFee" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AdmissionNo" ColumnName="AdmissionNo" />
@@ -1845,6 +1868,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySetMapping Name="AdmissionForms">
             <EntityTypeMapping TypeName="wisdomDBModel.AdmissionForm">
               <MappingFragment StoreEntitySet="AdmissionForm">
+                <ScalarProperty Name="Hobby" ColumnName="Hobby" />
                 <ScalarProperty Name="FAadhaar" ColumnName="FAadhaar" />
                 <ScalarProperty Name="MAadhaar" ColumnName="MAadhaar" />
                 <ScalarProperty Name="House_Name" ColumnName="House_Name" />
@@ -1906,6 +1930,15 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
               <MappingFragment StoreEntitySet="Months">
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
                 <ScalarProperty Name="Month1" ColumnName="Month1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hobbies">
+            <EntityTypeMapping TypeName="wisdomDBModel.Hobby">
+              <MappingFragment StoreEntitySet="Hobby">
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

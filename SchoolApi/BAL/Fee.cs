@@ -19,7 +19,7 @@ namespace SchoolApi.BAL
         }
         public decimal GetFine(string AdmissionNo)
         {
-            decimal fine = 10.10m;
+            decimal fine = 0;
             try
             {
                 int TodayDay = Convert.ToInt32(DateTime.Now.ToString("dd"));
@@ -30,7 +30,7 @@ namespace SchoolApi.BAL
                 Fine fineDetail = unitOfWork.FineRepository.GetFirstOrDefault(x => x.Name == "Fee");
 
                 string CollectedMonths = unitOfWork.StudentFeeDetailRepository.
-                    Get(x => x.AdmissionNo.Equals(AdmissionNo) && x.Session.Equals(PropertiesConfiguration.ActiveSession), odr => odr.OrderByDescending(i=>i.Date)).
+                    Get(x => x.AdmissionNo.Equals(AdmissionNo) && x.Session.Equals(PropertiesConfiguration.ActiveSession), odr => odr.OrderByDescending(i=>i.Id)).
                     FirstOrDefault()?.Months;
 
 
@@ -50,14 +50,14 @@ namespace SchoolApi.BAL
                 #region Year Check
                 if (CurrentYear >Convert.ToInt32(PropertiesConfiguration.ActiveSession.Split('-').First()))
                 {
-                    fine = Convert.ToDecimal( fineDetail.Amount * (12 - LastFeeMonth));
+                    fine = Convert.ToDecimal( fineDetail?.Amount * (12 - LastFeeMonth));
                     return fine;
                 }
                 #endregion
 
                 if (TodayDay > fineDetail.FineDay && fineDetail.StartMonth < CurrentMonth)
                 {
-                    LastFeeMonth = LastFeeMonth <=0 ? Convert.ToInt32(fineDetail.StartMonth-1) : LastFeeMonth; 
+                    LastFeeMonth = LastFeeMonth <=0 ? Convert.ToInt32(fineDetail.StartMonth) : LastFeeMonth; 
                     fine = Convert.ToDecimal(fineDetail.Amount * (CurrentMonth - LastFeeMonth));
                 }
             }
@@ -75,7 +75,7 @@ namespace SchoolApi.BAL
                 #region Student and Fee Collection
                 var students = unitOfWork.AdmissionFormRepository.Get(x => x.Class.Equals(Class) &&
                                                             x.ESession.Equals(PropertiesConfiguration.ActiveSession));
-                List<StudentFeeDetail> studentfees = (from c in unitOfWork.StudentFeeDetailRepository.Get(x => x.Class.Equals(Class) && x.Session.Equals(PropertiesConfiguration.ActiveSession))
+                List<StudentFeeDetail> studentfees = (from c in unitOfWork.StudentFeeDetailRepository.Get(x => x.Class.Equals(Class) && x.Session.Equals(PropertiesConfiguration.ActiveSession),x=>x.OrderByDescending(p=>p.Id))
                                   group c by c.AdmissionNo into gcs
                                     select new StudentFeeDetail()
                                     {
@@ -84,8 +84,8 @@ namespace SchoolApi.BAL
                                         Date = gcs.FirstOrDefault().Date,
                                         Months = string.Join("", gcs.Select(x => x.Months).ToList()),
                                         Balance = gcs.FirstOrDefault().Balance,
-                                        GrandTotal = gcs.Sum(x=>x.GrandTotal),
-                                        PayedAmount = gcs.Sum(x => x.GrandTotal),
+                                        GrandTotal = (gcs.Sum(x=>x.GrandTotal) - Convert.ToDecimal(gcs.Sum(x => Convert.ToDecimal(x.OldBalanced)))),
+                                        PayedAmount = gcs.Sum(x=>x.PayedAmount),
 
                                     }).ToList();
 

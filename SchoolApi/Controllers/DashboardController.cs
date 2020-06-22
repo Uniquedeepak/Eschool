@@ -53,11 +53,17 @@ namespace SchoolApi.Controllers
         {
             DateTime dt = new DateTime();
             dt = DateTime.Now;
-            var TodayFees = SchoolDB.StudentFeeDetails.Where(x => x.Session.Contains(SchoolSession)).ToList();
-            TodayFees = TodayFees.Where(x => Convert.ToDateTime(x.Date).Year == dt.Year
-                              && Convert.ToDateTime(x.Date).Month == dt.Month).ToList();
+            decimal? Total = null;
+            var studentFees = SchoolDB.StudentFeeDetails.ToList();
+            if (studentFees != null)
+            {
+                var TodayFees = studentFees.Where(x => x.Session.Contains(SchoolSession)).ToList();
+                TodayFees = TodayFees.Where(x => Convert.ToDateTime(x.Date).Year == dt.Year
+                                  && Convert.ToDateTime(x.Date).Month == dt.Month).ToList();
 
-            decimal? Total = TodayFees.Select(x => x.PayedAmount).Sum();
+                Total = TodayFees.Select(x => x.PayedAmount).Sum();
+            }
+            
             return Convert.ToDecimal(Total);
         }
 

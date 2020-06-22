@@ -67,5 +67,6 @@ namespace SchoolApi
         public string House_Name { get; set; }
         public string MAadhaar { get; set; }
         public string FAadhaar { get; set; }
+        public Nullable<int> Hobby { get; set; }
     }
 }

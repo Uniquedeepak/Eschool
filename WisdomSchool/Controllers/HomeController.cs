@@ -540,6 +540,74 @@ namespace MvcApplication1.Controllers
         }
 
         #endregion
+        #region House
+        [HttpGet]
+        public JsonResult GetHouse()
+        {
+            HouseController obj = new HouseController();
+            List<House> objHouse = obj.GetHouse();
+            return Json(objHouse, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult AddHouse(House House)
+        {
+            HouseController obj = new HouseController();
+            var response = obj.Post(House);
+            return Json(((SchoolApi.House)(((System.Net.Http.ObjectContent)(response.Content)).Value)).HID, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateHouse(int ID, House House)
+        {
+            HouseController obj = new HouseController();
+            var response = obj.Put(ID, House);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AuthLog(Roles = "Admin")]
+        public JsonResult DeleteHouse(int ID)
+        {
+            HouseController obj = new HouseController();
+            var response = obj.Delete(ID);
+            return Json(response, JsonRequestBehavior.AllowGet); ;
+        }
+
+        #endregion
+        #region Hobby
+        [HttpGet]
+        public JsonResult GetHobby()
+        {
+            HobbyController obj = new HobbyController();
+            List<Hobby> objHobby = obj.GetHobby();
+            return Json(objHobby, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddHobby(Hobby Hobby)
+        {
+            HobbyController obj = new HobbyController();
+            var response = obj.Post(Hobby);
+            return Json(((SchoolApi.Hobby)(((System.Net.Http.ObjectContent)(response.Content)).Value)).Id, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateHobby(int Tid, Hobby Hobby)
+        {
+            HobbyController obj = new HobbyController();
+            var response = obj.Put(Tid, Hobby);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AuthLog(Roles = "Admin")]
+        public JsonResult DeleteHobby(int Tid)
+        {
+            HobbyController obj = new HobbyController();
+            var response = obj.Delete(Tid);
+            return Json(response, JsonRequestBehavior.AllowGet); ;
+        }
+        #endregion
         [HttpPost()]
         public string UploadFiles(string filepath)
         {

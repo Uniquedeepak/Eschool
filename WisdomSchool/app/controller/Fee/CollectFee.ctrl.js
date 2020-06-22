@@ -6,14 +6,15 @@
         ['$scope',
          '$rootScope',
          'CollectFeeSrvc',
-         'CommonSrvc',
+            'CommonSrvc',
+         'HobbyService',
          '$location',
          '$window',
          'StudentDetailservice',
           CollectFeeCtrl
         ]);
 
-    function CollectFeeCtrl($scope,$rootScope, CollectFeeSrvc, CommonSrvc, $location, $window, StudentDetailservice) {
+    function CollectFeeCtrl($scope, $rootScope, CollectFeeSrvc, CommonSrvc, HobbyService, $location, $window, StudentDetailservice) {
         $scope.heading = "Submit Fee's";
         $scope.subheading = "Payment Detail";
         $scope.currentPage = 1;
@@ -30,6 +31,7 @@
         CommonSrvc.CurrentSession(successCallBack, failureCallBack);
         CommonSrvc.getSchool(successCallBack, failureCallBack);
         CollectFeeSrvc.getAllClass(successCallBack, failureCallBack);
+        HobbyService.getHobbyDetails(successCallBack, failureCallBack);
         $scope.open = function (isDelete, item) {
             $scope.disableCtrl = isDelete;
             $scope.selectedStudent = item;
@@ -175,6 +177,7 @@
             $scope.StudentFeeDetail.Status = "1";
             $scope.StudentFeeDetail.TotalAmount = $scope.selectedStudent.TotalAmount;
             $scope.StudentFeeDetail.TransportFee = $scope.selectedStudent.Transport_Charge;
+            $scope.StudentFeeDetail.HobbyFee = $scope.selectedStudent.Hobby;
            //$scope.StudentFeeDetail.Route = $scope.selectedStudent.Route;
             $scope.StudentFeeDetail.PreviousDue = $scope.selectedStudent.PreviousDue;
             $scope.StudentFeeDetail.OldBalanced = $scope.selectedStudent.BalancedShow;
@@ -226,7 +229,7 @@
                 case 'getStudentDetails':
                     $scope.isLoading = false;
                     if (data && data.length) {
-                        $scope.studentDetails = data;
+                        setStudentHobbyFee(data);
                         break;
                     }
                     else
@@ -323,8 +326,13 @@
                         break;
                     }
                     break;
-                case 'getStudentFine':
+                
+                case 'getHobbyDetails':
                     $scope.isLoading = false;
+                    if (data) {
+                        $scope.HobbyDetails = data;
+                        break;
+                    }
                     break;
             }
         };
@@ -334,6 +342,9 @@
                     //
                     $scope.isLoading = false;
                    //alert("Error Occured during getStudentDetails. " + data);
+                    break;
+                case 'getStudentFine':
+                    $scope.isLoading = false;
                     break;
                 case 'getSchool':
                     //
@@ -374,6 +385,9 @@
                     //
                     $scope.isLoading = false;
                     alert("Error Occured during send SMS. " + data);
+                    break;
+                case 'getHobbyDetails':
+                    $scope.isLoading = false;
                     break;
             }
         };
@@ -420,7 +434,16 @@
             $scope.isDecDisabled = false;
             
             angular.forEach($scope.studentFeeInvoiceDetail, function (item) {
-                
+              
+                if ($scope.isAprilDisabled != true) {
+                    $scope.isAprilDisabled = item.Months.indexOf("April") >= 0 ? true : false;
+                }
+                if ($scope.isMayDisabled != true) {
+                    $scope.isMayDisabled = item.Months.indexOf("May") >= 0 ? true : false;
+                }
+                if ($scope.isJuneDisabled != true) {
+                    $scope.isJuneDisabled = item.Months.indexOf("June") >= 0 ? true : false;
+                }
                 if ($scope.isJulyDisabled != true)
                 {
                     $scope.isJulyDisabled = item.Months.indexOf("July") >= 0 ? true : false;
@@ -454,33 +477,42 @@
                 if ($scope.isMarchDisabled != true) {
                     $scope.isMarchDisabled = item.Months.indexOf("March") >= 0 ? true : false;
                 }
-                if ($scope.isAprilDisabled != true) {
-                    $scope.isAprilDisabled = item.Months.indexOf("April") >= 0 ? true : false;
-                }
-                if ($scope.isMayDisabled != true) {
-                    $scope.isMayDisabled = item.Months.indexOf("May") >= 0 ? true : false;
-                }
-                if ($scope.isJuneDisabled != true) {
-                    $scope.isJuneDisabled = item.Months.indexOf("June") >= 0 ? true : false;
-                }
+                
                 
             });
 
-            mothFeeHeads.push({ id: 0, text: "July", Checked: false, IsDisabled: $scope.isJulyDisabled, Value: $scope.July });
-            mothFeeHeads.push({ id: 1, text: "August", Checked: false, IsDisabled: $scope.isAugDisabled, Value: $scope.August });
-            mothFeeHeads.push({ id: 2, text: "September", Checked: false, IsDisabled: $scope.isSeptDisabled, Value: $scope.September });
-            mothFeeHeads.push({ id: 3, text: "October", Checked: false, IsDisabled: $scope.isOctDisabled, Value: $scope.October });
-            mothFeeHeads.push({ id: 4, text: "November", Checked: false, IsDisabled: $scope.isNovDisabled, Value: $scope.November });
-            mothFeeHeads.push({ id: 5, text: "December", Checked: false, IsDisabled: $scope.isDecDisabled, Value: $scope.December });
-            mothFeeHeads.push({ id: 6, text: "January", Checked: false, IsDisabled: $scope.isJanDisabled, Value: $scope.January });
-            mothFeeHeads.push({ id: 7, text: "February", Checked: false, IsDisabled: $scope.isFebDisabled, Value: $scope.February });
-            mothFeeHeads.push({ id: 8, text: "March", Checked: false, IsDisabled: $scope.isMarchDisabled, Value: $scope.March });
-            mothFeeHeads.push({ id: 9, text: "April", Checked: false, IsDisabled: $scope.isAprilDisabled, Value: $scope.April });
-            mothFeeHeads.push({ id: 10, text: "May", Checked: false, IsDisabled: $scope.isMayDisabled, Value: $scope.May });
-            mothFeeHeads.push({ id: 11, text: "June", Checked: false, IsDisabled: $scope.isJuneDisabled, Value: $scope.June });
-
+            
+            mothFeeHeads.push({ id: 0, text: "April", Checked: false, IsDisabled: $scope.isAprilDisabled, Value: $scope.April });
+            mothFeeHeads.push({ id: 1, text: "May", Checked: false, IsDisabled: $scope.isMayDisabled, Value: $scope.May });
+            mothFeeHeads.push({ id: 2, text: "June", Checked: false, IsDisabled: $scope.isJuneDisabled, Value: $scope.June });
+            mothFeeHeads.push({ id: 3, text: "July", Checked: false, IsDisabled: $scope.isJulyDisabled, Value: $scope.July });
+            mothFeeHeads.push({ id: 4, text: "August", Checked: false, IsDisabled: $scope.isAugDisabled, Value: $scope.August });
+            mothFeeHeads.push({ id: 5, text: "September", Checked: false, IsDisabled: $scope.isSeptDisabled, Value: $scope.September });
+            mothFeeHeads.push({ id: 6, text: "October", Checked: false, IsDisabled: $scope.isOctDisabled, Value: $scope.October });
+            mothFeeHeads.push({ id: 7, text: "November", Checked: false, IsDisabled: $scope.isNovDisabled, Value: $scope.November });
+            mothFeeHeads.push({ id: 8, text: "December", Checked: false, IsDisabled: $scope.isDecDisabled, Value: $scope.December });
+            mothFeeHeads.push({ id: 9, text: "January", Checked: false, IsDisabled: $scope.isJanDisabled, Value: $scope.January });
+            mothFeeHeads.push({ id: 10, text: "February", Checked: false, IsDisabled: $scope.isFebDisabled, Value: $scope.February });
+            mothFeeHeads.push({ id: 11, text: "March", Checked: false, IsDisabled: $scope.isMarchDisabled, Value: $scope.March });
             $scope.mothFeeHeads = mothFeeHeads;
 
+        }
+        function setStudentHobbyFee(students) {
+            var studentDetail = [];
+            angular.forEach(students, function (item) {
+                item.Hobby = SetHobby(item.Hobby);
+                studentDetail.push(item);;
+            });
+            $scope.studentDetails = studentDetail;
+        }
+        function SetHobby(HobbyId) {
+            var hobbyVal;
+            angular.forEach($scope.HobbyDetails, function (value, key) {
+                if (value.Id === parseInt(HobbyId)) {
+                    hobbyVal = value.Charge;
+                }
+            });
+            return hobbyVal;
         }
         function updateTotalAmount() {
            
@@ -526,6 +558,9 @@
             updateGrandTotalAmount();
         });
         $scope.$watch("selectedStudent.Transport_Charge", function (newValue, oldValue) {
+            updateGrandTotalAmount();
+        });
+        $scope.$watch("selectedStudent.Hobby", function (newValue, oldValue) {
             updateGrandTotalAmount();
         });
         $scope.$watch("selectedStudent.PreviousDue", function (newValue, oldValue) {
@@ -582,6 +617,9 @@
                     if (typeof $scope.CalculatedTransport_Charge != 'undefined' && $scope.CalculatedTransport_Charge != null) {
                         grandTotal += parseInt($scope.CalculatedTransport_Charge);
                     }
+                    if (typeof $scope.selectedStudent.Hobby != 'undefined' && $scope.selectedStudent.Hobby != null) {
+                        grandTotal += parseInt($scope.selectedStudent.Hobby);
+                    }
                 }
                 else
                 {
@@ -611,6 +649,9 @@
                     }
                     if(typeof $scope.CalculatedTransport_Charge != 'undefined' && $scope.CalculatedTransport_Charge != null) {
                         grandTotal += parseInt($scope.CalculatedTransport_Charge);
+                    }
+                    if (typeof $scope.selectedStudent.Hobby != 'undefined' && $scope.selectedStudent.Hobby != null) {
+                        grandTotal += parseInt($scope.selectedStudent.Hobby);
                     }
                 }
                 

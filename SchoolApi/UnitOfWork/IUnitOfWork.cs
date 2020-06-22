@@ -20,6 +20,8 @@ namespace GenericAPI.UnitOfWork
         IGenericRepository<StudentFeeDetail> StudentFeeDetailRepository { get; }
         IGenericRepository<Month> MonthRepository { get; }
         IGenericRepository<NewFeeHeading> FeeHeadingRepository { get; }
+        IGenericRepository<House> HouseRepository { get; }
+        IGenericRepository<Hobby> HobbyRepository { get; }
 
         void Save();
     }

@@ -140,8 +140,16 @@ mymainApp.config(['$routeProvider',
         when('/InventoryIssue', {
             templateUrl: './app/controller/Inventory/InventoryIssue.html',
           controller: ''
-        })
-        .otherwise({
+        }).
+        when('/House', {
+            templateUrl: './app/controller/School/House.html',
+            controller: ''
+        }).
+        when('/Hobby', {
+            templateUrl: './app/controller/Hobby/Hobby.html',
+            controller: ''
+        }).
+        otherwise({
             redirectTo: '/dashboard'
         });
   }]);

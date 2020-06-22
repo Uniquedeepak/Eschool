@@ -281,6 +281,9 @@
     <Content Include="app\controller\Inventory\InventoryCategory.ctrl.js" />
     <Content Include="app\controller\Inventory\InventoryCategory.html" />
     <Content Include="app\controller\Inventory\InventoryCategory.srvc.js" />
+    <Content Include="app\controller\School\House.ctrl.js" />
+    <Content Include="app\controller\School\House.html" />
+    <Content Include="app\controller\School\House.srvc.js" />
     <Content Include="app\controller\Session\Session.ctrl.js" />
     <Content Include="app\controller\Session\Session.html" />
     <Content Include="app\controller\Session\Session.srvc.js" />
@@ -319,6 +322,9 @@
     <Content Include="app\controller\SMS\SMS.ctrl.js" />
     <Content Include="app\controller\SMS\SMS.html" />
     <Content Include="app\controller\SMS\SMS.srvc.js" />
+    <Content Include="app\controller\Hobby\Hobby.ctrl.js" />
+    <Content Include="app\controller\Hobby\Hobby.html" />
+    <Content Include="app\controller\Hobby\Hobby.srvc.js" />
     <Content Include="app\controller\Transport\Transport.ctrl.js" />
     <Content Include="app\controller\Transport\Transport.html" />
     <Content Include="app\controller\Transport\Transport.srvc.js" />

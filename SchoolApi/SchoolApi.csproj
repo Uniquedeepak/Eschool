@@ -184,6 +184,8 @@
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
+    <Compile Include="Controllers\HouseController.cs" />
+    <Compile Include="Controllers\HobbyController.cs" />
     <Compile Include="Controllers\TransportController.cs" />
     <Compile Include="Controllers\FeesController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -206,6 +208,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Heading.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hobby.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="House.cs">

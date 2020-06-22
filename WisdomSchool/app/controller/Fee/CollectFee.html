@@ -189,6 +189,14 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
+                                                        <label>Date</label>
+                                                        <input type="text" class="form-control" ng-model="date" my-date-picker />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
                                                         <label>Total Amount</label>
                                                         <input class="form-control" ng-model="selectedStudent.TotalAmount" ng-disabled="disableCtrl">
                                                     </div>
@@ -201,17 +209,16 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label>Previous Year Due</label>
-                                                        <input class="form-control" ng-model="selectedStudent.PreviousDue" ng-disabled="disableCtrl">
+                                                        <label>Hobby Fee</label>
+                                                        <input class="form-control" ng-model="selectedStudent.Hobby" ng-disabled="disableCtrl">
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label>Date</label>
-                                                        <input type="text" class="form-control" ng-model="date" my-date-picker />
+                                                        <label>Previous Year Due</label>
+                                                        <input class="form-control" ng-model="selectedStudent.PreviousDue" ng-disabled="disableCtrl">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -299,7 +306,7 @@
                                                                 <input type="checkbox" ng-click="setTotalAmount(month)" name="group" ng-value="month.Value" id="{{month.id}}"
                                                                        ng-model="month.Checked" ng-disabled="month.IsDisabled==true" />
                                                                 {{month.text}}
-                                                                
+
                                                             </label>
                                                         </span>
                                                     </div>

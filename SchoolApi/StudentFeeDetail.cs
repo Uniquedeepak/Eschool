@@ -44,5 +44,6 @@ namespace SchoolApi
         public string CardPaymentRecieptNo { get; set; }
         public string Session { get; set; }
         public string BalancedShow { get; set; }
+        public string HobbyFee { get; set; }
     }
 }

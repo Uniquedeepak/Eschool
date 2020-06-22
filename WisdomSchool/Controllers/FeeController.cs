@@ -122,7 +122,7 @@ namespace MvcApplication1.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetStudentFine(string AdmNo)
         {
             try
