@@ -33,12 +33,35 @@
             ReportSrvc.getClassFeeHeadDetail(FeeStudentDetail, successCallBack, failureCallBack).then(function () {
                 $scope.FeeSubmitData = FeeStudentDetail;
                 setFeeHeadAmount(FeeStudentDetail.Months);
+
+                var otherFee = []
+                if ($scope.FeeSubmitData.Concession && $scope.FeeSubmitData.Concession != '0') {
+                    otherFee.push({ Head: "Concession", Amount: "-" + $scope.FeeSubmitData.Concession });
+                }
+                if ($scope.FeeSubmitData.OldBalanced && $scope.FeeSubmitData.OldBalanced != '0') {
+                    otherFee.push({ Head: "OldBalanced", Amount: $scope.FeeSubmitData.OldBalanced });
+                }
+                if ($scope.FeeSubmitData.PreviousDue && $scope.FeeSubmitData.PreviousDue != '0') {
+                    otherFee.push({ Head: "PreviousDue", Amount: $scope.FeeSubmitData.PreviousDue });
+                }
+                if ($scope.FeeSubmitData.TransportFee && $scope.FeeSubmitData.TransportFee != '0') {
+                    otherFee.push({ Head: "TransportFee", Amount: $scope.FeeSubmitData.TransportFee });
+                }
+                if ($scope.FeeSubmitData.Fine && $scope.FeeSubmitData.Fine != '0') {
+                    otherFee.push({ Head: "Fine", Amount: $scope.FeeSubmitData.Fine });
+                }
+                if ($scope.FeeSubmitData.AdmissionFee && $scope.FeeSubmitData.AdmissionFee != '0') {
+                    otherFee.push({ Head: "AdmissionFee", Amount: $scope.FeeSubmitData.AdmissionFee });
+                }
+
+                $scope.otherFees = $scope.selectedMonthAmount.concat(otherFee);
+
                 $("#ModelFeeReceipt").modal();
             });
         }
         $scope.SmsToAdmin = function (stuPayList) {
-            var totalPayedAmount = stuPayList.reduce((acc, current) => acc + current.PayedAmount, 0);
-            var msg = "Daily fee collection amount is Rs. " + totalPayedAmount;
+            var totalPaidAmount = stuPayList.reduce((acc, current) => acc + current.PaidAmount, 0);
+            var msg = "Daily fee collection amount is Rs. " + totalPaidAmount;
             CommonSrvc.smsToAdmin(msg,successCallBack, failureCallBack);
         };
         
@@ -230,7 +253,7 @@
             var printContents = document.getElementById(divName).innerHTML;
             var popupWin = window.open('', '_blank', 'width=300,height=300');
             popupWin.document.open();
-            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + printContents + printContents + '</body></html>');
             popupWin.document.close();
         }
 
@@ -254,7 +277,7 @@
                 studentFeeDetailsWithHead["Concession"] = item.Concession;
                 studentFeeDetailsWithHead["Fine"] = item.Fine;
                 studentFeeDetailsWithHead["GrandTotal"] = item.GrandTotal;
-                studentFeeDetailsWithHead["PayedAmount"] = item.PayedAmount;
+                studentFeeDetailsWithHead["PaidAmount"] = item.PaidAmount;
                 studentFeeDetailsWithHead["Months"] = item.Months;
                 angular.forEach($scope.AllHeads, function (Head) {
                     studentFeeDetailsWithHead[Head.replace(/ /g, '')] = 0;

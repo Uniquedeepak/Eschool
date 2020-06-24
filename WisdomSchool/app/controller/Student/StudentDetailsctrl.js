@@ -87,8 +87,15 @@
                 CommonSrvc.uploadFileToUrl(studentDetail.Image, successCallBack, failureCallBack);
                 studentDetail.Image = studentDetail.Image.name;
             }
-            studentDetail.House_Name = $scope.selectedStudent.House.HID;
-            studentDetail.Hobby = $scope.selectedStudent.Hobby.Id;
+
+            if (typeof $scope.selectedStudent.House != "undefined" && $scope.selectedStudent.House != "" && $scope.selectedStudent.House != null) {
+                studentDetail.House_Name = $scope.selectedStudent.House.HID;
+            }
+            
+            if (typeof $scope.selectedStudent.Hobby != "undefined" && $scope.selectedStudent.Hobby != "" && $scope.selectedStudent.Hobby != null) {
+                studentDetail.Hobby = $scope.selectedStudent.Hobby.Id;
+            }
+            
             studentDetail.Class = $scope.SelectedClass.CID;
             StudentDetailservice.updateStudent(studentDetail,successCallBack, failureCallBack);
         }

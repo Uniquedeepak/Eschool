@@ -57,7 +57,7 @@ namespace SchoolApi.BAL
 
                 if (TodayDay > fineDetail.FineDay && fineDetail.StartMonth < CurrentMonth)
                 {
-                    LastFeeMonth = LastFeeMonth <=0 ? Convert.ToInt32(fineDetail.StartMonth) : LastFeeMonth; 
+                    LastFeeMonth = LastFeeMonth <=0 ? Convert.ToInt32(fineDetail.StartMonth)-1 : LastFeeMonth; 
                     fine = Convert.ToDecimal(fineDetail.Amount * (CurrentMonth - LastFeeMonth));
                 }
             }
@@ -85,7 +85,7 @@ namespace SchoolApi.BAL
                                         Months = string.Join("", gcs.Select(x => x.Months).ToList()),
                                         Balance = gcs.FirstOrDefault().Balance,
                                         GrandTotal = (gcs.Sum(x=>x.GrandTotal) - Convert.ToDecimal(gcs.Sum(x => Convert.ToDecimal(x.OldBalanced)))),
-                                        PayedAmount = gcs.Sum(x=>x.PayedAmount),
+                                        PaidAmount = gcs.Sum(x=>x.PaidAmount),
 
                                     }).ToList();
 
@@ -102,7 +102,7 @@ namespace SchoolApi.BAL
                                      Months = selectedstudentfee?.Months ?? string.Empty,
                                      Balance = selectedstudentfee?.Balance ?? string.Empty,
                                      GrandTotal = selectedstudentfee?.GrandTotal ?? 0,
-                                     PayedAmount = selectedstudentfee?.PayedAmount ?? 0,
+                                     PaidAmount = selectedstudentfee?.PaidAmount ?? 0,
                                      TransportFee = student?.Transport_Charge ?? string.Empty,
                                      Concession = student?.Concession ?? string.Empty,
                                  }).ToList();

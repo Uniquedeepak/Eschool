@@ -44,7 +44,7 @@ namespace SchoolApi.Controllers
             TodayFees = TodayFees.Where(x => Convert.ToDateTime(x.Date).Year == dt.Year
                              && Convert.ToDateTime(x.Date).Month == dt.Month
                              && Convert.ToDateTime(x.Date).Day == dt.Day).ToList();
-            decimal? Total = TodayFees.Select(x => x.PayedAmount).Sum();
+            decimal? Total = TodayFees.Select(x => x.PaidAmount).Sum();
             return Convert.ToDecimal(Total);
         }
 
@@ -61,7 +61,7 @@ namespace SchoolApi.Controllers
                 TodayFees = TodayFees.Where(x => Convert.ToDateTime(x.Date).Year == dt.Year
                                   && Convert.ToDateTime(x.Date).Month == dt.Month).ToList();
 
-                Total = TodayFees.Select(x => x.PayedAmount).Sum();
+                Total = TodayFees.Select(x => x.PaidAmount).Sum();
             }
             
             return Convert.ToDecimal(Total);

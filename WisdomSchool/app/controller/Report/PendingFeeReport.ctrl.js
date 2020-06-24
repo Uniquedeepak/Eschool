@@ -106,7 +106,7 @@
             var id = 0;
             angular.forEach(data, function (item) {
                 CheckMonthFee(item.Balance);
-                pendingFeeList.push({ id: id + 1, AdmissionNo: item.AdmissionNo, Name: item.Name, Class: item.Class, Date: item.Date, Months: item.Months, Balance: item.Balance, GrandTotal: item.GrandTotal, PayedAmount: item.PayedAmount, Status: $scope.MonthStatus });
+                pendingFeeList.push({ id: id + 1, AdmissionNo: item.AdmissionNo, Name: item.Name, Class: item.Class, Date: item.Date, Months: item.Months, Balance: item.Balance, GrandTotal: item.GrandTotal, PaidAmount: item.PaidAmount, Status: $scope.MonthStatus });
                 id = id + 1;
                
             });

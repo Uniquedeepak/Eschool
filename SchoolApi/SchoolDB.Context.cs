@@ -45,12 +45,10 @@ namespace SchoolApi
         public DbSet<PassoutDetail> PassoutDetails { get; set; }
         public DbSet<ReportCard> ReportCards { get; set; }
         public DbSet<ReportCardMark> ReportCardMarks { get; set; }
-        public DbSet<School> Schools { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<StAttendance> StAttendances { get; set; }
         public DbSet<StudentAdmissionDetail> StudentAdmissionDetails { get; set; }
         public DbSet<StudentAttendence> StudentAttendences { get; set; }
-        public DbSet<StudentFeeDetail> StudentFeeDetails { get; set; }
         public DbSet<StudentRegisteredDetail> StudentRegisteredDetails { get; set; }
         public DbSet<StudentTransportCharge> StudentTransportCharges { get; set; }
         public DbSet<SubjectDetail> SubjectDetails { get; set; }
@@ -66,5 +64,7 @@ namespace SchoolApi
         public DbSet<AdmissionForm> AdmissionForms { get; set; }
         public DbSet<Month> Months { get; set; }
         public DbSet<Hobby> Hobbies { get; set; }
+        public DbSet<School> Schools { get; set; }
+        public DbSet<StudentFeeDetail> StudentFeeDetails { get; set; }
     }
 }

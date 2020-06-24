@@ -95,7 +95,7 @@
 
                                     <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                         <label> Class</label>
-                                        <select class="form-control" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
+                                        <select class="form-control" ng-change="ClassClick()" ng-model="SelectedClass" ng-options="item.Class1 for item in Classes track by item.CID"></select>
 
                                     </div>
 

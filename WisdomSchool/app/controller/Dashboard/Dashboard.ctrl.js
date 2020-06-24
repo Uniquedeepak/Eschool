@@ -102,6 +102,13 @@
                         setTransportChargeChartData(data);
                     }
                     break;
+                case 'getSchool':
+                    $scope.isLoading = false;
+                    if (data) {
+                        $scope.schoolDetails = data[0];
+                        break;
+                    }
+                    break;
                     
             }
         };
@@ -146,6 +153,10 @@
                 case 'getTransportCharge':
                     $scope.isLoading = false;
                     
+                    break;
+                case 'getSchool':
+                    $scope.isLoading = false;
+                    alert("Error Occured during getSchool. " + data);
                     break;
             }
         };

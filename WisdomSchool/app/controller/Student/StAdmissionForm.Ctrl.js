@@ -17,7 +17,9 @@
         $scope.pageSize = 10;
         $scope.AddStudent = {};
         reset();
-        
+        $scope.ClassClick = function () {
+            StudentDetailservice.getAdmissionNo($scope.SelectedClass.CID, successCallBack, failureCallBack);
+        }
         $scope.addStudent = function (AddStudent)
         {
             $scope.isLoading = true;
@@ -73,7 +75,7 @@
             $scope.AddStudent.House_Name = "";
             $scope.AddStudent.Image = "NoImage.png";
             CommonSrvc.CurrentSession(successCallBack, failureCallBack);
-            StudentDetailservice.getAdmissionNo(successCallBack, failureCallBack);
+            StudentDetailservice.getAdmissionNo($scope.SelectedClass.CID,successCallBack, failureCallBack);
             StudentDetailservice.getAllClass(successCallBack, failureCallBack);
             CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
             CommonSrvc.getStudentHouse(successCallBack, failureCallBack);
@@ -96,7 +98,7 @@
                 case 'getAdmissionNo':
                     
                     if (data) {
-                        $scope.AddStudent.AdmissionNo = parseInt(data) + 1;
+                        $scope.AddStudent.AdmissionNo = data.adm;
                         break;
                     }
                     break;

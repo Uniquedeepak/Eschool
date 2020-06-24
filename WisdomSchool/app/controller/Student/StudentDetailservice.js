@@ -14,11 +14,11 @@
             getAdmissionNo:null
         };
 
-        service.getAdmissionNo = function (successCallBack, failureCallBack) {
+        service.getAdmissionNo = function (CID,successCallBack, failureCallBack) {
             $rootScope.loading = true;
             $httpProvider({
                 method: 'Get',
-                url: '../Home/GetAdmissionNo',
+                url: '../Home/GetAdmissionNo?ClassId=' + CID,
                 data: {
 
                 }

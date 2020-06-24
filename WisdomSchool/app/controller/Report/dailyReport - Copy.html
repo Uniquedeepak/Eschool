@@ -121,7 +121,7 @@
                                 <td ng-hide="true"><small>{{item.Fine}}</small></td>-->
                                 <td><small>{{item.GrandTotal}}</small></td>
                                 <!--<td ng-hide="true"><small>{{item.OldBalanced}}</small></td>-->
-                                <td><small>{{item.PayedAmount}}</small></td>
+                                <td><small>{{item.PaidAmount}}</small></td>
                                 <!--<td ng-hide="true"><small>{{item.PaymentMode}}</small></td>
                                 <td ng-hide="true"><small>{{item.PreviousDue}}</small></td>
                                 <td ng-hide="true"><small>{{item.Remark}}</small></td>
@@ -138,7 +138,7 @@
                                 <td colspan="7"></td>
                                 <td><h4>{{resultValue | sumOfValue:'Balance'}}</h4></td>
                                 <td><h4>{{resultValue | sumOfValue:'GrandTotal'}}</h4></td>
-                                <td><h4>{{resultValue | sumOfValue:'PayedAmount'}}</h4></td>
+                                <td><h4>{{resultValue | sumOfValue:'PaidAmount'}}</h4></td>
                             </tr>
                         </tbody>
                     </table>
@@ -253,13 +253,13 @@
                                                         <strong>Rs. {{FeeSubmitData.GrandTotal}}</strong>
                                                     </p>
                                                     <p>
-                                                        <strong>Rs. {{FeeSubmitData.GrandTotal - FeeSubmitData.PayedAmount}}</strong>
+                                                        <strong>Rs. {{FeeSubmitData.GrandTotal - FeeSubmitData.PaidAmount}}</strong>
                                                     </p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                                                <td class="text-center text-danger"><h4><strong>Rs. {{FeeSubmitData.PayedAmount}}</strong></h4></td>
+                                                <td class="text-center text-danger"><h4><strong>Rs. {{FeeSubmitData.PaidAmount}}</strong></h4></td>
                                             </tr>
                                         </tbody>
                                     </table>

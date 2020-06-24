@@ -20,5 +20,7 @@ namespace SchoolApi
         public string Phone { get; set; }
         public string logo { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public string AccountNo { get; set; }
+        public string IFSC { get; set; }
     }
 }

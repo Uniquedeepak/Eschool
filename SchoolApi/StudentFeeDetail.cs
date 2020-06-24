@@ -33,7 +33,7 @@ namespace SchoolApi
         public string Concession { get; set; }
         public string AdmissionFee { get; set; }
         public Nullable<decimal> GrandTotal { get; set; }
-        public Nullable<decimal> PayedAmount { get; set; }
+        public Nullable<decimal> PaidAmount { get; set; }
         public string Balance { get; set; }
         public string ReciptNo { get; set; }
         public string Remark { get; set; }

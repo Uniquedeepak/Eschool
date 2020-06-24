@@ -355,9 +355,11 @@
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="logo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="200" />
+          <Property Name="IFSC" Type="varchar" MaxLength="200" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'tendersoulDB.dbo.Session' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GreenwoodDB.dbo.Session' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="Id" />
@@ -457,7 +459,7 @@ warning 6002: The table/view 'tendersoulDB.dbo.Session' does not have a primary 
           <Property Name="Concession" Type="nvarchar" MaxLength="100" />
           <Property Name="AdmissionFee" Type="nvarchar" MaxLength="100" />
           <Property Name="GrandTotal" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="PayedAmount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PaidAmount" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Balance" Type="nvarchar" MaxLength="100" />
           <Property Name="ReciptNo" Type="nvarchar" MaxLength="100" />
           <Property Name="Remark" Type="nvarchar" MaxLength="100" />
@@ -534,7 +536,7 @@ warning 6002: The table/view 'tendersoulDB.dbo.Session' does not have a primary 
           <Property Name="Pwd" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'tendersoulDB.dbo.TblLoginUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GreenwoodDB.dbo.TblLoginUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TblLoginUser">
           <Key>
             <PropertyRef Name="LoginId" />
@@ -918,17 +920,6 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Session" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Minimum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="School">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SchoolName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="schooladdress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="logo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Setting">
           <Key>
             <PropertyRef Name="SID" />
@@ -996,42 +987,6 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Class" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Attendence_Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="StudentFeeDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AdmissionNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Father" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Months" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TotalAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TransportFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PreviousDue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OldBalanced" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Concession" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AdmissionFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="PayedAmount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Balance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ReciptNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PaymentMode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CardPaymentRecieptNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Session" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BalancedShow" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="HobbyFee" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentRegisteredDetail">
           <Key>
@@ -1172,12 +1127,10 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySet Name="PassoutDetails" EntityType="Self.PassoutDetail" />
           <EntitySet Name="ReportCards" EntityType="Self.ReportCard" />
           <EntitySet Name="ReportCardMarks" EntityType="Self.ReportCardMark" />
-          <EntitySet Name="Schools" EntityType="Self.School" />
           <EntitySet Name="Settings" EntityType="Self.Setting" />
           <EntitySet Name="StAttendances" EntityType="Self.StAttendance" />
           <EntitySet Name="StudentAdmissionDetails" EntityType="Self.StudentAdmissionDetail" />
           <EntitySet Name="StudentAttendences" EntityType="Self.StudentAttendence" />
-          <EntitySet Name="StudentFeeDetails" EntityType="Self.StudentFeeDetail" />
           <EntitySet Name="StudentRegisteredDetails" EntityType="Self.StudentRegisteredDetail" />
           <EntitySet Name="StudentTransportCharges" EntityType="Self.StudentTransportCharge" />
           <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetail" />
@@ -1193,6 +1146,8 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySet Name="AdmissionForms" EntityType="wisdomDBModel.AdmissionForm" />
           <EntitySet Name="Months" EntityType="wisdomDBModel.Month" />
           <EntitySet Name="Hobbies" EntityType="wisdomDBModel.Hobby" />
+          <EntitySet Name="Schools" EntityType="wisdomDBModel.School" />
+          <EntitySet Name="StudentFeeDetails" EntityType="wisdomDBModel.StudentFeeDetail" />
         </EntityContainer>
         <EntityType Name="Session">
           <Key>
@@ -1300,6 +1255,55 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Charge" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="schooladdress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="AccountNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IFSC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentFeeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdmissionNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Father" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Months" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransportFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousDue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OldBalanced" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Concession" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Balance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReciptNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentMode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CardPaymentRecieptNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Session" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BalancedShow" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HobbyFee" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1582,18 +1586,6 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Schools">
-            <EntityTypeMapping TypeName="wisdomDBModel.School">
-              <MappingFragment StoreEntitySet="School">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
-                <ScalarProperty Name="schooladdress" ColumnName="schooladdress" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="wisdomDBModel.Setting">
               <MappingFragment StoreEntitySet="Setting">
@@ -1663,43 +1655,6 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Section" ColumnName="Section" />
                 <ScalarProperty Name="Attendence_Status" ColumnName="Attendence_Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StudentFeeDetails">
-            <EntityTypeMapping TypeName="wisdomDBModel.StudentFeeDetail">
-              <MappingFragment StoreEntitySet="StudentFeeDetail">
-                <ScalarProperty Name="HobbyFee" ColumnName="HobbyFee" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AdmissionNo" ColumnName="AdmissionNo" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Father" ColumnName="Father" />
-                <ScalarProperty Name="Months" ColumnName="Months" />
-                <ScalarProperty Name="Class" ColumnName="Class" />
-                <ScalarProperty Name="Section" ColumnName="Section" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="TransportFee" ColumnName="TransportFee" />
-                <ScalarProperty Name="PreviousDue" ColumnName="PreviousDue" />
-                <ScalarProperty Name="OldBalanced" ColumnName="OldBalanced" />
-                <ScalarProperty Name="Fine" ColumnName="Fine" />
-                <ScalarProperty Name="Concession" ColumnName="Concession" />
-                <ScalarProperty Name="AdmissionFee" ColumnName="AdmissionFee" />
-                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
-                <ScalarProperty Name="PayedAmount" ColumnName="PayedAmount" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="ReciptNo" ColumnName="ReciptNo" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
-                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="CardPaymentRecieptNo" ColumnName="CardPaymentRecieptNo" />
-                <ScalarProperty Name="Session" ColumnName="Session" />
-                <ScalarProperty Name="BalancedShow" ColumnName="BalancedShow" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1939,6 +1894,57 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
               <MappingFragment StoreEntitySet="Hobby">
                 <ScalarProperty Name="Charge" ColumnName="Charge" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="wisdomDBModel.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="IFSC" ColumnName="IFSC" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="schooladdress" ColumnName="schooladdress" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentFeeDetails">
+            <EntityTypeMapping TypeName="wisdomDBModel.StudentFeeDetail">
+              <MappingFragment StoreEntitySet="StudentFeeDetail">
+                <ScalarProperty Name="HobbyFee" ColumnName="HobbyFee" />
+                <ScalarProperty Name="BalancedShow" ColumnName="BalancedShow" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="CardPaymentRecieptNo" ColumnName="CardPaymentRecieptNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ReciptNo" ColumnName="ReciptNo" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="AdmissionFee" ColumnName="AdmissionFee" />
+                <ScalarProperty Name="Concession" ColumnName="Concession" />
+                <ScalarProperty Name="Fine" ColumnName="Fine" />
+                <ScalarProperty Name="OldBalanced" ColumnName="OldBalanced" />
+                <ScalarProperty Name="PreviousDue" ColumnName="PreviousDue" />
+                <ScalarProperty Name="TransportFee" ColumnName="TransportFee" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Father" ColumnName="Father" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdmissionNo" ColumnName="AdmissionNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

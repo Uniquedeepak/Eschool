@@ -136,7 +136,7 @@
             var printContents = document.getElementById(divName).innerHTML;
             var popupWin = window.open('', '_blank', 'width=300,height=300');
             popupWin.document.open();
-            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + printContents + printContents + '</body></html>');
             popupWin.document.close();
         }
         $scope.submitFees = function()
@@ -185,7 +185,7 @@
             $scope.StudentFeeDetail.Concession = $scope.selectedStudent.Concession;
             $scope.StudentFeeDetail.AdmissionFee = $scope.AdmissionFee;
             $scope.StudentFeeDetail.GrandTotal = $scope.selectedStudent.GrandTotal;
-            $scope.StudentFeeDetail.PayedAmount = $scope.selectedStudent.PaidAmount;
+            $scope.StudentFeeDetail.PaidAmount = $scope.selectedStudent.PaidAmount;
             $scope.StudentFeeDetail.Balance = $scope.selectedStudent.GrandTotal - $scope.selectedStudent.PaidAmount;
             $scope.StudentFeeDetail.ReciptNo = ReciptNo;
             $scope.StudentFeeDetail.Remark = $scope.remark;
@@ -289,8 +289,31 @@
                        // alert("Student Fee Submitted Successfully. " + data);
                         $scope.FeeSubmitData = data;
                         setFeeHeadAmount(data.Months);
+
+                        var otherFee = []
+                        if ($scope.FeeSubmitData.Concession && $scope.FeeSubmitData.Concession != '0') {
+                            otherFee.push({ Head: "Concession", Amount: "-" + $scope.FeeSubmitData.Concession });
+                        }
+                        if ($scope.FeeSubmitData.OldBalanced && $scope.FeeSubmitData.OldBalanced != '0') {
+                            otherFee.push({ Head: "OldBalanced", Amount: $scope.FeeSubmitData.OldBalanced });
+                        }
+                        if ($scope.FeeSubmitData.PreviousDue && $scope.FeeSubmitData.PreviousDue != '0') {
+                            otherFee.push({ Head: "PreviousDue", Amount: $scope.FeeSubmitData.PreviousDue });
+                        }
+                        if ($scope.FeeSubmitData.TransportFee && $scope.FeeSubmitData.TransportFee != '0') {
+                            otherFee.push({ Head: "TransportFee", Amount: $scope.FeeSubmitData.TransportFee });
+                        }
+                        if ($scope.FeeSubmitData.Fine && $scope.FeeSubmitData.Fine != '0') {
+                            otherFee.push({ Head: "Fine", Amount: $scope.FeeSubmitData.Fine });
+                        }
+                        if ($scope.FeeSubmitData.AdmissionFee && $scope.FeeSubmitData.AdmissionFee != '0') {
+                            otherFee.push({ Head: "AdmissionFee", Amount: $scope.FeeSubmitData.AdmissionFee });
+                        }
+
+                        $scope.otherFees = $scope.selectedMonthAmount.concat(otherFee);
+
                         var stNumber = data.Phone?data.Phone:"8800224410";
-                        CommonSrvc.sendSMS(data.Name, data.Class, stNumber, data.Months, data.PayedAmount, successCallBack, failureCallBack);
+                        CommonSrvc.sendSMS(data.Name, data.Class, stNumber, data.Months, data.PaidAmount, successCallBack, failureCallBack);
                         $("#EditStudentDetailModel .close").click();
                         $("#ModelFeeReceipt").modal();
                         $scope.disableSubmit = false;

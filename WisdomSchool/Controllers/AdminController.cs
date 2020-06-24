@@ -465,7 +465,7 @@ namespace MvcApplication1.Controllers
                 Existing.AdmissionNo = objClass.AdmissionNo;
                 Existing.ReciptNo = objClass.ReciptNo;
                 Existing.Months= objClass.Months;
-                Existing.PayedAmount = objClass.PayedAmount;
+                Existing.PaidAmount = objClass.PaidAmount;
                 Existing.PreviousDue = objClass.PreviousDue;
                 Existing.TotalAmount = objClass.TotalAmount;
                 Existing.GrandTotal = objClass.GrandTotal;

@@ -78,13 +78,13 @@ namespace MvcApplication1.Controllers
 
         }
         [HttpGet]
-        public JsonResult GetAdmissionNo()
+        public JsonResult GetAdmissionNo(int ClassId)
         {
             try
             {
                 StudentController obj = new StudentController();
-                Int64 AdmissionNo = obj.GetMaxAdmNo();
-                return Json(AdmissionNo, JsonRequestBehavior.AllowGet);
+                string AdmissionNo = obj.GetNextAdmNo(ClassId);
+                return Json(new { adm = AdmissionNo }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

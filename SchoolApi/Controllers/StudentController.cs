@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Hosting;
+using System.Xml;
 
 namespace SchoolApi.Controllers
 {
@@ -51,11 +52,14 @@ namespace SchoolApi.Controllers
             return studentDetails;
         }
 
-        public Int64 GetMaxAdmNo()
+        public string GetNextAdmNo(int ClassId)
         {
+            bool IsPrimaryClass = SchoolDB.Classes.Any(x => x.CID==ClassId && x.Prefix.Equals("P"));
             var AdmNo = SchoolDB.AdmissionForms.ToList();
-            Int64 Admission = AdmNo.Select(s => int.Parse(s.AdmissionNo)).Max();
-            return Convert.ToInt64(Admission);
+            string Admission = AdmNo.Select(s => s.AdmissionNo).Max();
+            Admission = Admission.Contains("P") ? Admission.Remove(0,1) : Admission;
+            Admission =Convert.ToString(Convert.ToInt32(Admission) + 1);
+            return IsPrimaryClass?  "P" + Admission.ToString(): Admission.ToString();
         }
 
         //get all student
