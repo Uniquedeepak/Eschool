@@ -1,5 +1,6 @@
 ﻿using GenericAPI.UnitOfWork;
 using Microsoft.Ajax.Utilities;
+using SchoolApi.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -70,6 +71,7 @@ namespace SchoolApi.BAL
         public List<StudentFeeDetail> GetMonthlyPendingFee(string Class, string filterMonth)
         {
             List<StudentFeeDetail> obj = new List<StudentFeeDetail>();
+            ClassController _class = new ClassController();
             try
             {
                 #region Student and Fee Collection
@@ -118,11 +120,13 @@ namespace SchoolApi.BAL
                         var selectedMonths = item.Months.Split(',').ToList();
                         var months = defineMonths.Select(x=>x.Month1).Union(selectedMonths).Except(defineMonths.Select(x => x.Month1).Intersect(selectedMonths));
                         GetFeeByClass(Class, months.ToList() , out amount);
+                        amount += Convert.ToDecimal(string.IsNullOrEmpty(item.Balance)?"0": item.Balance);
                         decimal otherBalance = ((Convert.ToDecimal(string.IsNullOrEmpty(item?.TransportFee)?"0":item?.TransportFee) - Convert.ToDecimal(item.Concession)) * months.Count() - 1);
                         item.Balance = Convert.ToString(amount);
                     }
                 }
                 StudentFeeInfo.ToList().ForEach(cc => cc.Status = Convert.ToInt32(cc.Balance) > 0 ? "Pending":"Done");
+                StudentFeeInfo.ForEach(cc => cc.Class = _class.GetClassName(cc.Class));
                 obj = StudentFeeInfo;
             }
             catch (Exception ex)
@@ -138,7 +142,7 @@ namespace SchoolApi.BAL
             amount = 0;
             foreach (var item in Months)
             {
-                if (!string.IsNullOrEmpty(item))
+                if (!string.IsNullOrEmpty(item) && item != "null")
                 {
                     foreach (var heading in query)
                     {

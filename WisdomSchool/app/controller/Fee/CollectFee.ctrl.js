@@ -122,6 +122,27 @@
         $scope.viewFeeStudent = function (FeeStudentDetail) {
             $scope.FeeSubmitData = FeeStudentDetail;
             setFeeHeadAmount(FeeStudentDetail.Months);
+            var otherFee = []
+            if ($scope.FeeSubmitData.Concession && $scope.FeeSubmitData.Concession != '0') {
+                otherFee.push({ Head: "Concession", Amount: "-" + $scope.FeeSubmitData.Concession });
+            }
+            if ($scope.FeeSubmitData.OldBalanced && $scope.FeeSubmitData.OldBalanced != '0') {
+                otherFee.push({ Head: "OldBalanced", Amount: $scope.FeeSubmitData.OldBalanced });
+            }
+            if ($scope.FeeSubmitData.PreviousDue && $scope.FeeSubmitData.PreviousDue != '0') {
+                otherFee.push({ Head: "PreviousDue", Amount: $scope.FeeSubmitData.PreviousDue });
+            }
+            if ($scope.FeeSubmitData.TransportFee && $scope.FeeSubmitData.TransportFee != '0') {
+                otherFee.push({ Head: "TransportFee", Amount: $scope.FeeSubmitData.TransportFee });
+            }
+            if ($scope.FeeSubmitData.Fine && $scope.FeeSubmitData.Fine != '0') {
+                otherFee.push({ Head: "Fine", Amount: $scope.FeeSubmitData.Fine });
+            }
+            if ($scope.FeeSubmitData.AdmissionFee && $scope.FeeSubmitData.AdmissionFee != '0') {
+                otherFee.push({ Head: "AdmissionFee", Amount: $scope.FeeSubmitData.AdmissionFee });
+            }
+
+            $scope.otherFees = $scope.selectedMonthAmount.concat(otherFee);
             $("#ModelFeeReceipt").modal();
         }
         $scope.deleteFeeStudent = function (FeeStudentDetail) {
@@ -141,7 +162,6 @@
         }
         $scope.submitFees = function()
         {
-           
             var Months = "";
             var ReciptNo = $scope.selectedStudent.AdmissionNo + moment(new Date()).format('MMDDHHMMSS');
             for (var i = 0 ; i <= $scope.mothFeeHeads.length - 1; i++) {
