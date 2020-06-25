@@ -357,6 +357,7 @@
           <Property Name="Date" Type="datetime" />
           <Property Name="AccountNo" Type="varchar" MaxLength="200" />
           <Property Name="IFSC" Type="varchar" MaxLength="200" />
+          <Property Name="Affiliation" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'GreenwoodDB.dbo.Session' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1268,6 +1269,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="AccountNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IFSC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Affiliation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="StudentFeeDetail">
           <Key>
@@ -1901,6 +1903,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <EntitySetMapping Name="Schools">
             <EntityTypeMapping TypeName="wisdomDBModel.School">
               <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="Affiliation" ColumnName="Affiliation" />
                 <ScalarProperty Name="IFSC" ColumnName="IFSC" />
                 <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

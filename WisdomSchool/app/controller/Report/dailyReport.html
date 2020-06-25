@@ -190,6 +190,7 @@
                                     <div class="text-center" style="width: 30%;float: left;"><img src="../img/logo.png" width="60%"></div>
                                     <div class="text-left" style="width: 70%;float: right;">
                                         <b><span style="font-size:15px;">{{schoolDetails.SchoolName}}</span></b><br />
+                                        <span style="font-size:12px;">CBSE Affiliation No. {{schoolDetails.Affiliation}}</span><br />
                                         <span style="font-size:12px;">{{schoolDetails.schooladdress}}</span><br />
                                         <span style="font-size:12px;">Office: {{schoolDetails.Phone}}</span>
                                     </div>
@@ -252,28 +253,6 @@
                                                 </td>
                                                 <td ng-switch-when="0" style="padding: 1px;" class="col-xs-2 text-center"><span ng-show="otherFees[$index+1]">Rs. {{otherFees[$index+1].Amount}}</span></td>
                                             </tr>
-                                            <!--<tr>
-        <td class="text-right">
-            <p>
-                <strong>Grand Total: </strong>
-            </p>
-            <p>
-                <strong>Amount Due: </strong>
-            </p>
-        </td>
-        <td class="text-center">
-            <p>
-                <strong>Rs. {{FeeSubmitData.GrandTotal}}</strong>
-            </p>
-            <p>
-                <strong>Rs. {{FeeSubmitData.GrandTotal - FeeSubmitData.PaidAmount}}</strong>
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td class="text-right"><h4><strong>Paid Amount: </strong></h4></td>
-        <td class="text-center text-danger"><h4><strong>Rs. {{FeeSubmitData.PaidAmount}}</strong></h4></td>
-    </tr>-->
                                         </tbody>
                                     </table>
                                 </div>
@@ -281,11 +260,11 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-                                                <th style="padding: 1px;">
-                                                    Total Amount/Paid Amount :Rs.{{FeeSubmitData.GrandTotal}} / Rs {{FeeSubmitData.PaidAmount}}<br />
-                                                    Please credit to account no. {{schoolDetails.AccountNo}} of {{schoolDetails.SchoolName}}<br />
-                                                    IFSC- {{schoolDetails.IFSC}}
-                                                </th>
+                                                <td style="padding: 1px;">
+                                                    Total Amount/Paid Amount :<b> Rs.{{FeeSubmitData.GrandTotal}} / Rs.{{FeeSubmitData.PaidAmount}} </b><br />
+                                                    Please credit to Account No. <b>{{schoolDetails.AccountNo}} of {{schoolDetails.SchoolName}}</b> <br />
+                                                    IFSC- <b> {{schoolDetails.IFSC}}</b>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

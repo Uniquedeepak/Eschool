@@ -22,5 +22,6 @@ namespace SchoolApi
         public Nullable<System.DateTime> Date { get; set; }
         public string AccountNo { get; set; }
         public string IFSC { get; set; }
+        public string Affiliation { get; set; }
     }
 }
