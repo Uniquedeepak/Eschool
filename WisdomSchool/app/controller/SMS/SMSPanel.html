@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label style="width: 100%;">Class</label>
                         <select id="red" class="form-control" ng-model="item.CID" ng-change="onClassChange(item.CID)" ng-init="item.CID=0">
-                            <option value="0" selected="selected" class="ng-binding">Select Class</option>
+                            <option value="0" selected="selected" class="ng-binding">ALL</option>
                             <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng-repeat="step in Classes">{{ step.Class1 }}</option>
                         </select>
 

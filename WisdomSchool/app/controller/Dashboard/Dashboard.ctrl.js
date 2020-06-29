@@ -75,7 +75,14 @@
                     $scope.isLoading = false;
                     if (data) {
                         $scope.TodayTotalFee = data;
+                        DashboardService.getTotalFee(successCallBack, failureCallBack);
                         break;
+                    }
+                    break;
+                case 'getTotalFee':
+                    $scope.isLoading = false;
+                    if (data) {
+                        $scope.TotalFee = data;
                     }
                     break;
                 case 'getTotalClassStudent':
@@ -157,6 +164,9 @@
                 case 'getSchool':
                     $scope.isLoading = false;
                     alert("Error Occured during getSchool. " + data);
+                    break;
+                case 'getTotalFee':
+                    $scope.isLoading = false;
                     break;
             }
         };

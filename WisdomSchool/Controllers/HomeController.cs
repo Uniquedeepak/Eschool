@@ -434,6 +434,13 @@ namespace MvcApplication1.Controllers
             return Json(objTransport, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
+        public JsonResult GetTotalFee()
+        {
+            DashboardController obj = new DashboardController();
+            decimal objTransport = obj.GetTotalFee();
+            return Json(objTransport, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
         public JsonResult GetMonthFees()
         {
             DashboardController obj = new DashboardController();
@@ -733,7 +740,7 @@ namespace MvcApplication1.Controllers
         {
             ClassController _class = new ClassController();
             string message = $"Student Name {Name} of Class {Class} ,Fee Submitted Successfully for the month {Month} of Amount Rs {Amount}.";
-            string Response = SMS.SendSMSApi(message, Number);
+            string Response = SMS.SendSMSApi(message, Number).Result;
             return Content(Response); 
         }
        

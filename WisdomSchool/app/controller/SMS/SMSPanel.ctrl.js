@@ -22,7 +22,7 @@
         $scope.toDate = new Date();
         $scope.isStudent = true;
         $scope.isLoading = false;
-        $scope.SelectedClass = "-1";
+        $scope.SelectedClass = "0";
         CommonSrvc.getAllClass(successCallBack, failureCallBack);
         $scope.sendSMSByUser = function ()
         {

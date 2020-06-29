@@ -11,6 +11,7 @@
             getMonthBirthday: null,
             getClassFeeBalance: null,
             geTodayFees: null,
+            getTotalFee: null,
             backUp: null
         };
         //GetTotalClassStudent
@@ -186,6 +187,31 @@
                     }
                     toaster.pop('error', "geTodayFees", "Completed", 2000);
                     failureCallBack('geTodayFees', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                $rootScope.loading = false;
+            });
+        };
+        service.getTotalFee = function (successCallBack, failureCallBack) {
+            $rootScope.loading = true;
+            $httpProvider({
+                method: 'Get',
+                url: './Home/GetTotalFee',
+                data: {
+
+                }
+            }).success(function (data, status, headers, config) {
+                successCallBack('getTotalFee', data);
+                //toaster.pop('success', "GetClassDetails", "Completed", 2000);
+                $rootScope.loading = false;
+            }).error(function (data, status, headers, config) {
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    toaster.pop('error', "getTotalFee", "Completed", 2000);
+                    failureCallBack('getTotalFee', data);
                     return;
                 }
                 failureCallBack("An internal processing error occurred.");

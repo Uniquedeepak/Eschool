@@ -4,11 +4,9 @@
     angular.module('AngularApp').service(ServiceId, ['$rootScope', '$http', 'toaster', '$q', SMSDetailserviceFunc]);
 
     function SMSDetailserviceFunc($rootScope, $httpProvider,toaster, $q) {
-
         var service = {
             SendSMSByUser: null
         };
-
         service.SendSMSByUser = function (successCallBack, failureCallBack) {
            // $scope.loading = true;
             $httpProvider({
@@ -36,7 +34,6 @@
                // $scope.loading = false;
             });
         };
-
         return service;
     }
 })();

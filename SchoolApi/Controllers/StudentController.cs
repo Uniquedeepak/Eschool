@@ -34,7 +34,16 @@ namespace SchoolApi.Controllers
         public List<AdmissionForm> GetStudentDetailByClass(string ClassID)
         {
             ClassController _class = new ClassController();
-            var studentDetails = SchoolDB.AdmissionForms.Where(x => x.ESession.Contains(SchoolSession) && x.Class==ClassID).OrderBy(x => x.Class).ThenBy(z => z.StFirstName).ToList();
+            List<AdmissionForm> studentDetails;
+            if (ClassID != "0")
+            {
+                studentDetails = SchoolDB.AdmissionForms.Where(x => x.ESession.Contains(SchoolSession) && x.Class == ClassID).OrderBy(x => x.Class).ThenBy(z => z.StFirstName).ToList();
+            }
+            else
+            {
+                studentDetails = SchoolDB.AdmissionForms.Where(x => x.ESession.Contains(SchoolSession)).OrderBy(x => x.Class).ThenBy(z => z.StFirstName).ToList();
+            }
+            
             studentDetails.ForEach(cc => cc.Class = _class.GetClassName(cc.Class));
             return studentDetails;
         }
@@ -55,9 +64,9 @@ namespace SchoolApi.Controllers
         public string GetNextAdmNo(int ClassId)
         {
             bool IsPrimaryClass = SchoolDB.Classes.Any(x => x.CID==ClassId && x.Prefix.Equals("P"));
-            var AdmNo = SchoolDB.AdmissionForms.ToList();
-            string Admission = AdmNo.Select(s => s.AdmissionNo).Max();
-            Admission = Admission.Contains("P") ? Admission.Remove(0,1) : Admission;
+            var students = SchoolDB.AdmissionForms.OrderByDescending(x => x.AdmissionId).FirstOrDefault();
+            string Admission = string.Empty;
+            Admission = students.AdmissionNo.Contains("P") ? students.AdmissionNo.Remove(0,1) : students.AdmissionNo;
             Admission =Convert.ToString(Convert.ToInt32(Admission) + 1);
             return IsPrimaryClass?  "P" + Admission.ToString(): Admission.ToString();
         }

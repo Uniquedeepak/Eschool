@@ -234,6 +234,7 @@
     <Compile Include="Licience_Key.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessageTemplate.cs" />
     <Compile Include="Models\MonthAttendanceReport.cs" />
     <Compile Include="Month.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>

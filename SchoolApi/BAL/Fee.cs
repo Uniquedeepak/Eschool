@@ -75,14 +75,29 @@ namespace SchoolApi.BAL
             try
             {
                 #region Student and Fee Collection
-                var students = unitOfWork.AdmissionFormRepository.Get(x => x.Class.Equals(Class) &&
-                                                            x.ESession.Equals(PropertiesConfiguration.ActiveSession));
-                List<StudentFeeDetail> studentfees = (from c in unitOfWork.StudentFeeDetailRepository.Get(x => x.Class.Equals(Class) && x.Session.Equals(PropertiesConfiguration.ActiveSession),x=>x.OrderByDescending(p=>p.Id))
+
+                Expression<Func<AdmissionForm, bool>> AdmissionFormfilter = null;
+                Expression<Func<StudentFeeDetail, bool>> StudentFeeDetailfilter = null;
+
+                if (Class != "0")
+                {
+                    AdmissionFormfilter = x => x.Class.Equals(Class) && x.ESession.Equals(PropertiesConfiguration.ActiveSession);
+                    StudentFeeDetailfilter = x => x.Class.Equals(Class) && x.Session.Equals(PropertiesConfiguration.ActiveSession);
+                }
+                else
+                {
+                    AdmissionFormfilter = x => x.ESession.Equals(PropertiesConfiguration.ActiveSession);
+                    StudentFeeDetailfilter = x => x.Session.Equals(PropertiesConfiguration.ActiveSession);
+                }
+                    
+                var students = unitOfWork.AdmissionFormRepository.Get(AdmissionFormfilter);
+                List<StudentFeeDetail> studentfees = (from c in unitOfWork.StudentFeeDetailRepository.Get(StudentFeeDetailfilter, x=>x.OrderByDescending(p=>p.Id))
                                   group c by c.AdmissionNo into gcs
                                     select new StudentFeeDetail()
                                     {
                                         AdmissionNo = gcs.Key,Name=gcs.FirstOrDefault().Name,
                                         Class = gcs.FirstOrDefault().Class,
+                                        Phone = gcs.FirstOrDefault().Phone,
                                         Date = gcs.FirstOrDefault().Date,
                                         Months = string.Join("", gcs.Select(x => x.Months).ToList()),
                                         Balance = gcs.FirstOrDefault().Balance,
@@ -100,6 +115,7 @@ namespace SchoolApi.BAL
                                      AdmissionNo = student?.AdmissionNo ?? string.Empty,
                                      Name = student?.StFirstName ?? string.Empty,
                                      Class = student?.Class ?? string.Empty,
+                                     Phone = selectedstudentfee?.Phone ?? string.Empty,
                                      Date = selectedstudentfee?.Date ?? string.Empty,
                                      Months = selectedstudentfee?.Months ?? string.Empty,
                                      Balance = selectedstudentfee?.Balance ?? string.Empty,
@@ -138,7 +154,12 @@ namespace SchoolApi.BAL
 
         private void GetFeeByClass(string Class,List<string> Months, out decimal amount)
         {
-            var query = unitOfWork.FeeHeadingRepository.Get(x => x.Class.Equals(Class)).ToList();
+            Expression<Func<NewFeeHeading, bool>> FeeHeadingFilter = null;
+            if (Class != "0")
+            {
+                FeeHeadingFilter = x => x.Class.Equals(Class);
+            }
+            var query = unitOfWork.FeeHeadingRepository.Get(FeeHeadingFilter).ToList();
             amount = 0;
             foreach (var item in Months)
             {

@@ -1,6 +1,10 @@
-﻿using SchoolApi.BAL;
+﻿using SchoolApi;
+using SchoolApi.BAL;
 using SchoolApi.Controllers;
+using SchoolApi.Models;
 using SchoolApi.Utility;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
@@ -11,7 +15,7 @@ namespace MvcApplication1.Controllers
         public ActionResult SendTextSMS(string Text, string Number)
         {
             string Response = "";
-            Response =  SMS.SendSMSApi(Text, Number);
+            Response =  SMS.SendSMSApi(Text, Number).Result;
             return Content(Response);
         }
 
@@ -20,12 +24,12 @@ namespace MvcApplication1.Controllers
         {
             string Response = string.Empty;
             string AdminNumber = PropertiesConfiguration.AdminNumber;
-            Response = SMS.SendSMSApi(Text, AdminNumber);
+            Response = SMS.SendSMSApi(Text, AdminNumber).Result;
             return Content(Response);
         }
 
         [HttpPost]
-        public ActionResult SendSMSByUser(string Text, int User,string ClassId = "1")
+        public async Task<ActionResult> SendSMSByUser(string Text, int User,string ClassId = "1")
         {
             string Response = "unable to sent message";
             if (!string.IsNullOrEmpty(Text))
@@ -36,9 +40,9 @@ namespace MvcApplication1.Controllers
                     var studentList = obj.GetStudentDetailByClass(ClassId);
                     foreach (var item in studentList)
                     {
-                        SMS.SendSMSApi(Text, item.Contact);
+                        await SMS.SendSMSApi(Text, item.Contact);
                     }
-                    Response = "Message sent to students";
+                    Response = "Message sent to "+ studentList.Count + " students";
                 }
                 else if (User == 2)
                 {
@@ -46,13 +50,33 @@ namespace MvcApplication1.Controllers
                     var teacherList = obj.GetTeacher();
                     foreach (var item in teacherList)
                     {
-                        //SendSMSApi(Text, item.Phone);
+                        //SMS.SendSMSApi(Text, item.Phone);
                     }
                     Response = "Message sent to teachers";
                 }
             }
             return Content(Response);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> PendingFeeSMS(string ClassId, string Months)
+        {
+            string Response = string.Empty;
+            FeesController obj = new FeesController();
+            List<StudentFeeDetail> studentList = obj.GetPendingFee(ClassId, Months);
+            foreach (var item in studentList)
+            {
+                if (!string.IsNullOrEmpty(item.Phone) && item.Status.ToUpper()=="PENDING")
+                {
+                    string msg = string.Format(MessageTemplate.PendingFeeTemplate, item.Name, item.Class, item.Balance);
+                    var status = await SMS.SendSMSApi(msg,item.Phone);
+                }
+            }
+            Response = "Pending status message sent to students.";
+            return Content(Response);
+        }
+
+
 
     }
 }

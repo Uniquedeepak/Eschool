@@ -31,6 +31,7 @@
         //ReportSrvc.getTopFeeDetail($rootScope.schoolSession, successCallBack, failureCallBack);
        
         $scope.selectedClass = function (Classid) {
+            $scope.isLoading = true;
             $scope.SelectedClass = Classid//;;
             if ($scope.SelectedClass && $scope.selectedMonth.Sequence) {
                 ReportSrvc.getMonthlyPendingFee($scope.SelectedClass, $scope.selectedMonth.Sequence, successCallBack, failureCallBack);
@@ -39,6 +40,14 @@
                 alert("Please select Class and Month");
             }
         };
+        $scope.pendingSMS = function () {
+            if ($scope.SelectedClass && $scope.selectedMonth.Sequence) {
+                CommonSrvc.pendingFeeSMS($scope.SelectedClass, $scope.selectedMonth.Sequence, successCallBack, failureCallBack);
+            }
+            else {
+                alert("Please select Class and Month");
+            }
+        }
         $scope.getMonthlyPendingFee = function () {
             if ($scope.SelectedClass && $scope.selectedMonth.Sequence) {
                 ReportSrvc.getMonthlyPendingFee($scope.SelectedClass, $scope.selectedMonth.Sequence, successCallBack, failureCallBack);
@@ -54,11 +63,17 @@
                 case 'GetClass':
                     //
                     if (data) {
+                        data.push({ CID: 0, Class1:"All"});
                         $scope.Classes = data;
                         break;
                     }
                     break;
-                    
+                case 'pendingFeeSMS':
+                    $scope.isLoading = false;
+                    if (data) {
+                        alert(data);
+                    }
+                    break;  
                 case 'getMonthlyPendingFee':
                     //
                     $scope.isLoading = false;
@@ -94,6 +109,9 @@
                 case 'monthList':
                     $scope.isLoading = false;
                     break;
+                case 'pendingFeeSMS':
+                    $scope.isLoading = false;
+                    break;  
                
             }
         };

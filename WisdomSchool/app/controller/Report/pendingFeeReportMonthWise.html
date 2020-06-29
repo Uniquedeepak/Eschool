@@ -37,8 +37,8 @@
                     <div class="form-group">
                         <label style="width: 100%;">Class</label>
                         <select id="red" class="form-control" ng-change="selectedClass(item.CID);" ng-model="item.CID" ng-init="item.CID=0">
-                            <option value="0" selected="selected" class="ng-binding">Select Class</option>
-                            <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng ng-repeat="step in Classes">{{ step.Class1 }}</option>
+                            <option value="-1" selected="selected" class="ng-binding">Select Class</option>
+                            <option ng-selected="step.value === item.CID" value="{{ step.CID }}" ng ng-repeat="step in Classes | orderBy : 'CID'">{{ step.Class1 }}</option>
                         </select>
 
                     </div>
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label style="width: 100%;">Month</label>
                         <select class="form-control" ng-model="selectedMonth" ng-change="getMonthlyPendingFee();"
-                               ng-init="option.Sequence=0" ng-options="option.Month1 for option in mothFeeHeads | orderBy : 'Sequence'">
+                                ng-init="option.Sequence=0" ng-options="option.Month1 for option in mothFeeHeads | orderBy : 'Sequence'">
                         </select>
                     </div>
                 </div>
@@ -56,6 +56,13 @@
                     <div class="form-group text-right" style="margin-top: 25px;">
                         <button class="btn btn-link" ng-click="exportToExcel('#tblDailyReport')">
                             <span class="glyphicon glyphicon-share"></span> Export to Excel
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group text-right" style="margin-top: 25px;">
+                      <button class="btn btn-link" ng-click="pendingSMS()">
+                            <span class="fa fa-comment"></span> Send Pending SMS
                         </button>
                     </div>
                 </div>

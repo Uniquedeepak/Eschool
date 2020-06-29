@@ -40,28 +40,6 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{TotalClass}}</div>
-                                    <div>Class's</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#/class">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
@@ -92,6 +70,28 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{MonthTotalFee}}</div>
+                                    <div>Month Fee Collection</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#/dailyReport">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-inr fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{TotalFee}}</div>
                                     <div>Total Fee Collection</div>
                                 </div>
                             </div>
@@ -119,9 +119,6 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a data-target="#employee" data-toggle="tab">Classwise Balance</a>
-                                </li>
-                                <li>
                                     <a data-target="#student" data-toggle="tab">Student</a>
                                 </li>
                                 <li>
@@ -130,16 +127,14 @@
                                 <li>
                                     <a data-target="#defaulter" data-toggle="tab">Transport </a>
                                 </li>
+                                <li>
+                                    <a data-target="#employee" data-toggle="tab">Classwise Balance</a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content" style="height: 325px;width: 300px;margin-left: 85px;">
-                                <div class="tab-pane fade in active" id="employee">
-                                    <h4>Classwise Balance Details</h4>
-                                    <canvas id="pie" class="chart chart-pie"
-                                            chart-data="MonthlyFeedata" chart-labels="MonthlyFeelabels" chart-options="options"></canvas>
-                                </div>
-                                <div class="tab-pane fade" id="student">
+                                <div class="tab-pane fade in active" id="student">
                                     <h4>Total Student Details</h4>
                                     <canvas id="pie" class="chart chart-pie"
                                             chart-data="Studentdata" chart-labels="Studentlabels" chart-options="options"></canvas>
@@ -153,6 +148,11 @@
                                     <h4>Transport Fee Details</h4>
                                     <canvas id="pie" class="chart chart-pie"
                                             chart-data="Transportdata" chart-labels="Transportlabels" chart-options="options"></canvas>
+                                </div>
+                                <div class="tab-pane fade" id="employee">
+                                    <h4>Classwise Balance Details</h4>
+                                    <canvas id="pie" class="chart chart-pie"
+                                            chart-data="MonthlyFeedata" chart-labels="MonthlyFeelabels" chart-options="options"></canvas>
                                 </div>
                             </div>
                         </div>

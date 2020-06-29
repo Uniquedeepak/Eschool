@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace SchoolApi.Utility
 {
     public class SMS
     {
-        public static string SendSMSApi(string Text, string Number)
+        public bool IsSMSEnable { get; set; }
+        public string Host { get; set; }
+        public string User { get; set; }
+        public string Password { get; set; }
+        public string Senderid { get; set; }
+        public string Channel { get; set; }
+        public static async Task<string> SendSMSApi(string Text, string Number)
         {
 #if DEBUG
             Number = "8800224410";
@@ -34,7 +41,7 @@ namespace SchoolApi.Utility
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync(msg).Result;
+            HttpResponseMessage response =await client.GetAsync(msg);
 
             if (response.IsSuccessStatusCode)
             {

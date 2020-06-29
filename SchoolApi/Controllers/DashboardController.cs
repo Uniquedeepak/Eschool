@@ -48,6 +48,15 @@ namespace SchoolApi.Controllers
             return Convert.ToDecimal(Total);
         }
 
+        public decimal GetTotalFee()
+        {
+            DateTime dt = new DateTime();
+            dt = DateTime.Now;
+            var TotalFees = SchoolDB.StudentFeeDetails.Where(x => x.Session.Contains(SchoolSession)).ToList();
+            decimal? Total = TotalFees.Select(x => x.PaidAmount).Sum();
+            return Convert.ToDecimal(Total);
+        }
+
         // GET api/school/5
         public decimal GetMonthFees()
         {
@@ -79,6 +88,10 @@ namespace SchoolApi.Controllers
                 Data = n.Count().ToString()
             }
             ).ToList();
+
+            ClassController _class = new ClassController();
+            objList.ToList().ForEach(x => x.Label = _class.GetClassName(x.Label));
+
             return objList;
         }
 
@@ -96,7 +109,8 @@ namespace SchoolApi.Controllers
                     Data = n.Count().ToString()
                 }
                 ).ToList();
-                
+                ClassController _class = new ClassController();
+                objList.ToList().ForEach(x => x.Label = _class.GetClassName(x.Label));
             }
             catch (Exception ex)
             {
@@ -118,6 +132,8 @@ namespace SchoolApi.Controllers
                 Data = n.Sum(x => Convert.ToDecimal(x.Balance)).ToString()
             }
             ).ToList();
+            ClassController _class = new ClassController();
+            objList.ToList().ForEach(x => x.Label = _class.GetClassName(x.Label));
             return objList;
         }
         

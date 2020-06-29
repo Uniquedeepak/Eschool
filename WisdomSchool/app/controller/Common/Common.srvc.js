@@ -17,7 +17,8 @@
             getAllClass: null,
             smsToAdmin: null,
             monthList: null,
-            getHouses:null,
+            getHouses: null,
+            pendingFeeSMS: null,
         };
         service.getTransportCharge = function (successCallBack, failureCallBack) {
             // $scope.loading = true;
@@ -388,6 +389,37 @@
                 }
                 failureCallBack("An internal processing error occurred.");
                 // $scope.loading = false;
+            });
+        };
+        service.pendingFeeSMS = function (ClassId, Months, successCallBack, failureCallBack) {
+            $httpProvider({
+                method: 'Post',
+                url: './SMS/PendingFeeSMS',
+                data: {
+                    ClassId: ClassId,
+                    Months: Months
+                }
+            }).success(function (data, status, headers, config) {
+                if (data) {
+                    toaster.pop('success', data, '', 1000);
+                    successCallBack('pendingFeeSMS', data);
+                }
+                else
+                    successCallBack('pendingFeeSMS', "Data not available");
+
+                //$scope.loading = false;
+            }).error(function (data, status, headers, config) {
+                toaster.pop('error', "Send SMS failed ", '', 1000);
+                //
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('pendingFeeSMS', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                //$scope.loading = false;
             });
         };
         return service;
