@@ -135,7 +135,7 @@ namespace SchoolApi.BAL
                     {
                         var selectedMonths = item.Months.Split(',').ToList();
                         var months = defineMonths.Select(x=>x.Month1).Union(selectedMonths).Except(defineMonths.Select(x => x.Month1).Intersect(selectedMonths));
-                        GetFeeByClass(Class, months.ToList() , out amount);
+                        GetFeeByClass(item.Class, months.ToList() , out amount);
                         amount += Convert.ToDecimal(string.IsNullOrEmpty(item.Balance)?"0": item.Balance);
                         decimal otherBalance = ((Convert.ToDecimal(string.IsNullOrEmpty(item?.TransportFee)?"0":item?.TransportFee) - Convert.ToDecimal(item.Concession)) * months.Count() - 1);
                         item.Balance = Convert.ToString(amount);
