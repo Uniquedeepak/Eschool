@@ -353,7 +353,7 @@
           <Property Name="SchoolName" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="schooladdress" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
-          <Property Name="logo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="logo" Type="varchar" MaxLength="200" />
           <Property Name="Date" Type="datetime" />
           <Property Name="AccountNo" Type="varchar" MaxLength="200" />
           <Property Name="IFSC" Type="varchar" MaxLength="200" />
@@ -1265,7 +1265,7 @@ FROM [dbo].[TblLoginUser] AS [TblLoginUser]</DefiningQuery>
           <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="schooladdress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="logo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="AccountNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IFSC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />

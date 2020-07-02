@@ -56,7 +56,7 @@ namespace MvcApplication1.Controllers.Student
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message.ToString());
+                Log.Error(ex.ToString());
                 return null;
             }
             return Json(responseMsg);
