@@ -391,7 +391,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2020 18:14:42</publishTime>
     </File>
     <File Include="app/controller/Dashboard/Dashboard.html">
-      <publishTime>06/25/2020 18:21:35</publishTime>
+      <publishTime>06/29/2020 12:31:41</publishTime>
     </File>
     <File Include="app/controller/Dashboard/Dashboard.srvc.js">
       <publishTime>06/25/2020 18:12:20</publishTime>
@@ -400,7 +400,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/24/2020 16:48:26</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.html">
-      <publishTime>06/25/2020 13:26:13</publishTime>
+      <publishTime>06/29/2020 12:53:57</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.srvc.js">
       <publishTime>06/22/2020 23:36:21</publishTime>
@@ -484,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/23/2020 22:56:16</publishTime>
     </File>
     <File Include="app/controller/Report/dailyReport.html">
-      <publishTime>06/25/2020 13:07:28</publishTime>
+      <publishTime>06/29/2020 12:52:04</publishTime>
     </File>
     <File Include="app/controller/Report/headwise.html">
       <publishTime>06/23/2020 22:56:16</publishTime>
@@ -742,10 +742,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/MvcApplication1.dll">
-      <publishTime>06/29/2020 00:33:04</publishTime>
+      <publishTime>06/29/2020 17:42:06</publishTime>
     </File>
     <File Include="bin/MvcApplication1.pdb">
-      <publishTime>06/29/2020 00:33:04</publishTime>
+      <publishTime>06/29/2020 17:42:06</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>03/21/2020 21:57:46</publishTime>
@@ -754,13 +754,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:57:46</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll">
-      <publishTime>06/29/2020 00:33:03</publishTime>
+      <publishTime>06/29/2020 17:42:05</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll.config">
       <publishTime>06/24/2020 00:42:12</publishTime>
     </File>
     <File Include="bin/SchoolApi.pdb">
-      <publishTime>06/29/2020 00:33:03</publishTime>
+      <publishTime>06/29/2020 17:42:05</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -1390,7 +1390,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/29/2020 00:33:05</publishTime>
+      <publishTime>06/29/2020 17:42:08</publishTime>
     </File>
   </ItemGroup>
 </Project>

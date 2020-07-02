@@ -13,7 +13,8 @@ namespace SchoolApi.BAL
         public static string SMSApiPassword { get; set; }
         public static string AdminNumber { get; set; }
         public static bool IsSMSEnable { get; set; }
-        
+        public static string ECareAPIUrl { get; set; }
+
         private static wisdomDBEntities SchoolDB = null;
         static PropertiesConfiguration()
         {
@@ -28,6 +29,7 @@ namespace SchoolApi.BAL
             SMSApiPassword = System.Configuration.ConfigurationManager.AppSettings["SMSApiPassword"].ToString();
             AdminNumber = System.Configuration.ConfigurationManager.AppSettings["AdminNumber"].ToString();
             IsSMSEnable = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["IsSMSEnable"]);
+            ECareAPIUrl = System.Configuration.ConfigurationManager.AppSettings["ECareAPIUrl"].ToString();
         }
 
     }

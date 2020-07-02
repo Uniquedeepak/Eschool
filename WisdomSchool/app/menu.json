@@ -1,0 +1,196 @@
+[
+  {
+    "name": "Dashboard",
+    "link": "#/dashboard",
+    "icon": "fa fa-fw fa-dashboard"
+  },
+  {
+    "name": "School",
+    "link": "#",
+    "icon": "fa fa-fw fa-dashboard",
+    "submenu": [
+      {
+        "name": "Info",
+        "link": "#/school"
+      },
+      {
+        "name": "Session",
+        "link": "#/session"
+      },
+      {
+        "name": "Fine",
+        "link": "#/fine"
+      },
+      {
+        "name": "House",
+        "link": "#/House"
+      },
+      {
+        "name": "Hobby",
+        "link": "#/Hobby"
+      }
+    ]
+  },
+  {
+    "name": "Classes",
+    "link": "#/class",
+    "icon": "fa fa-fw fa-table"
+  },
+  {
+    "name": "Admission",
+    "link": "#/Admission",
+    "icon": "fa fa-fw fa-desktop"
+  },
+  {
+    "name": "Student's",
+    "link": "#/student",
+    "icon": "fa fa-fw fa-user"
+  },
+  {
+    "name": "Teacher's",
+    "link": "#/Teacher",
+    "icon": "fa fa-fw fa-child"
+  },
+  {
+    "name": "Assignment",
+    "link": "#/homework",
+    "icon": "fa fa-fw fa-file"
+  },
+  {
+    "name": "Inventory",
+    "link": "#",
+    "icon": "fa fa-fw fa-home",
+    "submenu": [
+      {
+        "name": "Inventory Category",
+        "link": "#/InventoryCategory"
+      },
+      {
+        "name": "Inventory Item",
+        "link": "#/InventoryItem"
+      },
+      {
+        "name": "Inventory Issue",
+        "link": "#/InventoryIssue"
+      }
+
+    ]
+  },
+  {
+    "name": "Attendance",
+    "link": "#",
+    "icon": "fa fa-fw fa-users",
+    "submenu": [
+      {
+        "name": "Mark Attendance",
+        "link": "#/Attendance"
+      },
+      {
+        "name": "Attendance Report",
+        "link": "#/attendanceReport"
+      },
+      {
+        "name": "Monthly Attendance Report",
+        "link": "#/monthlyAttendanceReport"
+      }
+
+    ]
+  },
+  {
+    "name": "Transport",
+    "link": "#",
+    "icon": "fa fa-fw fa-cab",
+    "submenu": [
+      {
+        "name": "Define Transport",
+        "link": "#/Transport"
+      },
+      {
+        "name": "Transport Report",
+        "link": "#/TransportReport"
+      }
+    ]
+  },
+  {
+    "name": "SMS",
+    "link": "#",
+    "icon": "fa fa-fw fa-comment",
+    "submenu": [
+      {
+        "name": "SMS Panel 1",
+        "link": "#/SMS"
+      },
+      {
+        "name": "SMS Panel 2",
+        "link": "#/SMSPanel"
+      }
+    ]
+  },
+  {
+    "name": "Fees",
+    "link": "#",
+    "icon": "fa fa-fw fa-money",
+    "submenu": [
+      {
+        "name": "Fee Heads",
+        "link": "#/FeeHeads"
+      },
+      {
+        "name": "Collect Fee's",
+        "link": "#/CollectFee"
+      }
+    ]
+  },
+  {
+    "name": "Certificate",
+    "link": "#",
+    "icon": "fa fa-fw fa-file-text-o",
+    "submenu": [
+      {
+        "name": "Transfer Certificate",
+        "link": "#/TransferCertificate"
+      },
+      {
+        "name": "Birth Certificate",
+        "link": "#/BirthCertificate"
+      },
+      {
+        "name": "Leaving Certificate",
+        "link": "#/LeavingCertificate"
+      }
+
+    ]
+  },
+  {
+    "name": "Report",
+    "link": "#",
+    "icon": "fa fa-fw fa-copy",
+    "submenu": [
+      {
+        "name": "Daily Report",
+        "link": "#/dailyReport"
+      },
+      {
+        "name": "HeadWise Report",
+        "link": "#/headwiseReport"
+      },
+      {
+        "name": "Monthly Pending Fee",
+        "link": "#/pendingFeeReportMonthWise"
+      },
+      {
+        "name": "RTE Report",
+        "link": "#/rteReport"
+      },
+      {
+        "name": "Concession Report",
+        "link": "#/ConcessionReport"
+      },
+      {
+        "name": "MultiChild Report",
+        "link": "#/MultiChildReport"
+      }
+
+    ]
+  }
+]

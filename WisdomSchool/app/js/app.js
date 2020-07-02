@@ -13,14 +13,14 @@ var mymainApp = angular.module('AngularApp', [
 mymainApp.config(['$routeProvider',
   function ($routeProvider) {
         $routeProvider.
+        when('/dashboard', {
+            templateUrl: './app/controller/Dashboard/Dashboard.html',
+            controller: ''
+        }).
         when('/school', {
             templateUrl: './app/controller/school/School.html',
             controller: ''
         }).
-          when('/dashboard', {
-              templateUrl: './app/controller/Dashboard/Dashboard.html',
-              controller: ''
-          }).
         when('/session', {
             templateUrl: './app/controller/session/Session.html',
             controller: ''
@@ -147,6 +147,10 @@ mymainApp.config(['$routeProvider',
         }).
         when('/Hobby', {
             templateUrl: './app/controller/Hobby/Hobby.html',
+            controller: ''
+        }).
+        when('/user', {
+            templateUrl: './app/controller/User/user.html',
             controller: ''
         }).
         otherwise({

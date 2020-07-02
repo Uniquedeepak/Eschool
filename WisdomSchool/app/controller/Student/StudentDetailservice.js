@@ -11,7 +11,8 @@
             updateStudent: null,
             deleteStudent: null,
             getAllClass: null,
-            getAdmissionNo:null
+            getAdmissionNo: null,
+            getStudentsByClass:null,
         };
 
         service.getAdmissionNo = function (CID,successCallBack, failureCallBack) {
@@ -64,6 +65,31 @@
                 }
                 failureCallBack("An internal processing error occurred.");
                 $rootScope.loading = false;
+            });
+        };
+        service.getStudentsByClass = function (Id, successCallBack, failureCallBack) {
+            // $scope.loading = true;
+            $httpProvider({
+                method: 'Get',
+                url: './Home/GetStudentsByClass?ClassId=' + Id,
+                data: {
+
+                }
+            }).success(function (data, status, headers, config) {
+                //toaster.pop('success', "GetStudentDetails", "Completed", 1000);
+                successCallBack('getStudentsByClass', data);
+                //   $scope.loading = false;
+            }).error(function (data, status, headers, config) {
+                toaster.pop('error', "getStudentsByClass", "Completed", 1000);
+                if (data) {
+                    if (typeof data !== "string") {
+                        data = JSON.stringify(data);
+                    }
+                    failureCallBack('getStudentsByClass', data);
+                    return;
+                }
+                failureCallBack("An internal processing error occurred.");
+                // $scope.loading = false;
             });
         };
         //GetMultiChildParent

@@ -74,6 +74,8 @@ namespace MvcApplication1
                         "~/app/controller/Session/Session.srvc.js",
                         "~/app/controller/Homework/Homework.ctrl.js",
                         "~/app/controller/Homework/Homework.srvc.js",
+                        "~/app/controller/User/user.ctrl.js",
+                        "~/app/controller/User/user.srvc.js",
                         "~/app/controller/Inventory/InventoryCategory.ctrl.js",
                         "~/app/controller/Inventory/InventoryCategory.srvc.js",
                         "~/app/controller/Inventory/InventoryItem.ctrl.js",
@@ -82,6 +84,7 @@ namespace MvcApplication1
                         "~/app/controller/Inventory/InventoryIssue.srvc.js",
                         "~/app/directive/DatePicker.js",
                         "~/app/directive/loading.js",
+                        "~/app/directive/navigation.js",
                         "~/app/directive/fileUploader.js",
                         "~/app/Filter/DateFilter.js",
                         "~/app/Utility/dirPagination.js"));

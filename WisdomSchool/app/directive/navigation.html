@@ -1,0 +1,16 @@
+﻿<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+        <li ng-repeat="link in menuItem" class="{{link.active}}">
+            <a href="{{link.submenu? 'javascript:;' : link.link}}" data-toggle="{{link.submenu? 'collapse': ''}}" data-target="#{{link.name}}">
+                <i class="{{link.icon}}"></i>
+                {{link.name}}
+                <b ng-show="link.submenu" class="caret"></b>
+            </a>
+            <ul id="{{link.name}}" class="collapse" ng-show="link.submenu">
+                <li ng-repeat="subItem in link.submenu">
+                    <a href="{{subItem.link}}">{{subItem.name}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
