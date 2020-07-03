@@ -72,8 +72,8 @@ namespace MvcApplication1.Controllers.Student
                 FirstName = name[0],
                 LastName = name.Length > 1 ? name[1] : "NA",
                 RoleName = "Student",
-                Password = $"{student.AdmissionNo}@abc123",
-                ConfirmPassword = $"{student.AdmissionNo}@abc123",
+                Password = $"{student.AdmissionNo}@abC",
+                ConfirmPassword = $"{student.AdmissionNo}@abC",
             };
             return user;
         }
