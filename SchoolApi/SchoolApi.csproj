@@ -243,6 +243,7 @@
     <Compile Include="Models\ErrorModelState.cs" />
     <Compile Include="Models\MessageTemplate.cs" />
     <Compile Include="Models\MonthAttendanceReport.cs" />
+    <Compile Include="Models\EcareAPI\User.cs" />
     <Compile Include="Month.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>

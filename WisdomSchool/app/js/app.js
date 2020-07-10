@@ -6,9 +6,9 @@ var mymainApp = angular.module('AngularApp', [
   'toaster',
   'ngSanitize',
   'chart.js',
-  'angularUtils.directives.dirPagination'
+  'angularUtils.directives.dirPagination',
+  'LocalStorageModule'
 ]);
-
 
 mymainApp.config(['$routeProvider',
   function ($routeProvider) {
@@ -151,6 +151,18 @@ mymainApp.config(['$routeProvider',
         }).
         when('/user', {
             templateUrl: './app/controller/User/user.html',
+            controller: ''
+        }).
+        when('/notification', {
+            templateUrl: './app/controller/Notification/Notification.html',
+            controller: ''
+        }).
+        when('/leave', {
+            templateUrl: './app/controller/Leave/Leave.html',
+            controller: ''
+        }).
+        when('/liveclass', {
+            templateUrl: './app/controller/LiveClass/LiveClass.html',
             controller: ''
         }).
         otherwise({

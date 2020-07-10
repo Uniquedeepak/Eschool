@@ -2,6 +2,7 @@
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SchoolApi.BAL;
+using SchoolApi.Models;
 using static HttpResponseExtensions;
 
 namespace UnitTestProject1

@@ -19,6 +19,7 @@
             monthList: null,
             getHouses: null,
             pendingFeeSMS: null,
+            ecareAPIUrl: null,
         };
         service.getTransportCharge = function (successCallBack, failureCallBack) {
             // $scope.loading = true;
@@ -421,6 +422,9 @@
                 failureCallBack("An internal processing error occurred.");
                 //$scope.loading = false;
             });
+        };
+        service.ecareAPIUrl = function () {
+            return "http://localhost:59822";
         };
         return service;
     }

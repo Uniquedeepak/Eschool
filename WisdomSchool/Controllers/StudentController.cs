@@ -2,6 +2,7 @@
 using MvcApplication1.CustomFilters;
 using SchoolApi;
 using SchoolApi.BAL;
+using SchoolApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
