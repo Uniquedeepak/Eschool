@@ -87,7 +87,7 @@ namespace SchoolApi.Controllers
             
             try
             {
-                unitOfWork.HomeworkRepository.Delete(_Homework);
+                unitOfWork.HomeworkRepository.Delete(_Homework.id);
                 unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException ex)

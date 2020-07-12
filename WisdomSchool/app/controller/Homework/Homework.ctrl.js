@@ -42,14 +42,14 @@
         $scope.addHomework = function (HomeworkDetail) {
             $scope.isLoading = true;
             HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month.Month1;
+            HomeworkDetail.month = HomeworkDetail.month;
             HomeworkService.addHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
         }
         $scope.updateHomework = function (HomeworkDetail)
         {
             $scope.isLoading = true;
             HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month.Month1;
+            HomeworkDetail.month = HomeworkDetail.month;
             HomeworkService.updateHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
         }
         $scope.downloadHomework = function (Id) {
