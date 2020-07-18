@@ -85,7 +85,7 @@
                 case 'getTeacherDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.TeacherDetails = data;
                         $("#EditTeacherModel .close").click();
                         break;
@@ -94,7 +94,7 @@
                 case 'addTeacher':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTeacherModel .close").click();
                         break;
                     }
@@ -102,7 +102,7 @@
                 case 'updateTeacher':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTeacherModel .close").click();
                         break;
                     }
@@ -110,14 +110,14 @@
                 case 'deleteTeacher':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTeacherModel .close").click();
                         break;
                     }
                     break;
                 case 'uploadTeacehrFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;
@@ -144,7 +144,7 @@
                     break;
                 case 'uploadTeacehrFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;

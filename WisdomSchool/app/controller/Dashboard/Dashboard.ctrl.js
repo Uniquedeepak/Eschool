@@ -33,7 +33,7 @@
                 case 'getCurrentUser':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.CurrentUser = data;
                         break;
                     }
@@ -47,7 +47,7 @@
                 case 'getCountStudent':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.TotalStudents = data;
                         DashboardService.getCountClass(successCallBack, failureCallBack);
                         break;
@@ -56,7 +56,7 @@
                 case 'getCountClass':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.TotalClass = data;
                         DashboardService.getMonthFees(successCallBack, failureCallBack);
                         break;
@@ -65,7 +65,7 @@
                 case 'getMonthFees':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.MonthTotalFee = data;
                         DashboardService.geTodayFees(successCallBack, failureCallBack);
                         break;
@@ -73,7 +73,7 @@
                     break;
                 case 'geTodayFees':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.TodayTotalFee = data;
                         DashboardService.getTotalFee(successCallBack, failureCallBack);
                         break;
@@ -81,37 +81,37 @@
                     break;
                 case 'getTotalFee':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.TotalFee = data;
                     }
                     break;
                 case 'getTotalClassStudent':
                     DashboardService.getMonthBirthday(successCallBack, failureCallBack);
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         setTotalClassStudentChartData(data);
                     }
                     break;
                 case 'getMonthBirthday':
                     DashboardService.getClassFeeBalance(successCallBack, failureCallBack);
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         setMonthBirthdayChartData(data);
                     }
                     break;
                 case 'getClassFeeBalance':
                     CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         setClassFeeBalanceChartData(data);
                     }
                     break;
                 case 'getTransportCharge':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         setTransportChargeChartData(data);
                     }
                     break;
                 case 'getSchool':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.schoolDetails = data[0];
                         break;
                     }

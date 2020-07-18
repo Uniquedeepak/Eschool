@@ -1,9 +1,10 @@
 ﻿(function () {
     'use strict';
     var ServiceId = 'NotificationService';
-    angular.module('AngularApp').service(ServiceId, ['$rootScope', 'CommonSrvc','localStorageService', '$http', 'toaster', '$q', NotificationDetailserviceFunc]);
-    function NotificationDetailserviceFunc($rootScope, CommonSrvc, localStorageService, $httpProvider, toaster, $q) {
-        var ecareData = localStorageService.get('authorizationData');
+    angular.module('AngularApp').service(ServiceId, ['$rootScope', 'authService','$cookies', '$http', 'toaster', '$q', NotificationDetailserviceFunc]);
+    function NotificationDetailserviceFunc($rootScope, authService, $cookies, $httpProvider, toaster, $q) {
+        var ecareData = { token: $cookies.get("access_token"), baseUrl: $cookies.get("ESupportAPIUrl") }; 
+        
         var service = {
             getNotificationDetails: null,
             updateNotification: null,
@@ -26,7 +27,7 @@
                 //toaster.pop('success', "GetNotificationDetails", "Completed", 2000);
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -54,7 +55,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "addNotification", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -80,7 +81,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "updateNotification", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -108,7 +109,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "DeleteNotification", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

@@ -50,7 +50,7 @@
                 case 'getInventoryCategoryDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.InventoryCategoryDetails = data;
                         $("#EditInventoryCategoryModel .close").click();
                         break;
@@ -59,7 +59,7 @@
                 case 'addInventoryCategory':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryCategoryModel .close").click();
                         break;
@@ -67,7 +67,7 @@
                     break;
                 case 'updateInventoryCategory':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryCategoryModel .close").click();
                         break;
@@ -75,7 +75,7 @@
                     break;
                 case 'deleteInventoryCategory':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryCategoryModel .close").click();
                         break;

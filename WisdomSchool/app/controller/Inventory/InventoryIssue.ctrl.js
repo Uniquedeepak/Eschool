@@ -120,7 +120,7 @@
             switch (call) {
                 case 'getInventoryCategoryDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.InventoryCategoryDetails = data;
                         $scope.InventoryCategoryDetails.push({ ICID: 0, Category: "Select Category" });
                         InventoryItemService.getInventoryItemDetails(successCallBack, failureCallBack);
@@ -129,7 +129,7 @@
                     break;
                 case 'getInventoryItemDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.InventoryItems = data;
                         $scope.InventoryItems.push({ IIID: 0, Item: "Select Item" });
                         InventoryIssueService.getInventoryIssueDetails(successCallBack, failureCallBack);
@@ -138,7 +138,7 @@
                     break;
                 case 'getInventoryIssueDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.InventoryIssueData = data;
                         var Items = setCategory(data);
                         Items = setItem(data);
@@ -150,7 +150,7 @@
                 case 'addInventoryIssue':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryIssueModel .close").click();
                         break;
@@ -158,7 +158,7 @@
                     break;
                 case 'updateInventoryIssue':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryIssueModel .close").click();
                         break;
@@ -166,7 +166,7 @@
                     break;
                 case 'deleteInventoryIssue':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryIssueModel .close").click();
                         break;

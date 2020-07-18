@@ -45,7 +45,7 @@
                 case 'getClassDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.ClassDetails = data;
                         $("#EditClassModel .close").click();
                         break;
@@ -54,7 +54,7 @@
                 case 'updateClass':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditClassModel .close").click();
                         break;
                     }
@@ -62,7 +62,7 @@
                 case 'deleteClass':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;

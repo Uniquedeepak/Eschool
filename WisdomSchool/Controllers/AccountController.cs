@@ -12,6 +12,10 @@ using Demo1.Models;
 using System.Collections.Generic;
 using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SchoolApi.BAL;
+using SchoolApi.Models;
+using SchoolApi.Utility;
+using Newtonsoft.Json;
 
 namespace Demo1.Controllers
 {
@@ -85,6 +89,7 @@ namespace Demo1.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    await ExternalAPILogin(model);
                     switch (Convert.ToInt32(roleID))
 	                {
                         case (int)Roles.Admin:
@@ -414,6 +419,32 @@ namespace Demo1.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        private async Task ExternalAPILogin(LoginViewModel model)
+        {
+            string ESupportAPIUrl = PropertiesConfiguration.ECareAPIUrl;
+            UserHelper userhelper = new UserHelper();
+            LoginModel user = new LoginModel()
+            {
+                username = model.Email,
+                password = model.Password,
+                grant_type = "password",
+            };
+            LoginModelResponse res = await userhelper.LoginUserAsync(user);
+            if (res != null)
+            {
+                List<KeyValuePair<string, string>> cookieData = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("access_token",res.access_token),
+                    new KeyValuePair<string, string>("token_type",res.token_type),
+                    new KeyValuePair<string, string>("expires_in",res.expires_in.ToString()),
+                    new KeyValuePair<string, string>("ESupportAPIUrl",ESupportAPIUrl),
+                };
+                
+                CookiesHelper.SaveData(Response , cookieData);
+            }
+
         }
         protected override void Dispose(bool disposing)
         {

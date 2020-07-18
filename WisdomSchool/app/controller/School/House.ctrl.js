@@ -41,7 +41,7 @@
             switch (call) {
                 case 'getHouseDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.HouseDetails = data;
                         $("#EditHouseModel .close").click();
                         break;
@@ -49,7 +49,7 @@
                     break;
                 case 'addHouse':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHouseModel .close").click();
                         break;
@@ -57,7 +57,7 @@
                     break;
                 case 'updateHouse':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHouseModel .close").click();
                         break;
@@ -65,7 +65,7 @@
                     break;
                 case 'deleteHouse':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHouseModel .close").click();
                         break;

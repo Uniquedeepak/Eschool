@@ -22,7 +22,7 @@
                 //toaster.pop('success', "GetInventoryCategoryDetails", "Completed", 2000);
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -49,7 +49,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "addInventoryCategory", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -76,7 +76,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "UpdateInventoryCategory", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -101,7 +101,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "deleteInventoryCategory", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

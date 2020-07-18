@@ -25,7 +25,7 @@
                 //toaster.pop('success', "GetHobbyDetails", "Completed", 2000);
                 //$scope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -53,7 +53,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Add Hobby", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -81,7 +81,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "UpdateHobby", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -107,7 +107,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "DeleteHobby", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

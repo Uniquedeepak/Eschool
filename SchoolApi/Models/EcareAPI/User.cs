@@ -6,6 +6,21 @@ using System.Web;
 namespace SchoolApi.Models
 {
     #region User Model
+
+    public class LoginModel
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+        public string grant_type { get; set; }
+
+    }
+    public class LoginModelResponse
+    {
+        public string access_token { get; set; }
+        public string token_type { get; set; }
+        public int expires_in { get; set; }
+
+    }
     public class User
     {
         public string Email { get; set; }

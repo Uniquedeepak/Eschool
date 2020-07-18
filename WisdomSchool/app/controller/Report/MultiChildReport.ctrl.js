@@ -31,7 +31,7 @@
                 case 'getStudentDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.StudentDetails = data;
                         MultiChildDetail(data);
                         break;
@@ -39,7 +39,7 @@
                     break;
                 case 'getMultiChildParent':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.MultiChildStudents = data;
                         break;
                     }

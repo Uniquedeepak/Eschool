@@ -1,13 +1,14 @@
 ﻿    
 var mymainApp = angular.module('AngularApp', [
-  'ngRoute',
-  'myFilters',
-  'MyFactory',
-  'toaster',
-  'ngSanitize',
-  'chart.js',
-  'angularUtils.directives.dirPagination',
-  'LocalStorageModule'
+    'ngRoute',
+    'ngCookies',
+    'myFilters',
+    'MyFactory',
+    'toaster',
+    'ngSanitize',
+    'chart.js',
+    'angularUtils.directives.dirPagination',
+    'LocalStorageModule'
 ]);
 
 mymainApp.config(['$routeProvider',

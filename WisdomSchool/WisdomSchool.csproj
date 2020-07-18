@@ -226,6 +226,7 @@
     <Content Include="app\components\angular-resource\angular-resource.min.js" />
     <Content Include="app\components\angular-route\angular-route.js" />
     <Content Include="app\components\angular-route\angular-route.min.js" />
+    <Content Include="app\components\angular\angular-cookies.js" />
     <Content Include="app\components\angular\angular-csp.css" />
     <Content Include="app\components\angular\angular-sanitize.min.js" />
     <Content Include="app\components\angular\angular.js" />

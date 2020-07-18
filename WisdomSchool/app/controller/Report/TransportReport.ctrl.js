@@ -31,7 +31,7 @@
                 case 'getStudentDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.StudentDetails = data;
                         TransportDetail(data);
                         break;

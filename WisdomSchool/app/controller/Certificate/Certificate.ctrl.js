@@ -56,7 +56,7 @@
             switch (call) {
                 case 'getStudentDetails':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.studentDetails = data;
                         CommonSrvc.getSchool(successCallBack, failureCallBack);
                         break;
@@ -65,7 +65,7 @@
                 case 'updateStudent':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         //alert("Update Student Successfully. " + data);
                         break;
                     }
@@ -73,7 +73,7 @@
                 case 'getSchool':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.schoolDetails = data[0];
                         break;
                     }

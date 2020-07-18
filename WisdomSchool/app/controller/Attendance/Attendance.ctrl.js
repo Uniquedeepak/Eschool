@@ -53,7 +53,7 @@
             switch (call) {
                 case 'getClassDetails':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         setStClass();
                         break;
@@ -62,21 +62,21 @@
                 case 'getStudentDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.StudentDetails = data;
                         $scope.setAttendance();
                         break;
                     }
                     break;
                 case 'sendTextSMS':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                         break;
                     }
                     break;
                 case 'addAttendance':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.disableSubmit = false;
                         break;
                     }

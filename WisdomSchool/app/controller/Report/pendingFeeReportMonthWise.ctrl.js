@@ -62,7 +62,7 @@
             switch (call) {
                 case 'GetClass':
                     //
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         data.push({ CID: 0, Class1:"All"});
                         $scope.Classes = data;
                         break;
@@ -70,7 +70,7 @@
                     break;
                 case 'pendingFeeSMS':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         alert(data);
                     }
                     break;  
@@ -85,7 +85,7 @@
                     }
                     break;
                 case 'monthList':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.mothFeeHeads = data;
                         $scope.selectedMonth = $scope.mothFeeHeads[0];
                         break;

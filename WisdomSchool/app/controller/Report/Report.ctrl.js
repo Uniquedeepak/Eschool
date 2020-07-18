@@ -82,7 +82,6 @@
         function successCallBack(call, data) {
             switch (call) {
                 case 'GetClass':
-                    
                     if (data) {
                         $scope.Classes = data;
                         break;
@@ -95,8 +94,6 @@
                     break;
                    
                 case 'getSchool':
-                    $scope.isLoading = false;
-                    
                     if (data) {
                         $scope.schoolDetails = data[0];
                         break;

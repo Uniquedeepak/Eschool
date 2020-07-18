@@ -69,7 +69,7 @@
             switch (call) {
                 case 'getHomeworkDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.HomeworkDetails = data;
                         $("#EditHomeworkModel .close").click();
                         break;
@@ -77,7 +77,7 @@
                     break;
                 case 'addHomework':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHomeworkModel .close").click();
                         break;
@@ -85,7 +85,7 @@
                     break;
                 case 'updateHomework':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHomeworkModel .close").click();
                         break;
@@ -93,7 +93,7 @@
                     break;
                 case 'deleteHomework':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditHomeworkModel .close").click();
                         break;
@@ -101,18 +101,18 @@
                     break;
                 case 'downloadHomework':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;
                 case 'GetClass':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'monthList':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         var monthFeeHeads = [];
                         angular.forEach(data, function (value, key) {
                             monthFeeHeads.push(value.Month1);

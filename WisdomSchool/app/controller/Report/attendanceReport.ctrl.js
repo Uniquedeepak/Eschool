@@ -34,14 +34,14 @@
         function successCallBack(call, data) {
             switch (call) {
                 case 'getClassDetails':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'getAttendanceDetail':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.isLoading = false;
                         $scope.AttendanceDetail = data;
                         break;

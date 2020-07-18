@@ -93,11 +93,11 @@ app.factory('SchoolData',['CommonSrvc',function (CommonSrvc) {
             function successCallBack(call, data) {
                 switch (call) {
                     case 'CurrentSession':
-                        if (data) {
+                        if (typeof data !== 'undefined' && data != null) {
                             return factory.session = data;
                         }
                     case 'getSchool':
-                        if (data) {
+                        if (typeof data !== 'undefined' && data != null) {
                             return factory.school = data[0];
                         }
                 }

@@ -45,7 +45,7 @@
                 case 'getSchoolDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.SchoolDetails = data;
                         $("#EditSchoolModel .close").click();
                         break;
@@ -54,7 +54,7 @@
                 case 'updateSchool':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditSchoolModel .close").click();
                         break;
                     }
@@ -62,7 +62,7 @@
                 case 'deleteSchool':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;

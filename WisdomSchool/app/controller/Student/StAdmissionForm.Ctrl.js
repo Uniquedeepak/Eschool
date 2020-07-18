@@ -86,7 +86,7 @@
                 case 'addStudent':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         if (typeof data ==='string') {
                             alert(data);
                             break;
@@ -97,21 +97,21 @@
                     break;
                 case 'getAdmissionNo':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.AddStudent.AdmissionNo = data.adm;
                         break;
                     }
                     break;
                 case 'GetClass':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'getTransportCharge':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.getTransportCharge = data;
                         var index = getIndex($scope.getTransportCharge);
                         $scope.AddStudent.Route = $scope.getTransportCharge[index];
@@ -119,21 +119,21 @@
                     }
                     break;
                 case 'getStudentHouse':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Houses = data;
                         $scope.AddStudent.House = $scope.Houses[0];
                         break;
                     }
                     break;
                 case 'CurrentSession':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.AddStudent.ESession = data;
                         break;
                     }
                     break;
                 case 'uploadFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;
@@ -166,7 +166,7 @@
                     break;
                 case 'uploadFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;

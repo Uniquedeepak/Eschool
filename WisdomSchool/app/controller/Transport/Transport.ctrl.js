@@ -78,7 +78,7 @@
                 case 'getTransportDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.TransportDetails = data;
                         $("#EditTransportModel .close").click();
                         break;
@@ -87,7 +87,7 @@
                 case 'addTransport':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTransportModel .close").click();
                         TransportService.getTransportDetails(successCallBack, failureCallBack);
                         break;
@@ -96,7 +96,7 @@
                 case 'updateTransport':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTransportModel .close").click();
                         TransportService.getTransportDetails(successCallBack, failureCallBack);
                         break;
@@ -105,7 +105,7 @@
                 case 'deleteTransport':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditTransportModel .close").click();
                         TransportService.getTransportDetails(successCallBack, failureCallBack);
                         break;

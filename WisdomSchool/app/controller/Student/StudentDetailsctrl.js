@@ -23,10 +23,7 @@
         $scope.moment = moment;
         $scope.isLoading = true;
         StudentDetailservice.getStudentDetails(successCallBack, failureCallBack);
-        StudentDetailservice.getAllClass(successCallBack, failureCallBack);
-        CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
-        CommonSrvc.getStudentHouse(successCallBack, failureCallBack);
-        HobbyService.getHobbyDetails(successCallBack, failureCallBack);
+        
 
         $scope.open = function (isDelete, item) {
             
@@ -163,9 +160,12 @@
             switch (call) {
                 case 'getStudentDetails':
                     $scope.isLoading = false;
-                    
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         CommonSrvc.getSchool(successCallBack, failureCallBack);
+                        StudentDetailservice.getAllClass(successCallBack, failureCallBack);
+                        CommonSrvc.getTransportCharge(successCallBack, failureCallBack);
+                        CommonSrvc.getStudentHouse(successCallBack, failureCallBack);
+                        HobbyService.getHobbyDetails(successCallBack, failureCallBack);
                         $scope.studentDetails = data;
                         break;
                     }
@@ -173,7 +173,7 @@
                 case 'updateStudent':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         //alert("Update Student Successfully. " + data);
                         $("#EditStudentDetailModel .close").click();
                         break;
@@ -181,15 +181,14 @@
                     break;
                 case 'GetClass':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'getSchool':
                     $scope.isLoading = false;
-
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.schoolDetails = data[0];
                         break;
                     }
@@ -197,7 +196,7 @@
                 case 'deleteStudent':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         alert("Student deleted Successfully. " + data);
                         $("#EditStudentDetailModel .close").click();
                         break;
@@ -205,26 +204,26 @@
                     break;
                 case 'getTransportCharge':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.getTransportCharge = data;
                         break;
                     }
                     break;
                 case 'getStudentHouse':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Houses = data;
                         break;
                     }
                     break;
                 case 'uploadFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;
                 case 'getHobbyDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.HobbyDetails = data;
                         break;
                     }
@@ -260,7 +259,7 @@
                     break;
                 case 'uploadFileToUrl':
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                     }
                     break;

@@ -41,7 +41,7 @@
             switch (call) {
                 case 'getFinesDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.FinesDetails = data;
                         $("#EditFinesModel .close").click();
                         break;
@@ -49,7 +49,7 @@
                     break;
                 case 'addFines':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFinesModel .close").click();
                         break;
@@ -57,7 +57,7 @@
                     break;
                 case 'updateFines':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFinesModel .close").click();
                         break;
@@ -65,7 +65,7 @@
                     break;
                 case 'deleteFines':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFinesModel .close").click();
                         break;

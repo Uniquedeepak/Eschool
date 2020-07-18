@@ -35,7 +35,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getTransportCharge", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -60,7 +60,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Get School", "Error", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -80,13 +80,13 @@
 
                 }
             }).success(function (data, status, headers, config) {
-                $rootScope.schoolSession = data.substring(1,data.length-1);
+                $rootScope.schoolSession = data;
                 //toaster.pop('success', "getTransportCharge", "Completed", 1000);
-                return successCallBack('CurrentSession', data.substring(1, data.length - 1));
+                return successCallBack('CurrentSession', data);
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Current Session", "Error", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     } else {
@@ -114,7 +114,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getCurrentUser", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -140,7 +140,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "logOut", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -171,7 +171,7 @@
             }).error(function (data, status, headers, config) {
                 //toaster.pop('error', "Send SMS", "Completed", 1000);
                 //
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -197,7 +197,7 @@
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Send SMS failed ", _Number, 1000);
                 //
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -216,7 +216,7 @@
                     Text: _msgText,
                 }
             }).success(function (data, status, headers, config) {
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     toaster.pop('success', data, '', 1000);
                     successCallBack('smsToAdmin', data);
                 }
@@ -227,7 +227,7 @@
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Send SMS failed ", '', 1000);
                 //
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -253,7 +253,7 @@
                 //toaster.pop('success', "GetSMSDetails", "Completed", 2000);
                 //$scope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -280,7 +280,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "uploadFileToUrl", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -306,7 +306,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "uploadTeacehrFileToUrl ", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -331,7 +331,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetClasses", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -356,7 +356,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "monthList", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -381,7 +381,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getStudentHouse", "Completed", 1000);
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -401,7 +401,7 @@
                     Months: Months
                 }
             }).success(function (data, status, headers, config) {
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     toaster.pop('success', data, '', 1000);
                     successCallBack('pendingFeeSMS', data);
                 }
@@ -412,7 +412,7 @@
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Send SMS failed ", '', 1000);
                 //
-                if (data) {
+                if(typeof data !== 'undefined' && data != null){
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

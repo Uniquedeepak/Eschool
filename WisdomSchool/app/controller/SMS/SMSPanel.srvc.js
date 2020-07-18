@@ -22,7 +22,7 @@
                 successCallBack('SendSMSByUser', data);
                 //$scope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

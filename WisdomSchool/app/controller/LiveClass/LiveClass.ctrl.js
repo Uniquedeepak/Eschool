@@ -70,7 +70,7 @@
                     break;
                 case 'addLiveClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLiveClassModel .close").click();
                         break;
@@ -78,7 +78,7 @@
                     break;
                 case 'updateLiveClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLiveClassModel .close").click();
                         break;
@@ -86,7 +86,7 @@
                     break;
                 case 'deleteLiveClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLiveClassModel .close").click();
                         break;
@@ -94,18 +94,18 @@
                     break;
                 case 'downloadLiveClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;
                 case 'GetClass':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'monthList':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         var monthFeeHeads = [];
                         angular.forEach(data, function (value, key) {
                             monthFeeHeads.push(value.Month1);

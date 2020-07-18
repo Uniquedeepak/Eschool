@@ -259,7 +259,7 @@
                     }
                     break;
                 case 'getSchool':
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.isLoading = false;
                         $scope.schoolDetails = data[0];
                         break;
@@ -305,7 +305,7 @@
                     break;
                 case 'submitStudentFee':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                        // alert("Student Fee Submitted Successfully. " + data);
                         $scope.FeeSubmitData = data;
                         setFeeHeadAmount(data.Months);
@@ -344,27 +344,27 @@
                     break;
                 case 'updateStFeeDetail':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                        // alert("Student Fee Updated Successfully. " + data);
                         break;
                     }
                     break;
                 case 'GetClass':
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'deleteFeeStudent':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                        // alert(data);
                         break;
                     }
                     break;
                 case 'sendSMS':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         // alert(data);
                         break;
                     }
@@ -372,7 +372,7 @@
                 
                 case 'getHobbyDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.HobbyDetails = data;
                         break;
                     }

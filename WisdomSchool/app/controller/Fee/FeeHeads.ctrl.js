@@ -58,7 +58,7 @@
             switch (call) {
                 case 'getFeeHeadsDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.FeeHeadsDetails = data;
                         $("#EditFeeHeadsModel .close").click();
                         break;
@@ -66,7 +66,7 @@
                     break;
                 case 'addFeeHeads':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFeeHeadsModel .close").click();
                         break;
@@ -74,7 +74,7 @@
                     break;
                 case 'updateFeeHeads':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFeeHeadsModel .close").click();
                         break;
@@ -82,14 +82,14 @@
                     break;
                 case 'deleteFeeHeads':
                     $scope.isLoading = false;
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         activate();
                         $("#EditFeeHeadsModel .close").click();
                         break;
                     }
                     break;
                 case 'GetClass':
-                    if (data) {
+                    if(typeof data !== 'undefined' && data != null){
                         $scope.Classes = data;
                         break;
                     }

@@ -25,7 +25,7 @@
                 //toaster.pop('success', "GetTeacherDetails", "Completed", 2000);
                 //$scope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -53,7 +53,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Add Teacher", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -81,7 +81,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "UpdateTeacher", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -107,7 +107,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "DeleteTeacher", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

@@ -45,7 +45,7 @@
                 case 'getSessionDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.SessionDetails = data;
                         $("#EditSessionModel .close").click();
                         break;
@@ -54,7 +54,7 @@
                 case 'updateSession':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditSessionModel .close").click();
                         break;
@@ -63,7 +63,7 @@
                 case 'deleteSession':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         break;
                     }

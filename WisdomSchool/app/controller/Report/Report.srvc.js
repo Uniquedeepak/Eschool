@@ -30,7 +30,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetAllSubmitedFeeDetail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -55,7 +55,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getAttendanceDetail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -80,7 +80,7 @@
                 console.log(data);
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getMonthlyAttendance", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -105,7 +105,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Get Top Fee Detail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -131,7 +131,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Get Top Pending Fee Detail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -157,7 +157,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Get Top Pending Fee Detail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -185,7 +185,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetClassFeeDetail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -213,7 +213,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getFeeHeadDetail", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

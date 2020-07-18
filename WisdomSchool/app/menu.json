@@ -112,7 +112,7 @@
     ]
   },
   {
-    "name": "SMS",
+    "name": "SMS-Notification",
     "link": "#",
     "icon": "fa fa-fw fa-comment",
     "submenu": [
@@ -123,6 +123,10 @@
       {
         "name": "SMS Panel 2",
         "link": "#/SMSPanel"
+      },
+      {
+        "name": "Notification",
+        "link": "#/notification"
       }
     ]
   },

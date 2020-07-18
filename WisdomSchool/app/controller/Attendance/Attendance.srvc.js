@@ -22,7 +22,7 @@
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetStudentDetails", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -51,7 +51,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "Add Attendance", "Completed", 2000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

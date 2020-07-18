@@ -48,7 +48,7 @@
             switch (call) {
                 case 'getStudentsByClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         CommonSrvc.getSchool(successCallBack, failureCallBack);
                         $scope.studentDetails = data;
                         break;
@@ -56,14 +56,14 @@
                     break;
                 case 'GetClass':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'createUserLogin':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;

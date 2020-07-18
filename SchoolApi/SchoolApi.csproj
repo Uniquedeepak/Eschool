@@ -332,6 +332,7 @@
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Utility\HttpClientHelper.cs" />
+    <Compile Include="Utility\CookiesHelper.cs" />
     <Compile Include="Utility\SMS.cs" />
   </ItemGroup>
   <ItemGroup>

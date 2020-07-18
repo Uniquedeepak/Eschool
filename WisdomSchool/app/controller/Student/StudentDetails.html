@@ -93,7 +93,7 @@
                                 <td>{{item.FatherName}}</td>
                                 <td>{{item.Route}}</td>
                                 <td>{{item.Contact}}</td>
-                                <td><img src="img/student/{{item.Image}}" alt="Not Found" height="50" width="80"></td>
+                                <td><img src="img/student/{{item.Image==null?'NoImage.png':item.Image}}" alt="Not Found" height="20" width="30"></td>
                                 <td>
                                     <a href=""><span class="glyphicon glyphicon-user" ng-click="View(true,item)"></span></a>
                                     <a href=""><span class="glyphicon glyphicon-edit" ng-click="open(false,item)"></span></a>
@@ -249,7 +249,7 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left">
-                                            <img src="img/student/{{selectedStudent.Image}}" class="img-responsive img-thumbnail">
+                                            <img src="img/student/{{selectedStudent.Image==null?'NoImage.png':selectedStudent.Image}}" class="img-responsive img-thumbnail">
                                         </span>
                                     </center>
                                     <!--<div class="table-responsive panel">

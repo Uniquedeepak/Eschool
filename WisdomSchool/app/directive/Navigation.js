@@ -12,7 +12,7 @@
                 switch (call) {
                     case 'getSchool':
                         $scope.isLoading = false;
-                        if (data) {
+                        if (typeof data !== 'undefined' && data != null) {
                             $scope.schoolDetails = data[0];
                             break;
                         }

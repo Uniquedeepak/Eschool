@@ -53,7 +53,7 @@
                 case 'getStudentDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.StudentDetails = data;
                         SMSDetail(data);
                         break;
@@ -61,14 +61,14 @@
                     break;
                 case 'sendTextSMS':
                     //
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data);
                         break;
                     }
                     break;
                 case 'GetClass':
                     //
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
@@ -85,7 +85,7 @@
                     $scope.isLoading = false;
                     break;
                 case 'sendTextSMS':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         console.log(data)
                         break;
                     }

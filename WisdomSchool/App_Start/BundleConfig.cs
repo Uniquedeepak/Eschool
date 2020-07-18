@@ -23,6 +23,7 @@ namespace MvcApplication1
                         "~/app/components/angular-route/angular-route.js",
                         "~/app/components/angular-resource/angular-resource.js",
                         "~/app/components/angular/angular-local-storage.min.js",
+                        "~/app/components/angular/angular-cookies.js",
                         "~/Scripts/Chart/Chart.min.js",
                         "~/Scripts/Chart/angular-chart.js",
                         "~/app/js/app.js",

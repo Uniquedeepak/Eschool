@@ -78,7 +78,7 @@
                 case 'getHobbyDetails':
                     
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.HobbyDetails = data;
                         $("#EditHobbyModel .close").click();
                         break;
@@ -87,7 +87,7 @@
                 case 'addHobby':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditHobbyModel .close").click();
                         HobbyService.getHobbyDetails(successCallBack, failureCallBack);
                         break;
@@ -96,7 +96,7 @@
                 case 'updateHobby':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditHobbyModel .close").click();
                         HobbyService.getHobbyDetails(successCallBack, failureCallBack);
                         break;
@@ -105,7 +105,7 @@
                 case 'deleteHobby':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $("#EditHobbyModel .close").click();
                         HobbyService.getHobbyDetails(successCallBack, failureCallBack);
                         break;

@@ -28,7 +28,7 @@
                 successCallBack('getAdmissionNo', data);
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -56,7 +56,7 @@
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetStudentDetails", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -81,7 +81,7 @@
                 //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getStudentsByClass", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -107,7 +107,7 @@
                 $rootScope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "getMultiChildParent", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -132,7 +132,7 @@
              //   $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "GetClasses", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -158,7 +158,7 @@
                 //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "AddStudent", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -185,7 +185,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "UpdateStudent", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }
@@ -211,7 +211,7 @@
               //  $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 toaster.pop('error', "DeleteStudent", "Completed", 1000);
-                if (data) {
+                if (typeof data !== 'undefined' && data != null) {
                     if (typeof data !== "string") {
                         data = JSON.stringify(data);
                     }

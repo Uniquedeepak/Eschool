@@ -68,7 +68,7 @@
                     break;
                 case 'addLeave':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLeaveModel .close").click();
                         break;
@@ -76,7 +76,7 @@
                     break;
                 case 'updateLeave':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLeaveModel .close").click();
                         break;
@@ -84,7 +84,7 @@
                     break;
                 case 'deleteLeave':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditLeaveModel .close").click();
                         break;
@@ -92,18 +92,18 @@
                     break;
                 case 'downloadLeave':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         break;
                     }
                     break;
                 case 'GetClass':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.Classes = data;
                         break;
                     }
                     break;
                 case 'monthList':
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         var monthFeeHeads = [];
                         angular.forEach(data, function (value, key) {
                             monthFeeHeads.push(value.Month1);

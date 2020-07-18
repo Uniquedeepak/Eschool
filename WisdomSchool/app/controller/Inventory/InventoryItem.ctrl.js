@@ -70,7 +70,7 @@
             switch (call) {
                 case 'getInventoryCategoryDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         $scope.InventoryCategoryDetails = data;
                         $scope.InventoryCategoryDetails.push({ ICID: 0, Category :"Select Category"});
                         InventoryItemService.getInventoryItemDetails(successCallBack, failureCallBack);
@@ -79,7 +79,7 @@
                     break;
                 case 'getInventoryItemDetails':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         var Items = setCategory(data);
                         $scope.InventoryItemDetails = Items;
                         $("#EditInventoryItemModel .close").click();
@@ -89,7 +89,7 @@
                 case 'addInventoryItem':
                     $scope.isLoading = false;
                     
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryItemModel .close").click();
                         break;
@@ -97,7 +97,7 @@
                     break;
                 case 'updateInventoryItem':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryItemModel .close").click();
                         break;
@@ -105,7 +105,7 @@
                     break;
                 case 'deleteInventoryItem':
                     $scope.isLoading = false;
-                    if (data) {
+                    if (typeof data !== 'undefined' && data != null) {
                         activate();
                         $("#EditInventoryItemModel .close").click();
                         break;
