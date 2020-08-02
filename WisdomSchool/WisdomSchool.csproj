@@ -274,6 +274,9 @@
     <Content Include="app\controller\LiveClass\LiveClass.ctrl.js" />
     <Content Include="app\controller\LiveClass\LiveClass.html" />
     <Content Include="app\controller\LiveClass\LiveClass.srvc.js" />
+    <Content Include="app\controller\Event\Event.ctrl.js" />
+    <Content Include="app\controller\Event\Event.html" />
+    <Content Include="app\controller\Event\Event.srvc.js" />
     <Content Include="app\controller\Notification\Notification.ctrl.js" />
     <Content Include="app\controller\Notification\Notification.html" />
     <Content Include="app\controller\Notification\Notification.srvc.js" />
@@ -369,6 +372,7 @@
     <Content Include="app\img\glyphicons-halflings.png" />
     <Content Include="app\index.html" />
     <Content Include="app\js\app.js" />
+    <Content Include="app\js\calendar.js" />
     <Content Include="app\js\controllers.js" />
     <Content Include="app\js\filters.js" />
     <Content Include="app\js\services.js" />
@@ -384,6 +388,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\datepicker3.min.css" />
+    <Content Include="css\fullcalendar.css" />
     <Content Include="css\gistfile1.css" />
     <Content Include="css\plugins\morris.css" />
     <Content Include="css\reset.css" />
@@ -579,6 +584,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />

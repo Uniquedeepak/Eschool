@@ -8,7 +8,9 @@ var mymainApp = angular.module('AngularApp', [
     'ngSanitize',
     'chart.js',
     'angularUtils.directives.dirPagination',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ui.calendar'
+    
 ]);
 
 mymainApp.config(['$routeProvider',
@@ -164,6 +166,10 @@ mymainApp.config(['$routeProvider',
         }).
         when('/liveclass', {
             templateUrl: './app/controller/LiveClass/LiveClass.html',
+            controller: ''
+        }).
+        when('/event', {
+            templateUrl: './app/controller/Event/Event.html',
             controller: ''
         }).
         otherwise({

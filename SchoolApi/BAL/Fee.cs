@@ -31,7 +31,7 @@ namespace SchoolApi.BAL
                 Fine fineDetail = unitOfWork.FineRepository.GetFirstOrDefault(x => x.Name == "Fee");
 
                 string CollectedMonths = unitOfWork.StudentFeeDetailRepository.
-                    Get(x => x.AdmissionNo.Equals(AdmissionNo) && x.Session.Equals(PropertiesConfiguration.ActiveSession), odr => odr.OrderByDescending(i=>i.Id)).
+                    Get(x => x.AdmissionNo.Equals(AdmissionNo) && x.Session.Equals(ApplicationConfigurations.ActiveSession), odr => odr.OrderByDescending(i=>i.Id)).
                     FirstOrDefault()?.Months;
 
 
@@ -49,7 +49,7 @@ namespace SchoolApi.BAL
                 # endregion
 
                 #region Year Check
-                if (CurrentYear >Convert.ToInt32(PropertiesConfiguration.ActiveSession.Split('-').First()))
+                if (CurrentYear >Convert.ToInt32(ApplicationConfigurations.ActiveSession.Split('-').First()))
                 {
                     fine = Convert.ToDecimal( fineDetail?.Amount * (12 - LastFeeMonth));
                     return fine;
@@ -81,13 +81,13 @@ namespace SchoolApi.BAL
 
                 if (Class != "0")
                 {
-                    AdmissionFormfilter = x => x.Class.Equals(Class) && x.ESession.Equals(PropertiesConfiguration.ActiveSession);
-                    StudentFeeDetailfilter = x => x.Class.Equals(Class) && x.Session.Equals(PropertiesConfiguration.ActiveSession);
+                    AdmissionFormfilter = x => x.Class.Equals(Class) && x.ESession.Equals(ApplicationConfigurations.ActiveSession);
+                    StudentFeeDetailfilter = x => x.Class.Equals(Class) && x.Session.Equals(ApplicationConfigurations.ActiveSession);
                 }
                 else
                 {
-                    AdmissionFormfilter = x => x.ESession.Equals(PropertiesConfiguration.ActiveSession);
-                    StudentFeeDetailfilter = x => x.Session.Equals(PropertiesConfiguration.ActiveSession);
+                    AdmissionFormfilter = x => x.ESession.Equals(ApplicationConfigurations.ActiveSession);
+                    StudentFeeDetailfilter = x => x.Session.Equals(ApplicationConfigurations.ActiveSession);
                 }
                     
                 var students = unitOfWork.AdmissionFormRepository.Get(AdmissionFormfilter);

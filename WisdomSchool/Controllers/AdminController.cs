@@ -34,7 +34,7 @@ namespace MvcApplication1.Controllers
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ApplicationDbContext context = new ApplicationDbContext();
         private wisdomDBEntities SchoolDB = new wisdomDBEntities();
-        private string SchoolSession = PropertiesConfiguration.ActiveSession;
+        private string SchoolSession = ApplicationConfigurations.ActiveSession;
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
         public ApplicationUserManager UserManager
@@ -151,12 +151,12 @@ namespace MvcApplication1.Controllers
             ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
             appUser = await UserManager.FindByNameAsync(email);
             UserEdit user = new UserEdit();
-            user.Address = appUser.Address;
+            //user.Address = appUser.Address;
             user.FirstName = appUser.FirstName;
             user.LastName = appUser.LastName;
             user.EmailConfirmed = appUser.EmailConfirmed;
-            user.Mobile = appUser.Mobile;
-            user.City = appUser.City;
+            //user.Mobile = appUser.Mobile;
+            //user.City = appUser.City;
             
             return View(user);
         }
@@ -175,9 +175,9 @@ namespace MvcApplication1.Controllers
             
             currentUser.FirstName = model.FirstName;
             currentUser.LastName = model.LastName;
-            currentUser.Mobile = model.Mobile;
-            currentUser.Address = model.Address;
-            currentUser.City = model.City;
+            //currentUser.Mobile = model.Mobile;
+            //currentUser.Address = model.Address;
+            //currentUser.City = model.City;
             currentUser.EmailConfirmed = model.EmailConfirmed;
             await manager.UpdateAsync(currentUser);
 

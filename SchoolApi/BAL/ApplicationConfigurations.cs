@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SchoolApi.BAL
 {
-    public class PropertiesConfiguration
+    public class ApplicationConfigurations
     {
         public static string  ActiveSession { get; set; }
         public static string SMSApiHost { get; set; }
@@ -14,9 +14,10 @@ namespace SchoolApi.BAL
         public static string AdminNumber { get; set; }
         public static bool IsSMSEnable { get; set; }
         public static string ECareAPIUrl { get; set; }
+        public static string SchoolCode{ get; set; }
 
         private static wisdomDBEntities SchoolDB = null;
-        static PropertiesConfiguration()
+        static ApplicationConfigurations()
         {
             SchoolDB = new wisdomDBEntities();
             FillProperties();
@@ -30,6 +31,7 @@ namespace SchoolApi.BAL
             AdminNumber = System.Configuration.ConfigurationManager.AppSettings["AdminNumber"].ToString();
             IsSMSEnable = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["IsSMSEnable"]);
             ECareAPIUrl = System.Configuration.ConfigurationManager.AppSettings["ECareAPIUrl"].ToString();
+            SchoolCode = System.Configuration.ConfigurationManager.AppSettings["SchoolCode"].ToString();
         }
 
     }

@@ -75,6 +75,7 @@ namespace MvcApplication1.Controllers.Student
                 RoleName = "Student",
                 Password = $"{student.AdmissionNo}@abC",
                 ConfirmPassword = $"{student.AdmissionNo}@abC",
+                SchoolCode = ApplicationConfigurations.SchoolCode
             };
             return user;
         }

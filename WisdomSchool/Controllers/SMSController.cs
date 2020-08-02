@@ -23,7 +23,7 @@ namespace MvcApplication1.Controllers
         public ActionResult SmsToAdmin(string Text)
         {
             string Response = string.Empty;
-            string AdminNumber = PropertiesConfiguration.AdminNumber;
+            string AdminNumber = ApplicationConfigurations.AdminNumber;
             Response = SMS.SendSMSApi(Text, AdminNumber).Result;
             return Content(Response);
         }

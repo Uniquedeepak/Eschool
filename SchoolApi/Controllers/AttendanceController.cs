@@ -23,7 +23,7 @@ namespace SchoolApi.Controllers
         public AttendanceController()
         {
             SchoolDB = new wisdomDBEntities();
-            SchoolSession = PropertiesConfiguration.ActiveSession;
+            SchoolSession = ApplicationConfigurations.ActiveSession;
         }
 
         public List<StAttendance> GetAttendanceCharge()

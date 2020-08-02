@@ -19,7 +19,7 @@ namespace SchoolApi.Controllers
         public FeesController()
         {
             SchoolDB = new wisdomDBEntities();
-            SchoolSession = PropertiesConfiguration.ActiveSession;
+            SchoolSession = ApplicationConfigurations.ActiveSession;
         }
 
         // GET api/school/5

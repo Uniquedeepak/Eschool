@@ -105,7 +105,7 @@
 
         }
         $scope.setTotalAmount = function (selectedMonth) {
-            selectedMonth.Checked = selectedMonth.Checked ? false : true;
+            //selectedMonth.Checked = selectedMonth.Checked ? false : true;
             
             if (selectedMonth.Checked === false) {
                 for (var i = 0 ; i <= $scope.mothFeeHeads.length - 1; i++) {

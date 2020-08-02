@@ -18,11 +18,11 @@ namespace Demo1.Models
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string DOB { get; set; }
-        public string Sex { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string Mobile { get; set; }
+        //public string DOB { get; set; }
+        //public string Sex { get; set; }
+        //public string Address { get; set; }
+        //public string City { get; set; }
+        //public string Mobile { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

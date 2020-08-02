@@ -43,13 +43,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:00</publishTime>
     </File>
     <File Include="app/components/angular-resource/angular-resource.js">
-      <publishTime>03/21/2020 21:58:00</publishTime>
+      <publishTime>07/19/2020 19:26:22</publishTime>
     </File>
     <File Include="app/components/angular-resource/angular-resource.min.js">
-      <publishTime>03/21/2020 21:58:00</publishTime>
+      <publishTime>07/19/2020 19:26:17</publishTime>
     </File>
     <File Include="app/components/angular-resource/angular-resource.min.js.map">
-      <publishTime>03/21/2020 21:58:00</publishTime>
+      <publishTime>07/19/2020 23:24:54</publishTime>
     </File>
     <File Include="app/components/angular-resource/bower.json">
       <publishTime>03/21/2020 21:58:00</publishTime>
@@ -406,7 +406,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:29:43</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.ctrl.js">
-      <publishTime>07/19/2020 01:29:43</publishTime>
+      <publishTime>07/20/2020 12:00:42</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.html">
       <publishTime>06/29/2020 12:53:57</publishTime>
@@ -796,10 +796,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/MvcApplication1.dll">
-      <publishTime>07/19/2020 02:19:22</publishTime>
+      <publishTime>07/27/2020 17:04:07</publishTime>
     </File>
     <File Include="bin/MvcApplication1.pdb">
-      <publishTime>07/19/2020 02:19:22</publishTime>
+      <publishTime>07/27/2020 17:04:07</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/09/2019 00:56:44</publishTime>
@@ -808,13 +808,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:57:46</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll">
-      <publishTime>07/19/2020 02:19:20</publishTime>
+      <publishTime>07/27/2020 17:04:05</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll.config">
-      <publishTime>07/02/2020 20:05:18</publishTime>
+      <publishTime>07/19/2020 19:43:20</publishTime>
     </File>
     <File Include="bin/SchoolApi.pdb">
-      <publishTime>07/19/2020 02:19:20</publishTime>
+      <publishTime>07/27/2020 17:04:05</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -1426,7 +1426,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:48</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/21/2020 21:58:48</publishTime>
+      <publishTime>07/19/2020 23:18:30</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>03/21/2020 21:58:48</publishTime>
@@ -1444,7 +1444,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/19/2020 02:01:38</publishTime>
+      <publishTime>07/27/2020 17:04:08</publishTime>
     </File>
   </ItemGroup>
 </Project>

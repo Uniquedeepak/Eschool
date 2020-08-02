@@ -16,12 +16,15 @@ using SchoolApi.BAL;
 using SchoolApi.Models;
 using SchoolApi.Utility;
 using Newtonsoft.Json;
+using log4net;
 
 namespace Demo1.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private static readonly ILog Log =
+              LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         enum Roles
         {
             Admin = 1,
@@ -343,6 +346,7 @@ namespace Demo1.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
@@ -423,28 +427,41 @@ namespace Demo1.Controllers
 
         private async Task ExternalAPILogin(LoginViewModel model)
         {
-            string ESupportAPIUrl = PropertiesConfiguration.ECareAPIUrl;
-            UserHelper userhelper = new UserHelper();
-            LoginModel user = new LoginModel()
+            try
             {
-                username = model.Email,
-                password = model.Password,
-                grant_type = "password",
-            };
-            LoginModelResponse res = await userhelper.LoginUserAsync(user);
-            if (res != null)
-            {
-                List<KeyValuePair<string, string>> cookieData = new List<KeyValuePair<string, string>>()
+                Log.Info("ExternalAPILogin");
+                string ESupportAPIUrl = ApplicationConfigurations.ECareAPIUrl;
+                UserHelper userhelper = new UserHelper();
+                LoginModel user = new LoginModel()
                 {
-                    new KeyValuePair<string, string>("access_token",res.access_token),
-                    new KeyValuePair<string, string>("token_type",res.token_type),
-                    new KeyValuePair<string, string>("expires_in",res.expires_in.ToString()),
-                    new KeyValuePair<string, string>("ESupportAPIUrl",ESupportAPIUrl),
+                    username = model.Email,
+                    password = model.Password,
+                    grant_type = "password",
+                    schoolcode = ApplicationConfigurations.SchoolCode
                 };
+                Log.Info("LoginUserAsync Call");
+                LoginModelResponse res = await userhelper.LoginUserAsync(user);
                 
-                CookiesHelper.SaveData(Response , cookieData);
-            }
+                if (res != null)
+                {
+                    Log.Info("LoginUserAsync Success" + res.ToString());
+                    Log.Info("Response is not null- " + res.access_token);
+                    List<KeyValuePair<string, string>> cookieData = new List<KeyValuePair<string, string>>()
+                    {
+                        new KeyValuePair<string, string>("access_token",res.access_token),
+                        new KeyValuePair<string, string>("token_type",res.token_type),
+                        new KeyValuePair<string, string>("expires_in",res.expires_in.ToString()),
+                        new KeyValuePair<string, string>("ESupportAPIUrl",ESupportAPIUrl),
+                    };
 
+                    CookiesHelper.SaveData(Response, cookieData);
+                    Log.Info("Data Saved in cookies");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ExternalAPILogin Error- "+ ex.Message.ToString());
+            }
         }
         protected override void Dispose(bool disposing)
         {

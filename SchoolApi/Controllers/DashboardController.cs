@@ -18,7 +18,7 @@ namespace SchoolApi.Controllers
          public DashboardController()
         {
             SchoolDB = new wisdomDBEntities();
-            SchoolSession = PropertiesConfiguration.ActiveSession;
+            SchoolSession = ApplicationConfigurations.ActiveSession;
         }
 
         // GET api/school/5

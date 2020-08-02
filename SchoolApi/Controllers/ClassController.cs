@@ -16,7 +16,7 @@ namespace SchoolApi.Controllers
          public ClassController()
         {
             this.unitOfWork = new UnitOfWork();
-            SchoolSession = PropertiesConfiguration.ActiveSession;
+            SchoolSession = ApplicationConfigurations.ActiveSession;
         }
 
         // GET api/school/5
