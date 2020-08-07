@@ -28,6 +28,10 @@
       {
         "name": "Hobby",
         "link": "#/Hobby"
+      },
+      {
+        "name": "Event",
+        "link": "#/event"
       }
     ]
   },
@@ -44,6 +48,11 @@
   {
     "name": "Student's",
     "link": "#/student",
+    "icon": "fa fa-fw fa-user"
+  },
+  {
+    "name": "Student's Leave",
+    "link": "#/leave",
     "icon": "fa fa-fw fa-user"
   },
   {

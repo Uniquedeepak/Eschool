@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var ServiceId = 'LeaveService';
-    angular.module('AngularApp').service(ServiceId, ['$rootScope', 'CommonSrvc','localStorageService', '$http', 'toaster', '$q', LeaveDetailserviceFunc]);
-    function LeaveDetailserviceFunc($rootScope, CommonSrvc, localStorageService, $httpProvider, toaster, $q) {
-        var ecareData = localStorageService.get('authorizationData');
+    angular.module('AngularApp').service(ServiceId, ['$rootScope', 'CommonSrvc','$cookies', '$http', 'toaster', '$q', LeaveDetailserviceFunc]);
+    function LeaveDetailserviceFunc($rootScope, CommonSrvc, $cookies, $httpProvider, toaster, $q) {
+        var ecareData = { token: $cookies.get("access_token"), baseUrl: $cookies.get("ESupportAPIUrl") }; 
         var service = {
             getLeaveDetails: null,
             updateLeave: null,

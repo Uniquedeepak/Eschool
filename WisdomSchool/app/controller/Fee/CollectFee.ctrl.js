@@ -93,7 +93,7 @@
             }
         }
         $scope.getAdmissionFee = function () {
-            if ($scope.ckboxAdmFee) {
+            if (!$scope.ckboxAdmFee) {
                 $scope.ckboxAdmFee = false;
                 $scope.AdmissionFee = 0;
             }
