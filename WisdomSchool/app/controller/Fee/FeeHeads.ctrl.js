@@ -9,8 +9,8 @@
           FeeHeadsCtlr
         ]);
     function FeeHeadsCtlr($scope, FeeHeadsService, CommonSrvc) {
-        $scope.heading = "Fee Head Detail";
-        $scope.subheading = "";
+        $scope.heading = "Fee Head";
+        $scope.subheading = "Details";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

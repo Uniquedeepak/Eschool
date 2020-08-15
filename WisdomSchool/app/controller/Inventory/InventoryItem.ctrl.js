@@ -9,8 +9,8 @@
           InventoryItemCtlr
         ]);
     function InventoryItemCtlr($scope, InventoryItemService, InventoryCategoryService) {
-        $scope.heading = "Inventory Item";
-        $scope.subheading = "";
+        $scope.heading = "Inventory";
+        $scope.subheading = "Item";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

@@ -7,7 +7,7 @@
   {
     "name": "School",
     "link": "#",
-    "icon": "fa fa-fw fa-dashboard",
+    "icon": "fa fa-fw fa-university",
     "submenu": [
       {
         "name": "Info",
@@ -32,6 +32,10 @@
       {
         "name": "Event",
         "link": "#/event"
+      },
+      {
+        "name": "Gallery",
+        "link": "#/album"
       }
     ]
   },
@@ -53,7 +57,7 @@
   {
     "name": "Student's Leave",
     "link": "#/leave",
-    "icon": "fa fa-fw fa-user"
+    "icon": "fa fa-fw fa-sign-out"
   },
   {
     "name": "Teacher's",
@@ -142,7 +146,7 @@
   {
     "name": "Fees",
     "link": "#",
-    "icon": "fa fa-fw fa-money",
+    "icon": "fa fa-fw fa-inr",
     "submenu": [
       {
         "name": "Fee Heads",
@@ -205,5 +209,10 @@
       }
 
     ]
+  },
+  {
+    "name": "Feedback",
+    "link": "#/feedback",
+    "icon": "fa fa-comments-o"
   }
 ]

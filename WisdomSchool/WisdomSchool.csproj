@@ -262,6 +262,9 @@
     <Content Include="app\controller\Certificate\BirthCertificate.html" />
     <Content Include="app\controller\Certificate\TransferCertificate.html" />
     <Content Include="app\controller\Common\login.ctrl.js" />
+    <Content Include="app\controller\Feedback\Feedback.ctrl.js" />
+    <Content Include="app\controller\Feedback\Feedback.html" />
+    <Content Include="app\controller\Feedback\Feedback.srvc.js" />
     <Content Include="app\controller\Fee\Fine.html" />
     <Content Include="app\controller\Fee\Fine.ctrl.js" />
     <Content Include="app\controller\Fee\FeeHeads.ctrl.js" />
@@ -277,6 +280,9 @@
     <Content Include="app\controller\Event\Event.ctrl.js" />
     <Content Include="app\controller\Event\Event.html" />
     <Content Include="app\controller\Event\Event.srvc.js" />
+    <Content Include="app\controller\Album\Album.ctrl.js" />
+    <Content Include="app\controller\Album\Album.html" />
+    <Content Include="app\controller\Album\Album.srvc.js" />
     <Content Include="app\controller\Notification\Notification.ctrl.js" />
     <Content Include="app\controller\Notification\Notification.html" />
     <Content Include="app\controller\Notification\Notification.srvc.js" />

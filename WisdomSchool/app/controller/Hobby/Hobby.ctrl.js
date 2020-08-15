@@ -11,8 +11,8 @@
 
     function HobbyCtlr($scope, HobbyService) {
         
-        $scope.heading = "Hobby Detail";
-        $scope.subheading = "";
+        $scope.heading = "Hobby";
+        $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.selectedHobby = {};

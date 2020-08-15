@@ -8,8 +8,8 @@
           InventoryCategoryCtlr
         ]);
     function InventoryCategoryCtlr($scope, InventoryCategoryService) {
-        $scope.heading = "Inventory Category";
-        $scope.subheading = "";
+        $scope.heading = "Inventory";
+        $scope.subheading = "Category";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

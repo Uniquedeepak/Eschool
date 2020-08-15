@@ -9,9 +9,9 @@
           LeaveCtlrFn
         ]);
     function LeaveCtlrFn($scope, LeaveService,CommonSrvc) {
-        $scope.heading = "Leave Detail";
+        $scope.heading = "Student's";
         $scope.LeaveImg = "";
-        $scope.subheading = "";
+        $scope.subheading = "Leave";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

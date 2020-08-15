@@ -9,9 +9,9 @@
           NotificationCtlrFn
         ]);
     function NotificationCtlrFn($scope, NotificationService,CommonSrvc) {
-        $scope.heading = "Notification Detail";
+        $scope.heading = "Notification";
         $scope.NotificationImg = "";
-        $scope.subheading = "";
+        $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

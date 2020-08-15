@@ -8,8 +8,8 @@
           SchoolCtlr
         ]);
     function SchoolCtlr($scope, SchoolService) {
-        $scope.heading = "School Detail";
-        $scope.subheading = "";
+        $scope.heading = "School";
+        $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

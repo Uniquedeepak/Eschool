@@ -360,6 +360,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="app/components/bootstrap/test-infra/uncached-npm-install.sh">
       <publishTime>03/21/2020 21:58:06</publishTime>
     </File>
+    <File Include="app/controller/Album/Album.ctrl.js">
+      <publishTime>08/16/2020 01:33:45</publishTime>
+    </File>
+    <File Include="app/controller/Album/Album.html">
+      <publishTime>08/16/2020 01:32:35</publishTime>
+    </File>
+    <File Include="app/controller/Album/Album.srvc.js">
+      <publishTime>08/16/2020 00:00:14</publishTime>
+    </File>
     <File Include="app/controller/Attendance/Attendance.ctrl.js">
       <publishTime>07/19/2020 01:31:16</publishTime>
     </File>
@@ -406,7 +415,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:29:43</publishTime>
     </File>
     <File Include="app/controller/Event/Event.ctrl.js">
-      <publishTime>08/02/2020 19:31:08</publishTime>
+      <publishTime>08/10/2020 00:07:10</publishTime>
     </File>
     <File Include="app/controller/Event/Event.html">
       <publishTime>08/02/2020 19:30:01</publishTime>
@@ -415,7 +424,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/29/2020 23:58:53</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.ctrl.js">
-      <publishTime>07/20/2020 12:00:42</publishTime>
+      <publishTime>08/07/2020 19:43:02</publishTime>
     </File>
     <File Include="app/controller/Fee/CollectFee.html">
       <publishTime>06/29/2020 12:53:57</publishTime>
@@ -424,7 +433,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:29:43</publishTime>
     </File>
     <File Include="app/controller/Fee/FeeHeads.ctrl.js">
-      <publishTime>07/19/2020 01:29:42</publishTime>
+      <publishTime>08/10/2020 00:12:07</publishTime>
     </File>
     <File Include="app/controller/Fee/FeeHeads.html">
       <publishTime>03/31/2020 19:06:58</publishTime>
@@ -433,7 +442,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:29:42</publishTime>
     </File>
     <File Include="app/controller/Fee/Fine.ctrl.js">
-      <publishTime>07/19/2020 01:29:41</publishTime>
+      <publishTime>08/10/2020 00:11:45</publishTime>
     </File>
     <File Include="app/controller/Fee/Fine.html">
       <publishTime>03/25/2020 16:31:54</publishTime>
@@ -441,8 +450,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="app/controller/Fee/Fine.srvc.js">
       <publishTime>07/19/2020 01:29:41</publishTime>
     </File>
+    <File Include="app/controller/Feedback/Feedback.ctrl.js">
+      <publishTime>08/15/2020 23:23:59</publishTime>
+    </File>
+    <File Include="app/controller/Feedback/Feedback.html">
+      <publishTime>08/09/2020 23:38:16</publishTime>
+    </File>
+    <File Include="app/controller/Feedback/Feedback.srvc.js">
+      <publishTime>08/15/2020 23:24:15</publishTime>
+    </File>
     <File Include="app/controller/Hobby/Hobby.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:08:03</publishTime>
     </File>
     <File Include="app/controller/Hobby/Hobby.html">
       <publishTime>06/22/2020 01:04:09</publishTime>
@@ -451,7 +469,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:01</publishTime>
     </File>
     <File Include="app/controller/Homework/Homework.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/11/2020 00:33:49</publishTime>
     </File>
     <File Include="app/controller/Homework/Homework.html">
       <publishTime>06/15/2020 14:09:16</publishTime>
@@ -460,7 +478,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:01</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryCategory.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:08:36</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryCategory.html">
       <publishTime>04/05/2020 14:55:16</publishTime>
@@ -469,7 +487,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:01</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryIssue.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:08:45</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryIssue.html">
       <publishTime>04/06/2020 21:15:04</publishTime>
@@ -478,7 +496,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:01</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryItem.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:09:24</publishTime>
     </File>
     <File Include="app/controller/Inventory/InventoryItem.html">
       <publishTime>04/07/2020 14:39:14</publishTime>
@@ -487,7 +505,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:01</publishTime>
     </File>
     <File Include="app/controller/Leave/Leave.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:06:32</publishTime>
     </File>
     <File Include="app/controller/Leave/Leave.html">
       <publishTime>07/06/2020 22:37:40</publishTime>
@@ -496,7 +514,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/02/2020 19:54:24</publishTime>
     </File>
     <File Include="app/controller/LiveClass/LiveClass.ctrl.js">
-      <publishTime>07/19/2020 01:38:01</publishTime>
+      <publishTime>08/10/2020 00:09:54</publishTime>
     </File>
     <File Include="app/controller/LiveClass/LiveClass.html">
       <publishTime>07/11/2020 00:20:52</publishTime>
@@ -505,7 +523,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 02:19:04</publishTime>
     </File>
     <File Include="app/controller/Notification/Notification.ctrl.js">
-      <publishTime>07/19/2020 01:38:00</publishTime>
+      <publishTime>08/10/2020 00:10:10</publishTime>
     </File>
     <File Include="app/controller/Notification/Notification.html">
       <publishTime>07/06/2020 20:17:14</publishTime>
@@ -583,7 +601,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:08</publishTime>
     </File>
     <File Include="app/controller/School/House.ctrl.js">
-      <publishTime>07/19/2020 01:38:00</publishTime>
+      <publishTime>08/10/2020 00:10:27</publishTime>
     </File>
     <File Include="app/controller/School/House.html">
       <publishTime>06/15/2020 21:20:56</publishTime>
@@ -592,7 +610,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:00</publishTime>
     </File>
     <File Include="app/controller/School/School.ctrl.js">
-      <publishTime>07/19/2020 01:38:00</publishTime>
+      <publishTime>08/10/2020 00:10:35</publishTime>
     </File>
     <File Include="app/controller/School/School.html">
       <publishTime>06/25/2020 12:55:08</publishTime>
@@ -601,7 +619,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:38:00</publishTime>
     </File>
     <File Include="app/controller/Session/Session.ctrl.js">
-      <publishTime>07/19/2020 01:38:00</publishTime>
+      <publishTime>08/10/2020 00:10:46</publishTime>
     </File>
     <File Include="app/controller/Session/Session.html">
       <publishTime>03/21/2020 21:58:08</publishTime>
@@ -664,7 +682,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2020 01:37:59</publishTime>
     </File>
     <File Include="app/controller/User/user.ctrl.js">
-      <publishTime>07/19/2020 01:37:59</publishTime>
+      <publishTime>08/10/2020 00:11:03</publishTime>
     </File>
     <File Include="app/controller/User/user.html">
       <publishTime>07/01/2020 21:16:36</publishTime>
@@ -709,7 +727,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:57:58</publishTime>
     </File>
     <File Include="app/js/app.js">
-      <publishTime>08/02/2020 15:48:53</publishTime>
+      <publishTime>08/10/2020 00:42:34</publishTime>
     </File>
     <File Include="app/js/calendar.js">
       <publishTime>08/02/2020 15:45:08</publishTime>
@@ -724,7 +742,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/02/2020 15:07:27</publishTime>
     </File>
     <File Include="app/menu.json">
-      <publishTime>08/02/2020 19:56:37</publishTime>
+      <publishTime>08/15/2020 23:39:04</publishTime>
     </File>
     <File Include="app/partials/about.html">
       <publishTime>03/21/2020 21:58:10</publishTime>
@@ -808,10 +826,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/MvcApplication1.dll">
-      <publishTime>08/02/2020 19:31:41</publishTime>
+      <publishTime>08/16/2020 01:34:05</publishTime>
     </File>
     <File Include="bin/MvcApplication1.pdb">
-      <publishTime>08/02/2020 19:31:41</publishTime>
+      <publishTime>08/16/2020 01:34:05</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/09/2019 00:56:44</publishTime>
@@ -820,13 +838,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:57:46</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll">
-      <publishTime>08/02/2020 19:31:36</publishTime>
+      <publishTime>08/16/2020 01:34:03</publishTime>
     </File>
     <File Include="bin/SchoolApi.dll.config">
       <publishTime>07/19/2020 19:43:20</publishTime>
     </File>
     <File Include="bin/SchoolApi.pdb">
-      <publishTime>08/02/2020 19:31:36</publishTime>
+      <publishTime>08/16/2020 01:34:03</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -901,7 +919,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:16</publishTime>
     </File>
     <File Include="css/sb-admin.css">
-      <publishTime>03/23/2020 13:40:30</publishTime>
+      <publishTime>08/16/2020 00:18:12</publishTime>
     </File>
     <File Include="css/Scripts/angular-ui/ui-bootstrap-tpls.js">
       <publishTime>03/21/2020 21:58:18</publishTime>
@@ -1465,7 +1483,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2020 21:58:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2020 19:35:39</publishTime>
+      <publishTime>08/16/2020 01:34:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

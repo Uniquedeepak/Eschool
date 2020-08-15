@@ -9,9 +9,9 @@
           LiveClassCtlrFn
         ]);
     function LiveClassCtlrFn($scope, LiveClassService,CommonSrvc) {
-        $scope.heading = "LiveClass Detail";
+        $scope.heading = "Live Class";
         $scope.LiveClassImg = "";
-        $scope.subheading = "";
+        $scope.subheading = "Details";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

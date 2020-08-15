@@ -92,7 +92,7 @@ namespace Demo1.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    await ExternalAPILogin(model);
+                    ExternalAPILogin(model).Wait();
                     switch (Convert.ToInt32(roleID))
 	                {
                         case (int)Roles.Admin:
@@ -440,7 +440,7 @@ namespace Demo1.Controllers
                     schoolcode = ApplicationConfigurations.SchoolCode
                 };
                 Log.Info("LoginUserAsync Call");
-                LoginModelResponse res = await userhelper.LoginUserAsync(user);
+                LoginModelResponse res = userhelper.LoginUserAsync(user).Result;
                 
                 if (res != null)
                 {

@@ -1,17 +1,17 @@
 ﻿(function () {
     'use strict';
-    var controllerId = 'EventCtrl';
+    var controllerId = 'FeedbackCtrl';
     angular.module('AngularApp').controller(controllerId,
         ['$scope',
-         'EventService',
+         'FeedbackService',
          'CommonSrvc',
          'uiCalendarConfig',
-          EventCtlrFn
+          FeedbackCtlrFn
         ]);
-    function EventCtlrFn($scope, EventService, CommonSrvc, uiCalendarConfig) {
-        $scope.heading = "Event";
-        $scope.EventImg = "";
-        $scope.subheading = "Details";
+    function FeedbackCtlrFn($scope, FeedbackService, CommonSrvc, uiCalendarConfig) {
+        $scope.heading = "Student's";
+        $scope.FeedbackImg = "";
+        $scope.subheading = "Feedback";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
 
@@ -19,14 +19,14 @@
         ActivateCalender();
         function activate() {
             $scope.isLoading = true;
-            EventService.getEventDetails(successCallBack, failureCallBack);
+            FeedbackService.getFeedbackDetails(successCallBack, failureCallBack);
         }
 
         function ActivateCalender() {
             //Calender 
-            $scope.SelectedEvent = null;
-            $scope.events = [];
-            $scope.eventSources = [$scope.events];
+            $scope.SelectedFeedback = null;
+            $scope.Feedbacks = [];
+            $scope.FeedbackSources = [$scope.Feedbacks];
             var isFirstTime = true;
 
             //configure calendar
@@ -34,19 +34,19 @@
                 calendar: {
                     height: 450,
                     editable: true,
-                    displayEventTime: false,
+                    displayFeedbackTime: false,
                     header: {
                         left: 'month agendaWeek agendaDay',
                         center: 'title',
                         right: 'today prev,next'
                     },
-                    eventClick: function (event) {
-                        $scope.SelectedEvent = event;
+                    FeedbackClick: function (Feedback) {
+                        $scope.SelectedFeedback = Feedback;
                     },
-                    eventAfterAllRender: function () {
-                        if ($scope.events.length > 0 && isFirstTime) {
-                            //Focus first event
-                            uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.events[0].start);
+                    FeedbackAfterAllRender: function () {
+                        if ($scope.Feedbacks.length > 0 && isFirstTime) {
+                            //Focus first Feedback
+                            uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.Feedbacks[0].start);
                             isFirstTime = false;
                         }
                     }
@@ -59,21 +59,21 @@
             
             $scope.disableCtrl = isDelete === 3;
             $scope.crud = isDelete;
-            $scope.selectedEvent = item;
-            $("#EditEventModel").modal();
+            $scope.selectedFeedback = item;
+            $("#EditFeedbackModel").modal();
         }
-        $scope.deletesEvent = function (EventDetail) {
+        $scope.deletesFeedback = function (FeedbackDetail) {
             $scope.isLoading = true;
-            EventService.deleteEvent(EventDetail.Id, successCallBack, failureCallBack);
+            FeedbackService.deleteFeedback(FeedbackDetail.ID, successCallBack, failureCallBack);
         }
-        $scope.addEvent = function (EventDetail) {
+        $scope.addFeedback = function (FeedbackDetail) {
             $scope.isLoading = true;
-            EventService.addEvent(EventDetail, successCallBack, failureCallBack);
+            FeedbackService.addFeedback(FeedbackDetail, successCallBack, failureCallBack);
         }
-        $scope.updateEvent = function (EventDetail)
+        $scope.updateFeedback = function (FeedbackDetail)
         {
             $scope.isLoading = true;
-            EventService.updateEvent(EventDetail, successCallBack, failureCallBack);
+            FeedbackService.updateFeedback(FeedbackDetail, successCallBack, failureCallBack);
         }
         $scope.showCalender = function () {
             $("#calenderPopup").modal();
@@ -81,36 +81,36 @@
         
         function successCallBack(call, data) {
             switch (call) {
-                case 'getEventDetails':
+                case 'getFeedbackDetails':
                     $scope.isLoading = false;
                     if (data && data.ResponseCode === "200") {
-                        $scope.EventDetails = data.Result;
-                        setCalenderEvent($scope.EventDetails);
-                        $("#EditEventModel .close").click();
+                        $scope.FeedbackDetails = data.Result;
+                        setCalenderFeedback($scope.FeedbackDetails);
+                        $("#EditFeedbackModel .close").click();
                         break;
                     }
                     break;
-                case 'addEvent':
+                case 'addFeedback':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         activate();
-                        $("#EditEventModel .close").click();
+                        $("#EditFeedbackModel .close").click();
                         break;
                     }
                     break;
-                case 'updateEvent':
+                case 'updateFeedback':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         activate();
-                        $("#EditEventModel .close").click();
+                        $("#EditFeedbackModel .close").click();
                         break;
                     }
                     break;
-                case 'deleteEvent':
+                case 'deleteFeedback':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         activate();
-                        $("#EditEventModel .close").click();
+                        $("#EditFeedbackModel .close").click();
                         break;
                     }
                     break;
@@ -119,23 +119,23 @@
         };
         function failureCallBack(call, data) {
             switch (call) {
-                case 'getEventDetails':
+                case 'getFeedbackDetails':
                     $scope.isLoading = false;
                     break;
-                case 'updateEvent':
+                case 'updateFeedback':
                     $scope.isLoading = false;
                     break;
-                case 'deleteEvent':
+                case 'deleteFeedback':
                     $scope.isLoading = false;
                     break;
             }
         };
 
-        function setCalenderEvent(Events) {
-            console.log(Events);
-            $scope.events.slice(0, $scope.events.length);
-            angular.forEach(Events, function (item) {
-                $scope.events.push({
+        function setCalenderFeedback(Feedbacks) {
+            console.log(Feedbacks);
+            $scope.Feedbacks.slice(0, $scope.Feedbacks.length);
+            angular.forEach(Feedbacks, function (item) {
+                $scope.Feedbacks.push({
                     title: item.Subject,
                     description: item.Description,
                     start: new Date(item.Start),
@@ -146,7 +146,7 @@
                 });
             });
 
-            $scope.eventSources = [$scope.events];
+            $scope.FeedbackSources = [$scope.Feedbacks];
         };
     }
 })();

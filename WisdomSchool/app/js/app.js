@@ -172,6 +172,14 @@ mymainApp.config(['$routeProvider',
             templateUrl: './app/controller/Event/Event.html',
             controller: ''
         }).
+        when('/feedback', {
+            templateUrl: './app/controller/Feedback/Feedback.html',
+            controller: ''
+        }).
+        when('/album', {
+            templateUrl: './app/controller/Album/Album.html',
+            controller: ''
+        }).
         otherwise({
             redirectTo: '/dashboard'
         });

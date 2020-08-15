@@ -8,8 +8,8 @@
           HouseCtlrFn
         ]);
     function HouseCtlrFn($scope, HouseService) {
-        $scope.heading = "House Detail";
-        $scope.subheading = "";
+        $scope.heading = "House";
+        $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

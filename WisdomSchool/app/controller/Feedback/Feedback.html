@@ -1,0 +1,129 @@
+﻿<div id="page-wrapper" ng-controller="FeedbackCtrl">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{heading}}
+                    <small>{{subheading}}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/index">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Feedback
+                        
+                    </li>
+                    <!--<div style="float: right;">
+                        <a href=""> <span class="glyphicon glyphicon-plus" ng-click="open(1,null)">Add</span></a>
+                    </div>-->
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Admission No</th>
+                                <th>Name</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in FeedbackDetails | filter:q | itemsPerPage: pageSize" current-page="currentPage" ng-bind-html="FeedbackDetails">
+                                <!-- class="active" class="success" class="warning"  class="danger"-->
+                                <td>{{item.ID}}</td>
+                                <td>{{item.StuAdmNo}}</td>
+                                <td>{{item.Name}}</td>
+                                <td>{{item.ContactNumber}}</td>
+                                <td>{{item.Email}}</td>
+                                <td>{{item.Subject}}</td>
+                                <td>{{item.Message}}</td>
+                                <td>
+                                    <!--<a href=""><span class="glyphicon glyphicon-edit" ng-click="open(2,item)"></span></a>-->
+                                    <a href=""> <span class="glyphicon glyphicon-remove" ng-click="open(3,item)"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./app/Utility/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- /.container-fluid -->
+   
+    <!--Modal Pop-up-->
+    <div class="modal fade" id="EditFeedbackModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Feedback {{selectedFeedback.Subject}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="FeedbackForm" >
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Admission No</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeedback.StuAdmNo" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Name</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeedback.Name" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Contact Number</label></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" ng-model="selectedFeedback.ContactNumber" ng-disabled="disableCtrl" /></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Email</label></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" ng-model="selectedFeedback.Email" ng-disabled="disableCtrl" /></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Subject</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeedback.Subject" ng-disabled="disableCtrl"></div>
+                            </div>
+                            <div class="form-group col-lg-8">
+                                <div class="col-lg-3"><label>Message</label></div>
+                                <div class="col-lg-6"><input class="form-control" ng-model="selectedFeedback.Message" ng-disabled="disableCtrl"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-show="crud===1" ng-click="addFeedback(selectedFeedback)">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===2" ng-click="updateFeedback(selectedFeedback)">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-show="crud===3" ng-click="deletesFeedback(selectedFeedback)">Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="wait" class="modalPopup" ng-show="isLoading">
+        <div class="modalBackground">
+            <center>
+                <img alt="" class="imgcls" src="../img/loader.gif" />
+            </center>
+        </div>
+    </div>
+    <!--Modal Pop-up-->
+</div>
+<!-- /#page-wrapper -->

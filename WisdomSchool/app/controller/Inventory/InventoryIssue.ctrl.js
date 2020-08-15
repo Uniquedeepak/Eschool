@@ -11,8 +11,8 @@
           InventoryIssueCtlr
         ]);
     function InventoryIssueCtlr($scope, InventoryIssueService, InventoryCategoryService, InventoryItemService, window) {
-        $scope.heading = "Inventory Issue";
-        $scope.subheading = "";
+        $scope.heading = "Inventory";
+        $scope.subheading = "Issue";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

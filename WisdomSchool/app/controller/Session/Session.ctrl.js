@@ -8,8 +8,8 @@
           SessionCtlr
         ]);
     function SessionCtlr($scope, SessionService) {
-        $scope.heading = "Session Detail";
-        $scope.subheading = "";
+        $scope.heading = "Session";
+        $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         activate();

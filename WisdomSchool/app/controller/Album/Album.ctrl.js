@@ -1,106 +1,141 @@
 ﻿(function () {
     'use strict';
-    var controllerId = 'HomeworkCtrl';
+    var controllerId = 'AlbumCtrl';
     angular.module('AngularApp').controller(controllerId,
         ['$scope',
-         'HomeworkService',
+         'AlbumService',
          'CommonSrvc',
           
-          HomeworkCtlrFn
+          AlbumCtlrFn
         ]);
-    function HomeworkCtlrFn($scope, HomeworkService,CommonSrvc) {
-        $scope.heading = "Homework";
-        $scope.homeworkImg = "";
+    function AlbumCtlrFn($scope, AlbumService,CommonSrvc) {
+        $scope.heading = "Album";
+        $scope.AlbumImg = "";
         $scope.subheading = "Detail";
         $scope.currentPage = 1;
         $scope.pageSize = 10;
+
+        //Image Gallery
+        this.showCaption = true;
+        this.current = 0;
+        $scope.images = [];
+        $scope.currentAlbum = "";
+       
+        //Image Gallery
+
         activate();
+
+
         function activate() {
             $scope.isLoading = true;
-            CommonSrvc.monthList(successCallBack, failureCallBack);
-            CommonSrvc.getAllClass(successCallBack, failureCallBack);
-            HomeworkService.getHomeworkDetails(successCallBack, failureCallBack);
+            AlbumService.getAlbumDetails(successCallBack, failureCallBack);
         }
-       
+
+        this.getIndex = function (img) {
+            this.current = $scope.images.indexOf(img);
+        }
+
+        this.getPhotoIndex = function (albumId, img) {
+            angular.forEach($scope.AlbumDetails, function (item) {
+                if (item.ID == albumId) {
+                    $scope.currentAlbum = item.ALBUM_NAME;
+                    $scope.images = item.Photos;
+                }
+            });
+            this.current = $scope.images.indexOf(img);
+        }
+
+        this.nextImage = function () {
+            this.current += 1;
+            if (this.current === $scope.images.length)
+                this.current = 0;
+        }
+
         $scope.open = function (isDelete, item) {
             
             $scope.disableCtrl = isDelete === 3;
             $scope.crud = isDelete;
 
-            if (item)
-                assignClass(item.class);
-            else
-                assignClass("NURSERY");
-            
-            $scope.selectedHomework = item;
-            $("#EditHomeworkModel").modal();
+            $scope.selectedAlbum = item;
+            $("#EditAlbumModel").modal();
         }
-        $scope.deletesHomework = function (HomeworkDetail) {
+        $scope.deletesAlbum = function (AlbumDetail) {
             $scope.isLoading = true;
-            HomeworkService.deleteHomework(HomeworkDetail.id, successCallBack, failureCallBack);
-        }
-        $scope.addHomework = function (HomeworkDetail) {
-            $scope.isLoading = true;
-            HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month;
-            HomeworkService.addHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
+            AlbumService.deleteAlbum(AlbumDetail.Id, successCallBack, failureCallBack);
         }
 
-        $scope.updateHomework = function (HomeworkDetail)
+        $scope.deleteAlbum = function (AlbumDetail) {
+            $scope.isLoading = true;
+            AlbumService.deleteAlbum(AlbumDetail.ID, successCallBack, failureCallBack);
+        }
+
+        $scope.addAlbum = function (AlbumDetail) {
+            $scope.isLoading = true;
+
+            var form = new FormData();
+            for (var i in $scope.files) {
+                form.append("Files", $scope.files[i]);
+            }
+            form.append("AlbumName", AlbumDetail.AlbumName);
+            form.append("SchoolCode", "GW");
+            
+            AlbumService.addAlbum(form, successCallBack, failureCallBack);
+        }
+        $scope.updateAlbum = function (AlbumDetail)
         {
             $scope.isLoading = true;
-            HomeworkDetail.class = $scope.SelectedClass.CID;
-            HomeworkDetail.month = HomeworkDetail.month;
-            HomeworkService.updateHomework(HomeworkDetail, HomeworkDetail.data, successCallBack, failureCallBack);
+            AlbumService.updateAlbum(AlbumDetail, successCallBack, failureCallBack);
         }
-        $scope.downloadHomework = function (Id) {
-            $scope.isLoading = true;
-            HomeworkService.downloadHomework(Id, successCallBack, failureCallBack);
-        }
-        function assignClass(Class) {
-            var i = 0;
-            angular.forEach($scope.Classes, function (value, key) {
-                if (value.Class1 === Class) {
-                    $scope.SelectedClass = value;
+
+        $scope.getFileDetails = function (e) {
+
+            $scope.files = [];
+            $scope.$apply(function () {
+
+                // STORE THE FILE OBJECT IN AN ARRAY.
+                for (var i = 0; i < e.files.length; i++) {
+                    $scope.files.push(e.files[i])
                 }
-                i = i + 1;
+
             });
-        }
+        };
+
         function successCallBack(call, data) {
             switch (call) {
-                case 'getHomeworkDetails':
+                case 'getAlbumDetails':
                     $scope.isLoading = false;
-                    if (typeof data !== 'undefined' && data != null) {
-                        $scope.HomeworkDetails = data;
-                        $("#EditHomeworkModel .close").click();
+                    if (data) {
+                        $scope.AlbumDetails = data.Result;
+                        console.log($scope.AlbumDetails);
+                        $("#EditAlbumModel .close").click();
                         break;
                     }
                     break;
-                case 'addHomework':
-                    $scope.isLoading = false;
-                    if (typeof data !== 'undefined' && data != null) {
-                        activate();
-                        $("#EditHomeworkModel .close").click();
-                        break;
-                    }
-                    break;
-                case 'updateHomework':
+                case 'addAlbum':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         activate();
-                        $("#EditHomeworkModel .close").click();
+                        $("#EditAlbumModel .close").click();
                         break;
                     }
                     break;
-                case 'deleteHomework':
+                case 'updateAlbum':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         activate();
-                        $("#EditHomeworkModel .close").click();
+                        $("#EditAlbumModel .close").click();
                         break;
                     }
                     break;
-                case 'downloadHomework':
+                case 'deleteAlbum':
+                    $scope.isLoading = false;
+                    if (typeof data !== 'undefined' && data != null) {
+                        activate();
+                        $("#EditAlbumModel .close").click();
+                        break;
+                    }
+                    break;
+                case 'downloadAlbum':
                     $scope.isLoading = false;
                     if (typeof data !== 'undefined' && data != null) {
                         break;
@@ -126,16 +161,19 @@
         };
         function failureCallBack(call, data) {
             switch (call) {
-                case 'getHomeworkDetails':
+                case 'getAlbumDetails':
                     $scope.isLoading = false;
                     break;
-                case 'updateHomework':
+                case 'addAlbum':
                     $scope.isLoading = false;
                     break;
-                case 'deleteHomework':
+                case 'updateAlbum':
                     $scope.isLoading = false;
                     break;
-                case 'downloadHomework':
+                case 'deleteAlbum':
+                    $scope.isLoading = false;
+                    break;
+                case 'downloadAlbum':
                     $scope.isLoading = false;
                     break;
                 case 'GetClass':
