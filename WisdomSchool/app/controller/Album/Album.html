@@ -28,14 +28,14 @@
                         <div class="panel-heading clearfix">
                             <div style="float: left;">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" data-target="#{{item.ALBUM_NAME}}">{{item.ALBUM_NAME}}</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" data-target="#{{item.ID}}">{{item.ALBUM_NAME}}</a>
                                 </h4>
                             </div>
                             <div style="float: right;">
                                 <a href=""> <span class="fa fa-trash" ng-click="deleteAlbum(item)"></span></a>
                             </div>
                         </div>
-                        <div id="{{item.ALBUM_NAME}}" class="panel-collapse collapse">
+                        <div id="{{item.ID}}" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row text-center text-lg-left">
                                     <div class="col-lg-2 col-md-4 col-6" ng-repeat="photoitem in item.Photos">

@@ -106,7 +106,6 @@
                     $scope.isLoading = false;
                     if (data) {
                         $scope.AlbumDetails = data.Result;
-                        console.log($scope.AlbumDetails);
                         $("#EditAlbumModel .close").click();
                         break;
                     }
